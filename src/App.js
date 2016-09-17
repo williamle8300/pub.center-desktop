@@ -17,19 +17,19 @@ module.exports = React.createClass({
 			<div>
 				<ul>
 					<li>
-						<Link href="/">home</Link>
+						<Link href="/desktop/">home</Link>
 					</li>
 					<li>
-						<Link href="/doc">doc</Link>
+						<Link href="/desktop/doc">doc</Link>
 					</li>
 					<li>
-						<Link href="/feed">feed</Link>
+						<Link href="/desktop/feed">feed</Link>
 					</li>
 				</ul>
 				<Locations>
-					<Location path="/" handler={Home} />
-					<Location path="/feed" handler={Feed} />
-					<Location path="/doc" handler={Doc} />
+					<Location path="/desktop/" handler={Home} />
+					<Location path="/desktop/feed" handler={Feed} />
+					<Location path="/desktop/doc" handler={Doc} />
 					<NotFound handler={Page404} />
 				</Locations>
 			</div>
