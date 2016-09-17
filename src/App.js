@@ -1,5 +1,6 @@
 var React = require('react')
 var Router = require('react-router-component')
+var Link = Router.Link
 var Locations = Router.Locations
 var Location = Router.Location
 var NotFound = Router.NotFound
@@ -16,13 +17,13 @@ module.exports = React.createClass({
 			<div>
 				<ul>
 					<li>
-						<a href="/">home</a>
+						<Link href="/">home</Link>
 					</li>
 					<li>
-						<a href="/doc">doc</a>
+						<Link href="/doc">doc</Link>
 					</li>
 					<li>
-						<a href="/feed">feed</a>
+						<Link href="/feed">feed</Link>
 					</li>
 				</ul>
 				<Locations>

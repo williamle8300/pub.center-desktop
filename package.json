@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prod": "npm run build; cp production.js build/production.js; cp config.js build/config.js; cd build; ADDRESS=10.128.40.215 PORT=3000 pm2 start production.js -f"
+		"prod": "pushstate-https-server -r build -p 3000 -a 127.0.0.1 -d static"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
