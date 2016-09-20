@@ -56,7 +56,7 @@ module.exports = React.createClass({
 	getArticles: function (callback) {
 
 		Request
-		.get('https://pub.center/article?feed='  +encodeURIComponent(this.props._feed_)+ '?page=' +this.state.page)
+		.get('https://pub.center/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
 		.end((err, response) => {
 
 			if (err) {
