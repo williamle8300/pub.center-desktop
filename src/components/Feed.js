@@ -41,7 +41,7 @@ module.exports = React.createClass({
 	getFeed: function (callback) {
 
 		Request
-		.get('http://localhost:3001/feed/' +encodeURIComponent(this.props._feed_)+ '?page=' +this.state.page)
+		.get('https://pub.center/feed/' +encodeURIComponent(this.props._feed_))
 		.end((err, response) => {
 
 			if (err) {
@@ -56,7 +56,7 @@ module.exports = React.createClass({
 	getArticles: function (callback) {
 
 		Request
-		.get('http://localhost:3001/article?feed='  +encodeURIComponent(this.props._feed_))
+		.get('https://pub.center/article?feed='  +encodeURIComponent(this.props._feed_)+ '?page=' +this.state.page)
 		.end((err, response) => {
 
 			if (err) {
