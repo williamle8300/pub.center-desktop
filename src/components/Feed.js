@@ -3,7 +3,7 @@ var React = require('react')
 var Request = require('superagent')
 
 var FeedBanner = require('./FeedBanner')
-var ListArticles = require('./ListArticles')
+var ArticleList = require('./ArticleList')
 
 
 module.exports = React.createClass({
@@ -23,8 +23,18 @@ module.exports = React.createClass({
   render: function () {
     return (
 			<div>
-	    	<FeedBanner feed={this.state.feed}/>
-				<ListArticles articles={this.state.articles}/>
+	    	<h1>Feed</h1>
+				{
+					this.props._feed_
+					? (
+						<div>
+				    	<FeedBanner feed={this.state.feed}/>
+							<ArticleList articles={this.state.articles}/>
+							<button onClick={this.getMoreArticles}>Show More</button>
+						</div>
+					)
+					: null
+				}
 			</div>
     )
   },
@@ -67,6 +77,15 @@ module.exports = React.createClass({
 			callback(null, response.body)
 			return
 		})
-	}
-	
+	},
+	getMoreArticles: function () {
+		
+		this.setState({page: ++this.state.page}, () => {
+			
+			this.getArticles((err, results) => {
+				
+				this.setState({articles: this.state.articles.concat(results)})
+			})
+		})
+	} 
 })

@@ -4,11 +4,11 @@ var Location = Router.Location
 var Locations = Router.Locations
 var NotFound = Router.NotFound
 
-var RouteDocs = require('./RouteDocs')
-var RouteFeed = require('./RouteFeed')
-var RouteHome = require('./RouteHome')
+var Docs = require('./Docs')
+var Feed = require('./Feed')
+var Home = require('./Home')
 var Http404 = require('./Http404')
-var RouteUser = require('./RouteUser')
+var User = require('./User')
 
 
 module.exports = React.createClass({
@@ -20,10 +20,10 @@ module.exports = React.createClass({
 	
 		return (
 			<Locations>
-				<Location path="/" handler={RouteHome}/>
-				<Location path={pathMatchFeed} urlPatternOptions={paramMatchFeed} handler={RouteFeed}/>
-				<Location path="/documentation" handler={RouteDocs}/>
-				<Location path="/user" handler={RouteUser}/>
+				<Location path="/" handler={Home}/>
+				<Location path={pathMatchFeed} urlPatternOptions={paramMatchFeed} handler={Feed}/>
+				<Location path="/documentation" handler={Docs}/>
+				<Location path="/user" handler={User}/>
 				<NotFound handler={Http404}/>
 			</Locations>
 		)
