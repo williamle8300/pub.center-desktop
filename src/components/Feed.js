@@ -2,7 +2,10 @@ var Async = require('async')
 var React = require('react')
 var Request = require('superagent')
 
+var config = require('../../config')
+
 var FeedBanner = require('./FeedBanner')
+var FeedList = require('./FeedList')
 var ArticleList = require('./ArticleList')
 
 
@@ -33,7 +36,7 @@ module.exports = React.createClass({
 							<button onClick={this.getMoreArticles}>Show More</button>
 						</div>
 					)
-					: null
+					: <FeedList/>
 				}
 			</div>
     )
@@ -51,7 +54,7 @@ module.exports = React.createClass({
 	getFeed: function (callback) {
 
 		Request
-		.get('https://pub.center/feed/' +encodeURIComponent(this.props._feed_))
+		.get(config.backend+ '/feed/' +encodeURIComponent(this.props._feed_))
 		.end((err, response) => {
 
 			if (err) {
@@ -66,7 +69,7 @@ module.exports = React.createClass({
 	getArticles: function (callback) {
 
 		Request
-		.get('https://pub.center/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
+		.get(config.backend+ '/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
 		.end((err, response) => {
 
 			if (err) {

@@ -15,13 +15,10 @@ module.exports = React.createClass({
 	
 	render: function () {
 
-		var pathMatchFeed = /\/feed\/?(.+)?/
-		var paramMatchFeed = ['_feed_']
-	
 		return (
 			<Locations>
 				<Location path="/" handler={Home}/>
-				<Location path={pathMatchFeed} urlPatternOptions={paramMatchFeed} handler={Feed}/>
+				<Location path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} handler={Feed}/>
 				<Location path="/documentation" handler={Docs}/>
 				<Location path="/user" handler={User}/>
 				<NotFound handler={Http404}/>
