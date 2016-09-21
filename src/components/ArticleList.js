@@ -1,4 +1,7 @@
 var React = require('react')
+var Request = require('superagent')
+
+var config = require('../../config')
 
 var enforceVanillaHtml = require('../util/enforce-vanilla-html')
 
@@ -6,14 +9,21 @@ var enforceVanillaHtml = require('../util/enforce-vanilla-html')
 module.exports = React.createClass({
 	
 	propTypes: {
-		articles: React.PropTypes.array.isRequired,
+		_feed_: React.PropTypes.string.isRequired,
+	},
+	
+	getInitialState: function () {
+		return {
+			articles: [],
+			page: 1
+		}
 	},
 	
 	render: function () {
 		return (
 			<div>
 				{
-					this.props.articles.map((article) => {						
+					this.state.articles.map((article) => {						
 						return (
 							<article key={article.id} style={{clear: 'both'}}>
 								<header>
@@ -30,7 +40,30 @@ module.exports = React.createClass({
 						)
 					})
 				}
+				<button onClick={this.getArticles}>Show More</button>
 			</div>
 		)
+	},
+	
+	componentDidMount: function () {
+		
+		this.getArticles()
+	},
+	
+	getArticles: function () {
+
+		Request
+		.get(config.backend+ '/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
+		.end((err, response) => {
+
+			if (err) {
+				throw err
+			}
+			
+			this.setState({
+				articles: this.state.articles.concat(response.body),
+				page: ++this.state.page
+			})
+		})
 	}
 })
