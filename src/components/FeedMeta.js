@@ -32,14 +32,13 @@ module.exports = React.createClass({
 		
 		Request
 		.get(config.backend+ '/feed/' +encodeURIComponent(this.props._feed_))
-		.end((err, response) => {
+		.end(function (err, response) {
 
 			if (err) {
 				throw err
 			}
 			
 			this.setState(response.body)
-		})
-		
+		}.bind(this))
 	}
 })

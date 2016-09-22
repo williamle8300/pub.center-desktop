@@ -23,7 +23,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				{
-					this.state.articles.map((article) => {						
+					this.state.articles.map(function (article) {						
 						return (
 							<article key={article.id} style={{clear: 'both'}}>
 								<header>
@@ -54,7 +54,7 @@ module.exports = React.createClass({
 
 		Request
 		.get(config.backend+ '/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
-		.end((err, response) => {
+		.end(function (err, response) {
 
 			if (err) {
 				throw err
@@ -64,6 +64,6 @@ module.exports = React.createClass({
 				articles: this.state.articles.concat(response.body),
 				page: ++this.state.page
 			})
-		})
+		}.bind(this))
 	}
 })

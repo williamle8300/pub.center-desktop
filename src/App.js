@@ -19,6 +19,7 @@ module.exports = React.createClass({
 function AppStyle() {
 	return {
 		margin: '0 auto',
-		width: '50%'
+		width: '50%',
+		fontFamily: 'Helvetica'
 	}
 }
