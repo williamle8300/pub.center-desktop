@@ -10,15 +10,15 @@ module.exports = React.createClass({
     return (
 			<div>
 	    	<h1>User</h1>
-				<button onClick={this.deleteSession}>Delete Session</button>
+				<button onClick={this.wipeSession}>Delete Session</button>
 			</div>
     )
   },
-	deleteSession: function () {
+	wipeSession: function () {
 		
 		this.props.onJwt(null, () => {
 			this.props.onUser(null, () => {
-				
+				window.location = '/'
 			})
 		})
 	}
