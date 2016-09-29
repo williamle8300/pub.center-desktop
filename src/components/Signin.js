@@ -7,10 +7,10 @@ var Modal = require('./Modal')
 
 module.exports = React.createClass({
 	propTypes: {
-		onJwt: React.PropTypes.func,
 		jwt: React.PropTypes.string,
-		onUser: React.PropTypes.func,
 		user: React.PropTypes.object,
+		onJwt: React.PropTypes.func.isRequired,
+		onUser: React.PropTypes.func.isRequired,
 	},
 	getInitialState: function () {
 		return {

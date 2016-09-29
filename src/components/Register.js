@@ -6,8 +6,8 @@ var config = require('../../config')
 
 module.exports = React.createClass({
 	propTypes: {
-		onJwt: React.PropTypes.func,
-		onUser: React.PropTypes.func,
+		onJwt: React.PropTypes.func.isRequired,
+		onUser: React.PropTypes.func.isRequired,
 		toggleSigninMode: React.PropTypes.func.isRequired
 	},
 	getInitialState: function () {

@@ -7,10 +7,10 @@ var Signin = require('./Signin')
 
 module.exports = React.createClass({
 	propTypes: {
-		onJwt: React.PropTypes.func,
 		jwt: React.PropTypes.string,
-		onUser: React.PropTypes.func,
 		user: React.PropTypes.object,
+		onJwt: React.PropTypes.func.isRequired,
+		onUser: React.PropTypes.func.isRequired,
 	},
 	render: function () {
 		return (
@@ -27,7 +27,7 @@ module.exports = React.createClass({
 				<li>
 					{
 						this.props.jwt && this.props.user
-						? <Link href="/account">account</Link>
+						? <Link href="/user">user</Link>
 						: <Signin
 								onJwt={this.props.onJwt}
 								jwt={this.props.jwt}

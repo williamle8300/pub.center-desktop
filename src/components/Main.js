@@ -8,13 +8,13 @@ var Docs = require('./Docs')
 var Feed = require('./Feed')
 var Home = require('./Home')
 var Http404 = require('./Http404')
-var Account = require('./Account')
+var User = require('./User')
 
 
 module.exports = React.createClass({
 	propTypes: {
-		jwt: React.PropTypes.string,
-		user: React.PropTypes.object,
+		onJwt: React.PropTypes.func.isRequired,
+		onUser: React.PropTypes.func.isRequired,
 	},
 	render: function () {
 		return (
@@ -22,7 +22,7 @@ module.exports = React.createClass({
 				<Location path="/" handler={Home}/>
 				<Location path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} handler={Feed}/>
 				<Location path="/documentation" handler={Docs}/>
-				<Location path="/account" handler={Account}/>
+				<Location onJwt={this.props.onJwt} onUser={this.props.onUser} path="/user" handler={User}/>
 				<NotFound handler={Http404}/>
 			</Locations>
 		)

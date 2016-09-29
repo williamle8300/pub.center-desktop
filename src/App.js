@@ -7,7 +7,7 @@ var Footer = require('./components/Footer')
 module.exports = React.createClass({
 	getInitialState: function () {
 		return {
-			jwt: '',
+			jwt: null,
 			user: null
 		}
 	},
@@ -20,13 +20,13 @@ module.exports = React.createClass({
 					onUser={this.onUser}
 					user={this.state.user}/>
 				<Main
-					jwt={this.state.jwt}
-					user={this.state.user}/>
+					onJwt={this.onJwt}
+					onUser={this.onUser}/>
 				<Footer/>
 			</div>
     )
   },
-	//this func jogs the memory
+	//this lifecycle func is used to jog memory
 	componentDidMount: function () {
 		
 		this.setState({
@@ -36,13 +36,13 @@ module.exports = React.createClass({
 	},
 	onJwt: function (jwt, callback) {
 		
-		// localStorage.jwt = JSON.stringify(jwt)
+		localStorage.jwt = JSON.stringify(jwt)
 		
 		this.setState({jwt: jwt}, callback)
 	},
 	onUser: function (user, callback) {
 		
-		// localStorage.user = JSON.stringify(user)
+		localStorage.user = JSON.stringify(user)
 		
 		this.setState({user: user}, callback)
 	}
