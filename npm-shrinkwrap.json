@@ -917,6 +917,11 @@
       "from": "js-tokens@>=1.0.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-1.0.3.tgz"
     },
+    "jwt-decode": {
+      "version": "2.1.0",
+      "from": "jwt-decode@latest",
+      "resolved": "https://registry.npmjs.org/jwt-decode/-/jwt-decode-2.1.0.tgz"
+    },
     "lodash": {
       "version": "4.16.2",
       "from": "lodash@latest",
@@ -1167,6 +1172,11 @@
       "version": "1.0.0",
       "from": "utils-merge@1.0.0",
       "resolved": "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.0.tgz"
+    },
+    "validator": {
+      "version": "6.0.0",
+      "from": "validator@latest",
+      "resolved": "https://registry.npmjs.org/validator/-/validator-6.0.0.tgz"
     },
     "vary": {
       "version": "1.1.0",

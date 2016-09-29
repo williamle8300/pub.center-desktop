@@ -1,5 +1,7 @@
 var React = require('react')
 
+var Login = require('./Login')
+var Register = require('./Register')
 var Modal = require('./Modal')
 
 
@@ -12,36 +14,48 @@ module.exports = React.createClass({
 	},
 	getInitialState: function () {
 		return {
-			modalVisible: false
+			modalVisible: false,
+			loginOrRegisterMode: 'login'
 		}
 	},
 	render: function () {
 		return (
-			<div>
+			<div className="Signin">
 				<a href="#" onClick={() => this.setState({modalVisible: true})}>signin</a>
 				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal} style={{}}>
-					<div style={styleA()}>
+					<div onClick={(e) => e.stopPropagation()} style={{maxWidth: '50%'}}>
 						<button onClick={this.closeModal}>X</button>
-						<div>cool</div>
+						{
+							this.state.loginOrRegisterMode === 'login'
+							? <Login onJwt={this.props.onJwt} onUser={this.props.onUser} toggleSigninMode={this.toggleSigninMode}/>
+							: <Register onJwt={this.props.onJwt} onUser={this.props.onUser} toggleSigninMode={this.toggleSigninMode}/>
+						}
 					</div>
 				</Modal>
 			</div>
 		)
 	},
+	componentWillUpdate: function (newProps, newState) {
+		
+		if (newProps.jwt && newProps.user) {
+			this.closeModal()
+		} 
+	},
 	closeModal: function () {
 		
 		this.setState({modalVisible: false})
+	},
+	toggleSigninMode: function () {
+		
+		if (this.state.loginOrRegisterMode === 'login') {
+			this.setState({loginOrRegisterMode: 'register'})
+		}
+		
+		else this.setState({loginOrRegisterMode: 'login'})
 	}
 })
-
-function styleA() {
-	return {
-		maxWidth: '50%',
-		background: 'white'
-	}
-}
 /*
 	open modal:
-		login => got jwt => save to LS
-			get user using jwt => got user => save to LS
+		POST jwt => save to LS
+			GET user (using jwt) => save to LS
 */

@@ -26,6 +26,7 @@ module.exports = React.createClass({
 			</div>
     )
   },
+	//this func jogs the memory
 	componentDidMount: function () {
 		
 		this.setState({
@@ -33,17 +34,17 @@ module.exports = React.createClass({
 			user: localStorage.user ? JSON.parse(localStorage.user) : this.getInitialState().user
 		})
 	},
-	onJwt: function (jwt) {
+	onJwt: function (jwt, callback) {
 		
-		localStorage.jwt = JSON.stringify(jwt)
+		// localStorage.jwt = JSON.stringify(jwt)
 		
-		this.setState({jwt: jwt})
+		this.setState({jwt: jwt}, callback)
 	},
-	onUser: function (user) {
+	onUser: function (user, callback) {
 		
-		localStorage.user = JSON.stringify(user)
+		// localStorage.user = JSON.stringify(user)
 		
-		this.setState({user: user})
+		this.setState({user: user}, callback)
 	}
 })
 

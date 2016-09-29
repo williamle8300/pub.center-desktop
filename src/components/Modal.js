@@ -17,7 +17,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<div onClick={this.props.onClose} style={styleA(null, this.props)}>
+			<div className="Modal" onClick={this.props.onClose} style={styleA(null, this.props)}>
 				{this.props.children}
 			</div>
 		)
@@ -40,8 +40,8 @@ module.exports = React.createClass({
 
 function styleA(state, props) {
 
-	var generic = {
-    position: 'absolute',
+	var genericStyle = {
+    position: 'fixed',
     top: 0,
     left: 0,
 		display: props.isVisible ? 'flex' : 'none',
@@ -52,7 +52,7 @@ function styleA(state, props) {
 		background: 'rgba(0, 0, 0, 0.3333)',
 	}
 	
-	return _.merge(generic, props.style)
+	return _.merge(genericStyle, props.style)
 }
 // closebutton.
 // content.

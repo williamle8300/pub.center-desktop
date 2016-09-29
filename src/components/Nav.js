@@ -26,7 +26,7 @@ module.exports = React.createClass({
 				</li>
 				<li>
 					{
-						this.props.jwt
+						this.props.jwt && this.props.user
 						? <Link href="/account">account</Link>
 						: <Signin
 								onJwt={this.props.onJwt}
