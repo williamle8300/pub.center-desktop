@@ -32,7 +32,7 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
-	componentDidMount: function () {
+	componentWillMount: function () {
 
 		Request
 		.get(config.backend+ '/feed')
