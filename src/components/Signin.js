@@ -27,8 +27,14 @@ module.exports = React.createClass({
 						<button onClick={this.closeModal}>X</button>
 						{
 							this.state.loginOrRegisterMode === 'login'
-							? <Login onJwt={this.props.onJwt} onUser={this.props.onUser} toggleSigninMode={this.toggleSigninMode}/>
-							: <Register onJwt={this.props.onJwt} onUser={this.props.onUser} toggleSigninMode={this.toggleSigninMode}/>
+							? <Login
+								onJwt={this.props.onJwt}
+								onUser={this.props.onUser}
+								toggleSigninMode={this.toggleSigninMode}/>
+							: <Register
+								onJwt={this.props.onJwt}
+								onUser={this.props.onUser}
+								toggleSigninMode={this.toggleSigninMode}/>
 						}
 					</div>
 				</Modal>

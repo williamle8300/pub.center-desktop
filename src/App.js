@@ -1,8 +1,13 @@
+var JwtDecode = require('jwt-decode')
+var Request = require('superagent')
 var React = require('react')
 
 var Main = require('./components/Main')
 var Nav = require('./components/Nav')
 var Footer = require('./components/Footer')
+
+var config = require('../config')
+
 
 module.exports = React.createClass({
 	getInitialState: function () {
@@ -28,6 +33,35 @@ module.exports = React.createClass({
 			</div>
     )
   },
+	componentWillMount: function () {
+		
+		/*
+			if there's a jwt
+			get the freshest copy of
+			User,
+			cache,
+			then propogate
+		*/
+		
+		var _user_
+		
+		if (this.state.jwt) {
+			
+			_user_ = JwtDecode(this.state.jwt).id
+
+			Request
+			.get(config.backend+ '/user/' +_user_)
+			.set({Authorization: 'Bearer ' +this.state.jwt})
+			.end((err, response) => {
+			
+				if (err) {
+					throw err
+				}
+			
+				this.onUser(response.body)
+			})
+		}
+	},
 	onJwt: function (jwt, callback) {
 		
 		localStorage.jwt = JSON.stringify(jwt)
