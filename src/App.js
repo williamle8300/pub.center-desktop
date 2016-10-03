@@ -39,8 +39,8 @@ module.exports = React.createClass({
 			if there's a jwt
 			get the freshest copy of
 			User,
-			cache,
-			then propogate
+			cache in LocalStorage,
+			then propogate to Views
 		*/
 		
 		var _user_

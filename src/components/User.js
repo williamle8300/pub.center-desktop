@@ -28,15 +28,27 @@ module.exports = React.createClass({
 				<h2>Information</h2>
 				<div>
 					<label>email</label>
-					<input type="email" value={this.state.email} placeholder={this.props.user.email} onChange={this.onChangeEmail}/>
+					<input
+						type="email"
+						placeholder={this.props.user.email || 'email'}
+						value={this.state.email}
+						onChange={this.onChangeEmail}/>
 				</div>
 				<div>
 		    	<label>username</label>
-					<input type="text" value={this.state.username} placeholder={this.props.user.username} onChange={this.onChangeUsername}/>
+					<input
+						type="text"
+						placeholder={this.props.user.username || 'username'}
+						value={this.state.username}
+						onChange={this.onChangeUsername}/>
 				</div>
 				<div>
 					<label>password</label>
-					<input type="password" value={this.state.password} placeholder={'•'.repeat(8)} onChange={this.onChangePassword}/>
+					<input
+						type="password"
+						placeholder={'•'.repeat(8)}
+						value={this.state.password}
+						onChange={this.onChangePassword}/>
 				</div>
 				<button onClick={this.updateUser}>update</button>
 				<h2>Invoices</h2>
@@ -48,11 +60,11 @@ module.exports = React.createClass({
 			</div>
     )
   },
-	// componentWillReceiveProps: function (newProps) {
-	// 	// if (!newProps.jwt || !newProps.user) {
-	// 	// 	window.location = '/'
-	// 	// }
-	// },
+	componentWillUpdate: function (newProps, newState) {
+		if (!newProps.jwt) {
+			window.location = '/'
+		}
+	},
 	onChangeEmail: function (e) {
 		
 		this.setState({email: e.target.value})
