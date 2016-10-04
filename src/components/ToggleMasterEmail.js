@@ -64,7 +64,6 @@ module.exports = React.createClass({
 				return alert(response.body.statusCode +': '+ response.body.message)
 			}
 			
-			this.setState({isActive: this.props.user.pushConfig.channelConfig.email.isActive})
 			this.props.onUser(response.body)
 			return
 		})
