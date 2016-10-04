@@ -43,6 +43,7 @@ module.exports = React.createClass({
 			}
 			
 			this.setState({feeds: response.body})
+			return
 		}.bind(this))
 	}
 })

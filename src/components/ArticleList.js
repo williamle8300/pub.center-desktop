@@ -64,6 +64,7 @@ module.exports = React.createClass({
 				articles: this.state.articles.concat(response.body),
 				page: ++this.state.page
 			})
+			return
 		}.bind(this))
 	}
 })

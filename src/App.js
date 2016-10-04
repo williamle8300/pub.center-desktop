@@ -59,6 +59,7 @@ module.exports = React.createClass({
 				}
 			
 				this.onUser(response.body)
+				return
 			})
 		}
 	},

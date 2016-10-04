@@ -39,6 +39,7 @@ module.exports = React.createClass({
 			}
 			
 			this.setState(response.body)
+			return
 		}.bind(this))
 	}
 })

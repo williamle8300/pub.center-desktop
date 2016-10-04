@@ -58,6 +58,7 @@ module.exports = React.createClass({
 					}
 					
 					this.props.onJwt(response.text)
+					return
 				})
 			})
 		})

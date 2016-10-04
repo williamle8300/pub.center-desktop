@@ -58,6 +58,7 @@ module.exports = React.createClass({
 			}
 		
 			this.props.onUser(response.body)
+			return
 		})
 	},
 	toggleSms: function () {
@@ -73,6 +74,7 @@ module.exports = React.createClass({
 			}
 		
 			this.props.onUser(response.body)
+			return
 		})
 	},
 	toggleApi: function () {
@@ -88,6 +90,7 @@ module.exports = React.createClass({
 			}
 		
 			this.props.onUser(response.body)
+			return
 		})
 	}
 })
