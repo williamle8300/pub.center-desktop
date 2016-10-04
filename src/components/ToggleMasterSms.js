@@ -1,7 +1,7 @@
 var Request = require('superagent')
 var React = require('react')
 
-var config = require('../../config')
+var backend = require('../../config').backend
 
 var Modal = require('./Modal')
 var Toggle = require('./Toggle')
@@ -55,7 +55,7 @@ module.exports = React.createClass({
 	toggle: function () {
 
 		Request
-		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/sms/is-active')
+		.put(backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/sms/is-active')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({isActive: !this.props.user.pushConfig.channelConfig.sms.isActive})
 		.end((err, response) => {
@@ -76,7 +76,7 @@ module.exports = React.createClass({
 		}
 		
 		Request
-		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/sms')
+		.put(backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/sms')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({sms: sms})
 		.end((err, response) => {

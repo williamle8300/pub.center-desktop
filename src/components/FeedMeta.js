@@ -1,7 +1,7 @@
 var React = require('react')
 var Request = require('superagent')
 
-var config = require('../../config')
+var backend = require('../../config').backend
 
 
 module.exports = React.createClass({
@@ -31,7 +31,7 @@ module.exports = React.createClass({
 	componentDidMount: function () {
 		
 		Request
-		.get(config.backend+ '/feed/' +encodeURIComponent(this.props._feed_))
+		.get(backend+ '/feed/' +encodeURIComponent(this.props._feed_))
 		.end(function (err, response) {
 
 			if (err) {

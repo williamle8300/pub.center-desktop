@@ -1,7 +1,7 @@
 var Request = require('superagent')
 var React = require('react')
 
-var config = require('../../config')
+var backend = require('../../config').backend
 
 
 module.exports = React.createClass({
@@ -31,7 +31,7 @@ module.exports = React.createClass({
 	onSubmit: function () {
 		
 		Request
-		.post(config.backend+ '/user')
+		.post(backend+ '/user')
 		.send({
 			email: this.state.email,
 			username: this.state.username,
@@ -46,7 +46,7 @@ module.exports = React.createClass({
 			this.props.onUser(response.body, () => {
 				
 				Request
-				.post(config.backend+ '/jwt')
+				.post(backend+ '/jwt')
 				.send({
 					username: response.body.username,
 					password: this.state.password

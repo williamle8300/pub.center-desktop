@@ -6,7 +6,7 @@ var Main = require('./components/Main')
 var Nav = require('./components/Nav')
 var Footer = require('./components/Footer')
 
-var config = require('../config')
+var backend = require('../config').backend
 
 
 module.exports = React.createClass({
@@ -50,7 +50,7 @@ module.exports = React.createClass({
 			_user_ = JwtDecode(this.state.jwt).id
 
 			Request
-			.get(config.backend+ '/user/' +_user_)
+			.get(backend+ '/user/' +_user_)
 			.set({Authorization: 'Bearer ' +this.state.jwt})
 			.end((err, response) => {
 			

@@ -4,7 +4,7 @@ var Router = require('react-router-component')
 var Link = Router.Link
 var {InputFilter, FilterResults} = require('react-fuzzy-filter').default()
 
-var config = require('../../config')
+var backend = require('../../config').backend
 
 
 module.exports = React.createClass({
@@ -35,7 +35,7 @@ module.exports = React.createClass({
 	componentWillMount: function () {
 
 		Request
-		.get(config.backend+ '/feed')
+		.get(backend+ '/feed')
 		.end(function (err, response) {
 			
 			if (err) {

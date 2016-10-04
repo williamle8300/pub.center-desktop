@@ -2,7 +2,7 @@ var _ = require('lodash')
 var React = require('react')
 var Request = require('superagent')
 
-var config = require('../../config')
+var backend = require('../../config').backend
 
 var PushConfig = require('./PushConfig')
 
@@ -86,7 +86,7 @@ module.exports = React.createClass({
 		})
 			
 		Request
-		.put(config.backend+ '/user/' +this.props.user.id)
+		.put(backend+ '/user/' +this.props.user.id)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send(user)
 		.end((err, response) => {
