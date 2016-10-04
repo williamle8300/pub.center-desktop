@@ -55,9 +55,9 @@ module.exports = React.createClass({
 	},
 	componentDidMount: function () {
 		
-		this.updateSubscriptions()
+		this.refreshSubscriptions()
 	},
-	updateSubscriptions: function () {
+	refreshSubscriptions: function () {
 		
 		Request
 		.get(backend+ '/user/' +this.props.user.id+ '/subscriptions')
@@ -83,15 +83,13 @@ module.exports = React.createClass({
 				throw err
 			}
 			
-			this.updateSubscriptions()
+			this.refreshSubscriptions()
 		})
 	},
 	updateConfig: function (_subscription_, config, key) {
 		
 		var newConfig = _.includes(config, key) ? _.pull(config, key) : config.concat(key)
-		
-		console.log(newConfig);
-		
+				
 		Request
 		.put(backend+ '/subscription/' +_subscription_+ '/config')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
@@ -102,7 +100,7 @@ module.exports = React.createClass({
 				throw err
 			}
 			
-			this.updateSubscriptions()
+			this.refreshSubscriptions()
 		})
 	}
 })
