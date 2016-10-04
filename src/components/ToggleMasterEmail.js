@@ -86,7 +86,8 @@ module.exports = React.createClass({
 			if (response.status !== 200) {
 				return alert(response.body.statusCode +': '+ response.body.message)
 			}
-		
+			
+			this.closeModal()
 			this.props.onUser(response.body)
 			return
 		})

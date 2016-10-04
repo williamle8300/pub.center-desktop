@@ -85,6 +85,7 @@ module.exports = React.createClass({
 				return alert(response.body.statusCode +': '+ response.body.message)
 			}
 		
+			this.closeModal()
 			this.props.onUser(response.body)
 			return
 		})
