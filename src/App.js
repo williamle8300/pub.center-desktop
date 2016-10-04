@@ -33,7 +33,7 @@ module.exports = React.createClass({
 			</div>
     )
   },
-	componentWillMount: function () {
+	componentDidMount: function () {
 		
 		/*
 			if there's a jwt

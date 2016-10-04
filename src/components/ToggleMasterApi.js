@@ -23,7 +23,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<div>
+			<th>
 				API
 				<button onClick={() => {this.setState({modalVisible: true})}}>
 					settings
@@ -53,7 +53,7 @@ module.exports = React.createClass({
 					disabled={!this.props.user.pushConfig.channelConfig.api.endpoint ? true : false}
 				  checked={this.props.user.pushConfig.channelConfig.api.isActive && this.props.user.pushConfig.channelConfig.api.endpoint ? true : false}
 				  onChange={this.toggle} />
-			</div>
+			</th>
 		)
 	},
 	closeModal: function () {

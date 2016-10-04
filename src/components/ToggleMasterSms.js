@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<div>
+			<th>
 				SMS
 				<button onClick={() => {this.setState({modalVisible: true})}}>
 					settings
@@ -41,7 +41,7 @@ module.exports = React.createClass({
 					disabled={!this.props.user.pushConfig.channelConfig.sms.phoneNumber ? true : false}
 				  checked={this.props.user.pushConfig.channelConfig.sms.isActive && this.props.user.pushConfig.channelConfig.sms.phoneNumber ? true : false}
 				  onChange={this.toggle} />
-			</div>
+			</th>
 		)
 	},
 	closeModal: function () {

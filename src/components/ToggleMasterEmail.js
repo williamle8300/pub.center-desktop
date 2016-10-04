@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<div>
+			<th>
 				Email
 				<button onClick={() => {this.setState({modalVisible: true})}}>
 					settings
@@ -41,7 +41,7 @@ module.exports = React.createClass({
 					disabled={!this.props.user.pushConfig.channelConfig.email.address ? true : false}
 				  checked={this.props.user.pushConfig.channelConfig.email.isActive && this.props.user.pushConfig.channelConfig.email.address ? true : false}
 				  onChange={this.toggle} />
-			</div>
+			</th>
 		)
 	},
 	closeModal: function () {
@@ -74,9 +74,7 @@ module.exports = React.createClass({
 			address: this.state.address,
 			isActive: this.state.address && this.props.user.pushConfig.channelConfig.email.isActive ? true : false
 		}
-		
-		console.log(1, email);
-		
+				
 		Request
 		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/email')
 		.set({Authorization: 'Bearer ' +this.props.jwt})

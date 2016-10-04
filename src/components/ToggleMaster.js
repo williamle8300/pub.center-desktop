@@ -17,32 +17,28 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<tr>
-			  <th>
-					Master
-					<Toggle
-					  checked={this.props.user.pushConfig.isActive || false}
-					  onChange={this.toggleMaster} />
-				</th>
-			  <th>
+			<thead>
+				<tr>
+				  <th>
+						Master
+						<Toggle
+						  checked={this.props.user.pushConfig.isActive || false}
+						  onChange={this.toggleMaster} />
+					</th>
 					<ToggleMasterEmail
 						jwt={this.props.jwt}
 						user={this.props.user}
 						onUser={this.props.onUser}/>
-				</th>
-			  <th>
 					<ToggleMasterSms
 						jwt={this.props.jwt}
 						user={this.props.user}
 						onUser={this.props.onUser}/>
-				</th>
-			  <th>
 					<ToggleMasterApi
 						jwt={this.props.jwt}
 						user={this.props.user}
 						onUser={this.props.onUser}/>
-				</th>
-			</tr>
+				</tr>
+			</thead>
 		)
 	},
 	toggleMaster: function () {
