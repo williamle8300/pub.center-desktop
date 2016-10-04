@@ -15,7 +15,7 @@ module.exports = React.createClass({
 	},
 	getInitialState: function () {
 		return {
-			email: '',
+			address: '',
 			modalVisible: false
 		}
 	},
@@ -31,16 +31,16 @@ module.exports = React.createClass({
 						<button onClick={this.closeModal}>X</button>
 						<input
 							type="email"
-							value={this.state.email}
-							placeholder={this.props.user.pushConfig.channelConfig.email.address || 'email'}
+							value={this.state.address}
+							placeholder={this.props.user.pushConfig.channelConfig.email.address || 'email@address.xyz'}
 							onChange={this.onChangeEmail}/>
-						<button onClick={this.updateEmailSettings}>Submit</button>
+						<button onClick={this.update}>Submit</button>
 					</div>
 				</Modal>
 				<Toggle
-					disabled={this.props.user.pushConfig.channelConfig.email.address ? false : true}
+					disabled={!this.props.user.pushConfig.channelConfig.email.address ? true : false}
 				  checked={this.props.user.pushConfig.channelConfig.email.isActive && this.props.user.pushConfig.channelConfig.email.address ? true : false}
-				  onChange={this.toggleEmail} />
+				  onChange={this.toggle} />
 			</div>
 		)
 	},
@@ -50,9 +50,9 @@ module.exports = React.createClass({
 	},
 	onChangeEmail: function (e) {
 		
-		this.setState({email: e.target.value})
+		this.setState({address: e.target.value})
 	},
-	toggleEmail: function () {
+	toggle: function () {
 
 		Request
 		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/email/is-active')
@@ -63,18 +63,25 @@ module.exports = React.createClass({
 			if (response.status !== 200) {
 				return alert(response.body.statusCode +': '+ response.body.message)
 			}
-		
+			
+			this.setState({isActive: this.props.user.pushConfig.channelConfig.email.isActive})
 			this.props.onUser(response.body)
+			return
 		})
 	},
-	updateEmailSettings: function () {
+	update: function () {
 		
-		var email = this.state.email
+		var email = {
+			address: this.state.address,
+			isActive: this.state.address && this.props.user.pushConfig.channelConfig.email.isActive ? true : false
+		}
+		
+		console.log(1, email);
 		
 		Request
-		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/email/address')
+		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/email')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
-		.send({address: email})
+		.send({email: email})
 		.end((err, response) => {
 			
 			if (response.status !== 200) {
@@ -82,6 +89,7 @@ module.exports = React.createClass({
 			}
 		
 			this.props.onUser(response.body)
+			return
 		})
 	},
 })

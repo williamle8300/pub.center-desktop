@@ -1,6 +1,6 @@
 var React = require('react')
 
-var ToggleMain = require('./ToggleMain')
+var ToggleMaster = require('./ToggleMaster')
 var UserSubscriptions = require('./UserSubscriptions')
 
 
@@ -14,7 +14,7 @@ module.exports = React.createClass({
 		return (
 			<table style={{width: '100%', border: '1px solid black'}}>
 				<tbody>
-					<ToggleMain jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
+					<ToggleMaster jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
 					<UserSubscriptions/>
 				</tbody>
 			</table>

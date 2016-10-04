@@ -4,7 +4,10 @@ var React = require('react')
 var config = require('../../config')
 
 var Toggle = require('./Toggle')
-var ToggleMainEmail = require('./ToggleMainEmail')
+var ToggleMasterEmail = require('./ToggleMasterEmail')
+var ToggleMasterSms = require('./ToggleMasterSms')
+var ToggleMasterApi = require('./ToggleMasterApi')
+
 
 module.exports = React.createClass({
 	propTypes: {
@@ -22,24 +25,22 @@ module.exports = React.createClass({
 					  onChange={this.toggleMaster} />
 				</th>
 			  <th>
-					<ToggleMainEmail
+					<ToggleMasterEmail
 						jwt={this.props.jwt}
 						user={this.props.user}
 						onUser={this.props.onUser}/>
 				</th>
 			  <th>
-					SMS
-					<Toggle
-						disabled={this.props.user.pushConfig.channelConfig.sms.phoneNumber ? false : true}
-					  checked={this.props.user.pushConfig.channelConfig.sms.isActive || false}
-					  onChange={this.toggleSms} />
+					<ToggleMasterSms
+						jwt={this.props.jwt}
+						user={this.props.user}
+						onUser={this.props.onUser}/>
 				</th>
 			  <th>
-					API
-					<Toggle
-						disabled={this.props.user.pushConfig.channelConfig.api.endpoint ? false : true}
-					  checked={this.props.user.pushConfig.channelConfig.api.isActive || false}
-					  onChange={this.toggleApi} />
+					<ToggleMasterApi
+						jwt={this.props.jwt}
+						user={this.props.user}
+						onUser={this.props.onUser}/>
 				</th>
 			</tr>
 		)

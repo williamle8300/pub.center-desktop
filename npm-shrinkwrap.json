@@ -17,11 +17,6 @@
       "from": "asap@>=2.0.3 <2.1.0",
       "resolved": "https://registry.npmjs.org/asap/-/asap-2.0.5.tgz"
     },
-    "async": {
-      "version": "2.0.1",
-      "from": "async@latest",
-      "resolved": "https://registry.npmjs.org/async/-/async-2.0.1.tgz"
-    },
     "buffer-shims": {
       "version": "1.0.0",
       "from": "buffer-shims@>=1.0.0 <2.0.0",
