@@ -4,6 +4,7 @@ var Request = require('superagent')
 
 var backend = require('../../config').backend
 
+var Invoices = require('./Invoices')
 var PushConfig = require('./PushConfig')
 
 
@@ -51,8 +52,8 @@ module.exports = React.createClass({
 						onChange={this.onChangePassword}/>
 				</div>
 				<button onClick={this.updateUser}>update</button>
-				<h2>Invoices</h2>
-				::invoices::
+				<h2>Billing History</h2>
+				<Invoices jwt={this.props.jwt} user={this.props.user}/>
 				<h2>Subscriptions</h2>
 				<PushConfig jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
 				<h2>Logout</h2>

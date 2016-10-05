@@ -22,7 +22,7 @@ module.exports = React.createClass({
 		return (
 			<Locations>
 				<Location path="/" handler={Home}/>
-				<Location path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} handler={Feed}/>
+				<Location path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} jwt={this.props.jwt} user={this.props.user} handler={Feed}/>
 				<Location path="/documentation" handler={Docs}/>
 				<Location jwt={this.props.jwt} user={this.props.user} onJwt={this.props.onJwt} onUser={this.props.onUser} path="/user" handler={User}/>
 				<NotFound handler={Http404}/>

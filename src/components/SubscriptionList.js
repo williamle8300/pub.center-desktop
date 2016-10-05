@@ -25,7 +25,7 @@ module.exports = React.createClass({
 						return (
 						  <tr key={subscription.id}>
 						    <td style={styleA()}>
-									<img src={subscription.favicon} alt={subscription.favicon}/>
+									<img src={subscription.favicon} alt={subscription.favicon} width={24}/>
 									{subscription.name}
 									<Toggle
 										checked={subscription.isActive}
@@ -108,6 +108,7 @@ module.exports = React.createClass({
 function styleA() {
 	return {
 		// display: 'flex'
-		textAlign: 'center'
+		textAlign: 'center',
+		// border: '1px solid black'
 	}
 }

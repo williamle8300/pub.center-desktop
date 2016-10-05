@@ -8,7 +8,7 @@ module.exports = React.createClass({
 		isVisible: React.PropTypes.bool.isRequired,
 		disableEscape: React.PropTypes.bool,
 		style: React.PropTypes.object,
-		onClose: React.PropTypes.func,
+		onClose: React.PropTypes.func.isRequired,
 	},
 	getDefaultProps: function () {
 		return {
@@ -27,12 +27,7 @@ module.exports = React.createClass({
 	},
 	onEscape: function (e) {
 		
-		if (
-			e.keyCode === 27
-			&& !this.props.disableEscape
-			&& this.props.onClose
-			&& typeof this.props.onClose === 'function'
-		) {
+		if (e.keyCode === 27 && !this.props.disableEscape) {
 			this.props.onClose()
 		}
 	}

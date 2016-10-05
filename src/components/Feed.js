@@ -6,11 +6,11 @@ var ArticleList = require('./ArticleList')
 
 
 module.exports = React.createClass({
-	
 	propTypes: {
+		jwt: React.PropTypes.string,
+		user: React.PropTypes.object,
 		_feed_: React.PropTypes.string
 	},
-	
   render: function () {
     return (
 			<div>
@@ -19,7 +19,7 @@ module.exports = React.createClass({
 					this.props._feed_
 					? (
 						<div>
-				    	<FeedMeta _feed_={this.props._feed_}/>
+				    	<FeedMeta jwt={this.props.jwt} user={this.props.user} _feed_={this.props._feed_}/>
 							<ArticleList _feed_={this.props._feed_}/>
 						</div>
 					)
