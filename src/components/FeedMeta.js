@@ -70,10 +70,10 @@ module.exports = React.createClass({
 		var existingSubscription = _.find(this.state.subscriptions, {feed: this.props._feed_})
 		
 		return existingSubscription
-			? <button onClick={this.unsubscribe.bind(this, existingSubscription.id)}>Unsubscribe</button>
-			: <button onClick={this.subscribe}>Subscribe</button>
+			? <button onClick={this.deleteSubscription.bind(this, existingSubscription.id)}>Unsubscribe</button>
+			: <button onClick={this.createSubscription}>Subscribe</button>
 	},
-	subscribe: function () {
+	createSubscription: function () {
 		
 		Request
 		.post(backend+ '/subscription')
@@ -94,7 +94,7 @@ module.exports = React.createClass({
 			return
 		})
 	},
-	unsubscribe: function (_subscription_) {
+	deleteSubscription: function (_subscription_) {
 		
 		Request
 		.delete(backend+ '/subscription/' +_subscription_)
