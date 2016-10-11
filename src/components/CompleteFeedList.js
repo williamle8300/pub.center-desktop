@@ -59,8 +59,8 @@ module.exports = React.createClass({
 	updateSearchTerm: function (searchTerm) {
 		
 		//this is a hack
-		//react-fuzzy-filter auto-changes
-		//searchTerm to undefined
+		//react-fuzzy-filter automatically
+		//sets searchTerm to undefined
 		//for some odd reason
 		if (!searchTerm) {
 			this.setState({searchTerm: this.getInitialState().searchTerm})
