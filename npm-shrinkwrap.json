@@ -1095,6 +1095,11 @@
       "from": "react-toggle@latest",
       "resolved": "https://registry.npmjs.org/react-toggle/-/react-toggle-2.1.1.tgz"
     },
+    "react-visibility-sensor": {
+      "version": "3.4.0",
+      "from": "react-visibility-sensor@latest",
+      "resolved": "https://registry.npmjs.org/react-visibility-sensor/-/react-visibility-sensor-3.4.0.tgz"
+    },
     "readable-stream": {
       "version": "2.1.5",
       "from": "readable-stream@>=2.0.5 <3.0.0",

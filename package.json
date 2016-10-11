@@ -17,6 +17,7 @@
     "react-geomicons": "^2.1.0",
     "react-router-component": "^0.36.0",
     "react-toggle": "^2.1.1",
+    "react-visibility-sensor": "^3.4.0",
     "sanitize-html": "^1.13.0",
     "superagent": "^2.2.0",
     "validator": "^6.0.0"

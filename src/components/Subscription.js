@@ -2,6 +2,7 @@ var _ = require('lodash')
 var Link = require('react-router-component').Link
 var Request = require('superagent')
 var React = require('react')
+var VisibilitySensor = require('react-visibility-sensor')
 
 var backend = require('../../config').backend
 
@@ -15,34 +16,53 @@ module.exports = React.createClass({
 		subscription: React.PropTypes.object.isRequired,
 		onChange: React.PropTypes.func.isRequired
 	},
+	getInitialState: function () {
+		return {
+			feed: null
+		}
+	},
 	render: function () {
 		return (
-			<tr>
-			  <td style={styleA()}>
-					<img src={this.props.subscription.favicon} alt={this.props.subscription.favicon} width={24}/>
-					<Link href={'/feed/' +this.props.subscription.feed}>{this.props.subscription.name}</Link>
-					<Toggle
-						checked={this.props.subscription.isActive}
-						onChange={this.toggleActive.bind(this, this.props.subscription.id, this.props.subscription.isActive)}/>
-					<button onClick={this.deleteSubscription.bind(this, this.props.subscription.id)}>unsubscribe</button>
-				</td>
-				<td style={styleA()}>
-					<Toggle
-						checked={_.includes(this.props.subscription.config, 'email')}
-						onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'email')}/>
-				</td>
-				<td style={styleA()}>
-					<Toggle
-						checked={_.includes(this.props.subscription.config, 'sms')}
-						onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'sms')}/>
-				</td>
-				<td style={styleA()}>
-					<Toggle
-						checked={_.includes(this.props.subscription.config, 'api')}
-						onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'api')}/>
-				</td>
-			</tr>
+			<VisibilitySensor onChange={this.readFeed}>
+				<tr>
+				  <td style={styleA()}>
+						<this.FeedMeta/>
+						<Toggle
+							checked={this.props.subscription.isActive}
+							onChange={this.toggleActive.bind(this, this.props.subscription.id, this.props.subscription.isActive)}/>
+						<button onClick={this.deleteSubscription.bind(this, this.props.subscription.id)}>unsubscribe</button>
+					</td>
+					<td style={styleA()}>
+						<Toggle
+							checked={_.includes(this.props.subscription.config, 'email')}
+							onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'email')}/>
+					</td>
+					<td style={styleA()}>
+						<Toggle
+							checked={_.includes(this.props.subscription.config, 'sms')}
+							onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'sms')}/>
+					</td>
+					<td style={styleA()}>
+						<Toggle
+							checked={_.includes(this.props.subscription.config, 'api')}
+							onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'api')}/>
+					</td>
+				</tr>
+			</VisibilitySensor>
 		)
+	},
+	FeedMeta: function () {
+		
+		if (this.state.feed) {
+			return (
+				<div>
+					<img src={this.state.feed.favicon} alt="favicon" width={24}/>
+					<Link href={'/feed/' +this.props.subscription.feed}>{this.state.feed.name}</Link>
+				</div>
+			)
+		}
+		
+		else return null
 	},
 	toggleActive: function (_subscription_, isActive) {
 		
@@ -73,6 +93,22 @@ module.exports = React.createClass({
 			this.props.onChange()
 			return
 		})
+	},
+	readFeed: function (isVisible) {
+		
+		if (isVisible && !this.state.feed) {
+			
+			Request
+			.get(backend+ '/feed/' +this.props.subscription.feed)
+			.set({Authorization: 'Bearer ' +this.props.jwt})
+			.end((err, response) => {
+			
+				if (err) throw err
+			
+				this.setState({feed: response.body})
+				return
+			})
+		}
 	},
 	deleteSubscription: function (_subscription_) {
 		
