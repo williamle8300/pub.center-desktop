@@ -13,7 +13,7 @@ module.exports = React.createClass({
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
 		subscription: React.PropTypes.object.isRequired,
-		refreshSubscriptions: React.PropTypes.func.isRequired
+		onChange: React.PropTypes.func.isRequired
 	},
 	render: function () {
 		return (
@@ -52,11 +52,10 @@ module.exports = React.createClass({
 		.send({isActive: !isActive})
 		.end((err, response) => {
 			
-			if (err) {
-				throw err
-			}
+			if (err) throw err
 			
-			this.props.refreshSubscriptions()
+			this.props.onChange()
+			return
 		})
 	},
 	updateConfig: function (_subscription_, config, key) {
@@ -69,11 +68,10 @@ module.exports = React.createClass({
 		.send({config: newConfig})
 		.end((err, response) => {
 			
-			if (err) {
-				throw err
-			}
+			if (err) throw err
 			
-			this.props.refreshSubscriptions()
+			this.props.onChange()
+			return
 		})
 	},
 	deleteSubscription: function (_subscription_) {
@@ -83,11 +81,9 @@ module.exports = React.createClass({
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 			
-			if (err) {
-				throw err
-			}
+			if (err) throw err
 			
-			this.props.refreshSubscriptions()
+			this.props.onChange()
 			return
 		})
 	}

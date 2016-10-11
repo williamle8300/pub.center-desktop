@@ -46,9 +46,7 @@ module.exports = React.createClass({
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 			
-			if (err) {
-				throw err
-			}
+			if (err) throw err
 			
 			this.setState({invoices: response.body})
 		})

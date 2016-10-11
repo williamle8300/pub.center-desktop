@@ -49,9 +49,7 @@ module.exports = React.createClass({
 		.send({isActive: !this.props.user.pushConfig.isActive})
 		.end((err, response) => {
 			
-			if (response.status !== 200) {
-				return alert(response.body.statusCode +': '+ response.body.message)
-			}
+			if (err) throw err
 		
 			this.props.onUser(response.body)
 			return
@@ -65,9 +63,7 @@ module.exports = React.createClass({
 		.send({isActive: !this.props.user.pushConfig.channelConfig.sms.isActive})
 		.end((err, response) => {
 			
-			if (response.status !== 200) {
-				return alert(response.body.statusCode +': '+ response.body.message)
-			}
+			if (err) throw err
 		
 			this.props.onUser(response.body)
 			return
@@ -81,9 +77,7 @@ module.exports = React.createClass({
 		.send({isActive: !this.props.user.pushConfig.channelConfig.api.isActive})
 		.end((err, response) => {
 			
-			if (response.status !== 200) {
-				return alert(response.body.statusCode +': '+ response.body.message)
-			}
+			if (err) throw err
 		
 			this.props.onUser(response.body)
 			return

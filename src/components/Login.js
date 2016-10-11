@@ -55,9 +55,7 @@ module.exports = React.createClass({
 
 			var jwt
 			
-			if (err) {
-				throw err
-			}
+			if (err) throw err
 			
 			//plain-text
 			jwt = response.text

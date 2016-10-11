@@ -39,9 +39,7 @@ module.exports = React.createClass({
 		})
 		.end((err, response) => {
 			
-			if (err) {
-				throw err
-			}
+			if (err) throw err
 			
 			this.props.onUser(response.body, () => {
 				

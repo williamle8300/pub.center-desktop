@@ -56,9 +56,7 @@ module.exports = React.createClass({
 		.get(backend+ '/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
 		.end(function (err, response) {
 
-			if (err) {
-				throw err
-			}
+			if (err) throw err
 			
 			this.setState({
 				articles: this.state.articles.concat(response.body),

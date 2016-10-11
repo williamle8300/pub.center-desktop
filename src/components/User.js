@@ -23,6 +23,9 @@ module.exports = React.createClass({
 		}
 	},
   render: function () {
+		
+		if (!this.props.user) return null
+		
     return (
 			<div>
 				<h1>User</h1>
@@ -59,7 +62,7 @@ module.exports = React.createClass({
 				<h2>Logout</h2>
 				<button onClick={this.wipeSession}>logout</button>
 			</div>
-    )
+		)
   },
 	componentWillUpdate: function (newProps, newState) {
 		if (!newProps.jwt) {
@@ -92,9 +95,7 @@ module.exports = React.createClass({
 		.send(user)
 		.end((err, response) => {
 			
-			if (response.status !== 200) {
-				return alert(response.body.statusCode +': '+ response.body.message)
-			}
+			if (err) throw err
 			
 			this.props.onUser(response.body)
 		})

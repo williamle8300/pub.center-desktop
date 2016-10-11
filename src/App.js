@@ -12,8 +12,8 @@ var backend = require('../config').backend
 module.exports = React.createClass({
 	getInitialState: function () {
 		return {
-			jwt: localStorage.jwt ? JSON.parse(localStorage.jwt) : null,
-			user: localStorage.user ? JSON.parse(localStorage.user) : null
+			jwt: null,
+			user: null
 		}
 	},
   render: function () {
@@ -34,44 +34,71 @@ module.exports = React.createClass({
     )
   },
 	componentDidMount: function () {
-		
-		/*
-			if there's a jwt
-			get the freshest copy of
-			User,
-			cache in LocalStorage,
-			then propogate to Views
-		*/
-		
-		var _user_
-		
-		if (this.state.jwt) {
-			
-			_user_ = JwtDecode(this.state.jwt).id
 
+		this.establishSession()
+	},
+	componentDidUpdate: function (prevProps, prevState) {
+		
+		//fresh jwt
+		if (this.state.jwt && prevState.jwt !== this.state.jwt) {
+
+			this.readUser()
+		}
+	},
+	establishSession: function () {
+		
+		var expirationMs
+		var expirationDate
+		
+		if (!JSON.parse(localStorage.jwt)) return
+	
+		expirationMs = JwtDecode(JSON.parse(localStorage.jwt)).exp * 1000
+		expirationDate = new Date(expirationMs)
+		
+		//exp passed?
+		if (expirationDate < new Date()) {
+
+			localStorage.removeItem('jwt')
+			
+			return this.onJwt(null)
+		}
+		
+		//jwt is fresh. auto-renew it!
+		else {
+			
 			Request
-			.get(backend+ '/user/' +_user_)
-			.set({Authorization: 'Bearer ' +this.state.jwt})
+			.put(backend+ '/jwt')
+			.send({jwt: JSON.parse(localStorage.jwt)})
 			.end((err, response) => {
-			
-				if (err) {
-					throw err
-				}
-			
-				this.onUser(response.body)
-				return
+
+				if (err) throw err
+
+				if (!response.text) return this.onJwt(null)
+
+				return this.onJwt(response.text)
 			})
 		}
 	},
+	readUser: function () {
+
+		Request
+		.get(backend+ '/user/' +JwtDecode(this.state.jwt).id)
+		.set({Authorization: 'Bearer ' +this.state.jwt})
+		.end((err, response) => {
+	
+			if (err) throw err
+
+			this.onUser(response.body)
+			return
+		})
+	},
 	onJwt: function (jwt, callback) {
-		
+
 		localStorage.jwt = JSON.stringify(jwt)
 		
 		this.setState({jwt: jwt}, callback)
 	},
 	onUser: function (user, callback) {
-		
-		localStorage.user = JSON.stringify(user)
 		
 		this.setState({user: user}, callback)
 	}

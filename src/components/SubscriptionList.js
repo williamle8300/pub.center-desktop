@@ -27,7 +27,7 @@ module.exports = React.createClass({
 								jwt={this.props.jwt}
 								user={this.props.user}
 								subscription={subscription}
-								refreshSubscriptions={this.refreshSubscriptions}/>
+								onChange={this.readSubscriptions}/>
 						)
 					})
 				}
@@ -36,18 +36,16 @@ module.exports = React.createClass({
 	},
 	componentDidMount: function () {
 		
-		this.refreshSubscriptions()
+		this.readSubscriptions()
 	},
-	refreshSubscriptions: function () {
+	readSubscriptions: function () {
 		
 		Request
 		.get(backend+ '/user/' +this.props.user.id+ '/subscriptions')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 			
-			if (err) {
-				throw err
-			}
+			if (err) throw err
 			
 			this.setState({subscriptions: response.body})
 		})
