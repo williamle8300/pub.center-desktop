@@ -1085,6 +1085,11 @@
       "from": "react-geomicons@latest",
       "resolved": "https://registry.npmjs.org/react-geomicons/-/react-geomicons-2.1.0.tgz"
     },
+    "react-notification": {
+      "version": "6.2.1",
+      "from": "react-notification@latest",
+      "resolved": "https://registry.npmjs.org/react-notification/-/react-notification-6.2.1.tgz"
+    },
     "react-router-component": {
       "version": "0.36.0",
       "from": "react-router-component@latest",
