@@ -48,7 +48,7 @@ module.exports = React.createClass({
 			
 			if (err) throw err
 			
-			this.setState({invoices: response.body})
+			return this.setState({invoices: response.body})
 		})
 	}
 })

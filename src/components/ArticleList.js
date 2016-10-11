@@ -54,15 +54,14 @@ module.exports = React.createClass({
 
 		Request
 		.get(backend+ '/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
-		.end(function (err, response) {
+		.end((err, response) => {
 
 			if (err) throw err
 			
-			this.setState({
+			return this.setState({
 				articles: this.state.articles.concat(response.body),
 				page: ++this.state.page
 			})
-			return
-		}.bind(this))
+		})
 	}
 })

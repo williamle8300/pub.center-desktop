@@ -25,7 +25,7 @@ module.exports = React.createClass({
 		return (
 			<th>
 				API
-				<button onClick={() => {this.setState({modalVisible: true})}}>
+				<button onClick={() => {return this.setState({modalVisible: true})}}>
 					settings
 				</button>
 				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal}>
@@ -58,19 +58,19 @@ module.exports = React.createClass({
 	},
 	closeModal: function () {
 		
-		this.setState({modalVisible: false})
+		return this.setState({modalVisible: false})
 	},
 	onChangeEndpoint: function (e) {
 		
-		this.setState({endpoint: e.target.value})
+		return this.setState({endpoint: e.target.value})
 	},
 	onChangeApiHeadersKey: function (e) {
 
-		this.setState({apiHeadersKey: e.target.value})
+		return this.setState({apiHeadersKey: e.target.value})
 	},
 	onChangeApiHeadersValue: function (e) {
 
-		this.setState({apiHeadersValue: e.target.value})
+		return this.setState({apiHeadersValue: e.target.value})
 	},
 	toggle: function () {
 

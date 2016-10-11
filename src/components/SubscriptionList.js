@@ -47,7 +47,7 @@ module.exports = React.createClass({
 			
 			if (err) throw err
 			
-			this.setState({subscriptions: response.body})
+			return this.setState({subscriptions: response.body})
 		})
 	},
 })

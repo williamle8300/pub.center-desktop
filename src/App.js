@@ -96,11 +96,11 @@ module.exports = React.createClass({
 
 		localStorage.jwt = JSON.stringify(jwt)
 		
-		this.setState({jwt: jwt}, callback)
+		return this.setState({jwt: jwt}, callback)
 	},
 	onUser: function (user, callback) {
 		
-		this.setState({user: user}, callback)
+		return this.setState({user: user}, callback)
 	}
 })
 

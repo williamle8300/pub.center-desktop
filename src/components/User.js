@@ -92,7 +92,7 @@ module.exports = React.createClass({
 		Request
 		.put(backend+ '/user/' +this.props.user.id)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
-		.send(user)
+		.send({user: user})
 		.end((err, response) => {
 			
 			if (err) throw err

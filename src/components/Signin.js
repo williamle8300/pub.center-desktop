@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<div className="Signin">
-				<a href="#" onClick={() => this.setState({modalVisible: true})}>signin</a>
+				<a href="#" onClick={() => return this.setState({modalVisible: true})}>signin</a>
 				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal} style={{}}>
 					<div onClick={(e) => e.stopPropagation()} style={{maxWidth: '50%'}}>
 						<button onClick={this.closeModal}>X</button>
@@ -49,19 +49,14 @@ module.exports = React.createClass({
 	},
 	closeModal: function () {
 		
-		this.setState({modalVisible: false})
+		return this.setState({modalVisible: false})
 	},
 	toggleSigninMode: function () {
 		
 		if (this.state.loginOrRegisterMode === 'login') {
-			this.setState({loginOrRegisterMode: 'register'})
+			return this.setState({loginOrRegisterMode: 'register'})
 		}
 		
-		else this.setState({loginOrRegisterMode: 'login'})
+		return this.setState({loginOrRegisterMode: 'login'})
 	}
 })
-/*
-	open modal:
-		POST jwt => save to LS
-			GET user (using jwt) => save to LS
-*/

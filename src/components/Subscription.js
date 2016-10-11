@@ -105,8 +105,7 @@ module.exports = React.createClass({
 			
 				if (err) throw err
 			
-				this.setState({feed: response.body})
-				return
+				return this.setState({feed: response.body})
 			})
 		}
 	},

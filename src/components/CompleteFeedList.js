@@ -52,8 +52,7 @@ module.exports = React.createClass({
 			
 			if (err) throw err
 			
-			this.setState({feeds: response.body})
-			return
+			return this.setState({feeds: response.body})
 		})
 	},
 	updateSearchTerm: function (searchTerm) {
@@ -63,10 +62,10 @@ module.exports = React.createClass({
 		//sets searchTerm to undefined
 		//for some odd reason
 		if (!searchTerm) {
-			this.setState({searchTerm: this.getInitialState().searchTerm})
+			return this.setState({searchTerm: this.getInitialState().searchTerm})
 		}
 
-		this.setState({searchTerm: searchTerm})
+		return this.setState({searchTerm: searchTerm})
 	},
 	CreateFeedButton: function () {
 
@@ -79,7 +78,7 @@ module.exports = React.createClass({
 				<Notification
 					isActive={this.state.showSnackbar}
 					message={this.state.snackBarMessage}
-					onDismiss={() => {this.setState({showSnackbar: false})}}/>
+					onDismiss={() => {return this.setState({showSnackbar: false})}}/>
 			</div>
 		)
 	},

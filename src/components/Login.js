@@ -81,10 +81,10 @@ module.exports = React.createClass({
 	},
 	onChangeUsernameOrEmail: function (e) {
 		
-		this.setState({usernameOrEmail: e.target.value})
+		return this.setState({usernameOrEmail: e.target.value})
 	},
 	onChangePassword: function (e) {
 		
-		this.setState({password: e.target.value})
+		return this.setState({password: e.target.value})
 	}
 })

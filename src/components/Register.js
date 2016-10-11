@@ -33,9 +33,11 @@ module.exports = React.createClass({
 		Request
 		.post(backend+ '/user')
 		.send({
-			email: this.state.email,
-			username: this.state.username,
-			password: this.state.password
+			user: {
+				email: this.state.email,
+				username: this.state.username,
+				password: this.state.password
+			}
 		})
 		.end((err, response) => {
 			
@@ -63,14 +65,14 @@ module.exports = React.createClass({
 	},
 	onChangeEmail: function (e) {
 		
-		this.setState({email: e.target.value})
+		return this.setState({email: e.target.value})
 	},
 	onChangeUsername: function (e) {
 		
-		this.setState({username: e.target.value})
+		return this.setState({username: e.target.value})
 	},
 	onChangePassword: function (e) {
 		
-		this.setState({password: e.target.value})
+		return this.setState({password: e.target.value})
 	}
 })

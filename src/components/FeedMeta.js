@@ -115,20 +115,21 @@ module.exports = React.createClass({
 		.post(backend+ '/subscription')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({
-			feed: this.props._feed_,
-			user: this.props.user.id,
-			config: [],
-			isActive: true
+			subscription: {
+				feed: this.props._feed_,
+				user: this.props.user.id,
+				config: [],
+				isActive: true
+			}
 		})
 		.end((err, response) => {
 
 			if (err) throw err
 
-			this.setState({
+			return this.setState({
 				subscription: response.body,
 				modalVisible: true,
 			})
-			return
 		})
 	},
 	readSubscription: function () {
@@ -140,8 +141,7 @@ module.exports = React.createClass({
 			
 			if (err) throw err
 
-			this.setState({subscription: response.body})
-			return
+			return this.setState({subscription: response.body})
 		})
 	},
 	deleteSubscription: function () {
@@ -153,8 +153,7 @@ module.exports = React.createClass({
 
 			if (err) throw err
 
-			this.setState({subscription: this.getInitialState().subscription})
-			return
+			return this.setState({subscription: this.getInitialState().subscription})
 		})
 	},
 	toggleActive: function (_subscription_, isActive) {
@@ -188,6 +187,6 @@ module.exports = React.createClass({
 	},
 	closeModal: function () {
 
-		this.setState({modalVisible: false})
+		return this.setState({modalVisible: false})
 	}
 })
