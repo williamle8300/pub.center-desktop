@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<div className="Signin">
-				<a href="#" onClick={() => return this.setState({modalVisible: true})}>signin</a>
+				<a href="#" onClick={() => {return this.setState({modalVisible: true})}}>signin</a>
 				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal} style={{}}>
 					<div onClick={(e) => e.stopPropagation()} style={{maxWidth: '50%'}}>
 						<button onClick={this.closeModal}>X</button>
