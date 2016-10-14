@@ -926,6 +926,11 @@
       "from": "js-tokens@>=1.0.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-1.0.3.tgz"
     },
+    "jsbn": {
+      "version": "0.1.0",
+      "from": "jsbn@0.1.0",
+      "resolved": "https://registry.npmjs.org/jsbn/-/jsbn-0.1.0.tgz"
+    },
     "jwt-decode": {
       "version": "2.1.0",
       "from": "jwt-decode@latest",
@@ -975,6 +980,16 @@
       "version": "1.2.0",
       "from": "minimist@>=1.2.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
+    },
+    "moment": {
+      "version": "2.15.1",
+      "from": "moment@latest",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.15.1.tgz"
+    },
+    "money-math": {
+      "version": "2.4.3",
+      "from": "money-math@latest",
+      "resolved": "https://registry.npmjs.org/money-math/-/money-math-2.4.3.tgz"
     },
     "ms": {
       "version": "0.7.1",
