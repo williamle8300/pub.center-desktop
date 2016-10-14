@@ -1,25 +1,18 @@
 var IsCurrentBillingMonth = require('is-same-monthyear')
-var Request = require('superagent')
 var React = require('react')
-
-var backend = require('../../config').backend
 
 
 module.exports = React.createClass({
 	propTypes: {
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
-	},
-	getInitialState: function () {
-		return {
-			invoices: []
-		}
+		invoices: React.PropTypes.array,
 	},
 	render: function () {
 		return (
 			<div>
 				{
-					this.state.invoices
+					this.props.invoices
 					.filter((invoice) => {
 						return !IsCurrentBillingMonth(new Date(invoice.creationDate))
 					})
@@ -42,17 +35,5 @@ module.exports = React.createClass({
 				}
 			</div>
 		)
-	},
-	componentDidMount: function () {
-		
-		Request
-		.get(backend+ '/user/' +this.props.user.id+ '/invoices')
-		.set({Authorization: 'Bearer ' +this.props.jwt})
-		.end((err, response) => {
-			
-			if (err) throw err
-			
-			return this.setState({invoices: response.body})
-		})
 	}
 })

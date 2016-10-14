@@ -52,6 +52,7 @@ module.exports = React.createClass({
 		
 		if (!JSON.parse(localStorage.jwt)) return
 	
+		//it's weird but jwt spec defines seconds, not milliseconds for expiration
 		expirationMs = JwtDecode(JSON.parse(localStorage.jwt)).exp * 1000
 		expirationDate = new Date(expirationMs)
 		
@@ -88,8 +89,7 @@ module.exports = React.createClass({
 	
 			if (err) throw err
 
-			this.onUser(response.body)
-			return
+			return this.onUser(response.body)
 		})
 	},
 	onJwt: function (jwt, callback) {
