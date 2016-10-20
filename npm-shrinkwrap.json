@@ -62,6 +62,11 @@
       "from": "cookiejar@>=2.0.6 <3.0.0",
       "resolved": "https://registry.npmjs.org/cookiejar/-/cookiejar-2.1.0.tgz"
     },
+    "copy-to-clipboard": {
+      "version": "3.0.5",
+      "from": "copy-to-clipboard@>=3.0.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/copy-to-clipboard/-/copy-to-clipboard-3.0.5.tgz"
+    },
     "core-js": {
       "version": "1.2.7",
       "from": "core-js@>=1.0.0 <2.0.0",
@@ -1085,6 +1090,11 @@
       "from": "react-addons-pure-render-mixin@>=0.14.0",
       "resolved": "https://registry.npmjs.org/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.3.2.tgz"
     },
+    "react-copy-to-clipboard": {
+      "version": "4.2.3",
+      "from": "react-copy-to-clipboard@latest",
+      "resolved": "https://registry.npmjs.org/react-copy-to-clipboard/-/react-copy-to-clipboard-4.2.3.tgz"
+    },
     "react-dom": {
       "version": "15.3.1",
       "from": "react-dom@latest",
@@ -1174,6 +1184,11 @@
       "version": "1.0.2",
       "from": "symbol-observable@>=1.0.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.0.2.tgz"
+    },
+    "toggle-selection": {
+      "version": "1.0.5",
+      "from": "toggle-selection@>=1.0.3 <2.0.0",
+      "resolved": "https://registry.npmjs.org/toggle-selection/-/toggle-selection-1.0.5.tgz"
     },
     "type-is": {
       "version": "1.6.13",

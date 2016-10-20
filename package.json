@@ -14,6 +14,7 @@
     "money-math": "^2.4.3",
     "pushstate-https-server": "^0.1.1",
     "react": "^15.3.2",
+    "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.3.1",
     "react-fuzzy-filter": "^2.3.0",
     "react-geomicons": "^2.1.0",

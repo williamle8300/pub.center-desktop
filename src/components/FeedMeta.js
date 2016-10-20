@@ -1,4 +1,5 @@
 var _ = require('lodash')
+var CopyToClipboard = require('react-copy-to-clipboard')
 var React = require('react')
 var Request = require('superagent')
 
@@ -29,8 +30,9 @@ module.exports = React.createClass({
 			<div>
 				<h2>
 					<a href={this.state.feed.url}>{this.state.feed.name}</a>
+					{this.CopyToClipboard()}
 				</h2>
-				{this.subscribeButton()}
+				{this.SubscribeButton()}
 			</div>
 		)
 	},
@@ -45,7 +47,20 @@ module.exports = React.createClass({
 			this.readSubscription()
 		}
 	},
-	subscribeButton: function () {
+	CopyToClipboard: function () {
+		
+		var url = 'https://pub.center/feed/' +this.state.feed.id+ '/articles'
+		
+		return (
+			<div>
+				<input value={url} readOnly/>
+				<CopyToClipboard text={url}>
+					<button>copy</button>
+				</CopyToClipboard>
+			</div>
+		)
+	},
+	SubscribeButton: function () {
 		
 		if (!this.props.user) {
 			return (

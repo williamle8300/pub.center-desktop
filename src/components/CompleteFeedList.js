@@ -1,4 +1,3 @@
-var Notification = require('react-notification').Notification
 var React = require('react')
 var Request = require('superagent')
 var Router = require('react-router-component')
@@ -8,14 +7,15 @@ var Validator = require('validator')
 
 var backend = require('../../config').backend
 
+var Snackbar = require('./Snackbar')
+
 
 module.exports = React.createClass({
 	getInitialState: function () {
 		return {
 			feeds: [],
 			searchTerm: '',
-			showSnackbar: false,
-			snackBarMessage: ''
+			snacks: []
 		}
 	},
 	render: function () {
@@ -61,6 +61,7 @@ module.exports = React.createClass({
 		//react-fuzzy-filter automatically
 		//sets searchTerm to undefined
 		//for some odd reason
+		//so gotta undo that erroneous behavior
 		if (!searchTerm) {
 			return this.setState({searchTerm: this.getInitialState().searchTerm})
 		}
@@ -69,21 +70,25 @@ module.exports = React.createClass({
 	},
 	CreateFeedButton: function () {
 
-		if (!this.state.searchTerm || !Validator.isURL(this.state.searchTerm)) return null
+		if (!this.state.searchTerm || !Validator.isURL(this.state.searchTerm, {require_protocol: true})) return null
 		
 		return (
 			<div>
 				That looks like an url
 				<button onClick={this.createFeed.bind(this, this.state.searchTerm)}>Add this feed: {this.state.searchTerm}</button>
-				<Notification
-					isActive={this.state.showSnackbar}
-					message={this.state.snackBarMessage}
-					onDismiss={() => {return this.setState({showSnackbar: false})}}/>
+				<Snackbar
+					snacks={this.state.snacks}
+					onRemoveSnack={(key) => {
+						
+						this.setState({snacks: this.state.snacks.filter((snacks) => {
+							return snacks.key !== key
+						})})
+					}}/>
 			</div>
 		)
 	},
 	createFeed: function (url) {
-		
+				
 		Request
 		.post(backend+ '/feed')
 		.send({url: url})
@@ -91,20 +96,21 @@ module.exports = React.createClass({
 			
 			if (err) {
 				
-				if (response.status === 400) {
-
-					return this.setState({
-						showSnackbar: true,
-						snackBarMessage: 'Invalid RSS url'
+				return this.setState({
+					snacks: this.state.snacks.concat({
+						message: 'Not a feed url',
+						key: Date.now(),
+						dismissAfter: 2000
 					})
-				}
-				
-				throw err
+				})
 			}
 			
 			return this.setState({
-				showSnackbar: true,
-				snackBarMessage: 'Feed was added.'
+				snacks: this.state.snacks.concat({
+					message: 'Feed added',
+					key: Date.now(),
+					dismissAfter: 2000
+				})
 			}, this.readFeed)
 		})
 	}

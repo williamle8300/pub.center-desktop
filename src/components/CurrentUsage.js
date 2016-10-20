@@ -38,8 +38,8 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<h2>Usage for {Moment(this.dateNow).format('MMMM')} <small>@$0.04/notification</small></h2>
-				<p>Current usage: <u>${currentInvoice.payable}</u></p>
-				<p>Pastdue usage: <u>${pastDue}</u></p>
+				<h3>Current usage: ${currentInvoice.payable}</h3>
+				<p>Pastdue: <u>${pastDue}</u></p>
 				<p>Payments are due end of month <i>({dueDate})</i></p>
 				<button onClick={() => {this.setState({modalVisible: true})}}>Billing history ({overdueInvoices.length})</button>
 				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal} style={{}}>
