@@ -7,7 +7,7 @@ var Elapsed = require('elapsed')
 var React = require('react')
 var Request = require('superagent')
 
-var CalcAverage = require('../util/calc-average')
+var RoundedAverage = require('../util/rounded-average')
 var backend = require('../../config').backend
 
 var Modal = require('./Modal')
@@ -41,7 +41,7 @@ module.exports = React.createClass({
 					{this.CopyToClipboard()}
 				</h2>
 				<p>Archived: {new Date(this.state.feed.archiveDate).toDateString()}</p>
-				<p>Articles per day: {CalcAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
+				<p>Articles per day: {RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
 				<p>Last checked: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
 				{this.SubscribeButton()}
 			</div>
