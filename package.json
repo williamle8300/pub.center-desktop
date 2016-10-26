@@ -6,6 +6,7 @@
     "react-scripts": "0.4.1"
   },
   "dependencies": {
+    "elapsed": "0.0.7",
     "express": "^4.14.0",
     "is-same-monthyear": "0.0.4",
     "jwt-decode": "^2.1.0",

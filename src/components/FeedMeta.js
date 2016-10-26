@@ -1,12 +1,18 @@
+//archivedon
+//lastupdated
+
 var _ = require('lodash')
 var CopyToClipboard = require('react-copy-to-clipboard')
+var Elapsed = require('elapsed')
 var React = require('react')
 var Request = require('superagent')
 
+var CalcAverage = require('../util/calc-average')
 var backend = require('../../config').backend
 
 var Modal = require('./Modal')
 var Toggle = require('./Toggle')
+var Snackbar = require('./Snackbar')
 
 
 module.exports = React.createClass({
@@ -19,7 +25,8 @@ module.exports = React.createClass({
 		return {
 			feed: null,
 			subscription: null,
-			modalVisible: false
+			modalVisible: false,
+			snacks: []
 		}
 	},
 	render: function () {
@@ -29,9 +36,13 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<h2>
+					<img src={this.state.feed.favicon} alt="favicon" width={24}/> 
 					<a href={this.state.feed.url}>{this.state.feed.name}</a>
 					{this.CopyToClipboard()}
 				</h2>
+				<p>Archived: {new Date(this.state.feed.archiveDate).toDateString()}</p>
+				<p>Articles per day: {CalcAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
+				<p>Last checked: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
 				{this.SubscribeButton()}
 			</div>
 		)
@@ -49,14 +60,32 @@ module.exports = React.createClass({
 	},
 	CopyToClipboard: function () {
 		
-		var url = 'https://pub.center/feed/' +this.state.feed.id+ '/articles'
+		var url = backend+ '/feed/' +this.state.feed.id+ '/articles'
 		
 		return (
 			<div>
 				<input value={url} readOnly/>
-				<CopyToClipboard text={url}>
+				<CopyToClipboard
+					text={url}
+					onCopy={() => {
+						this.setState({
+							snacks: this.state.snacks.concat({
+								message: 'Copied',
+								key: Date.now(),
+								dismissAfter: 2000
+							})
+						})
+					}}>
 					<button>copy</button>
 				</CopyToClipboard>
+				<Snackbar
+					snacks={this.state.snacks}
+					onRemoveSnack={(key) => {
+						
+						this.setState({snacks: this.state.snacks.filter((snacks) => {
+							return snacks.key !== key
+						})})
+					}}/>
 			</div>
 		)
 	},

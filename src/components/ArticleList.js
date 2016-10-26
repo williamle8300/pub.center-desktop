@@ -3,7 +3,7 @@ var Request = require('superagent')
 
 var backend = require('../../config').backend
 
-var enforceVanillaHtml = require('../util/enforce-vanilla-html')
+var EnforceVanillaHtml = require('../util/enforce-vanilla-html')
 
 
 module.exports = React.createClass({
@@ -35,7 +35,7 @@ module.exports = React.createClass({
 									<div>{article.author}</div>
 									<div>{new Date(article.date).toDateString()}</div>
 								</header>
-								<div dangerouslySetInnerHTML={{__html: enforceVanillaHtml(article.description)}}/>
+								<div dangerouslySetInnerHTML={{__html: EnforceVanillaHtml(article.description)}}/>
 							</article>
 						)
 					})
