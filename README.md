@@ -1,3 +1,9 @@
+Landing page: https://d13yacurqjgara.cloudfront.net/users/1133834/screenshots/3055379/architecture-web-design.gif
+
+
+----------------
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.  
