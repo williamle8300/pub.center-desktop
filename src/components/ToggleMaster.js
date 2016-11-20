@@ -1,7 +1,7 @@
 var Request = require('superagent')
 var React = require('react')
 
-var backend = require('../../config').backend
+var config = require('../../config')
 
 var Toggle = require('./Toggle')
 var ToggleMasterEmail = require('./ToggleMasterEmail')
@@ -44,43 +44,14 @@ module.exports = React.createClass({
 	toggleMaster: function () {
 	
 		Request
-		.put(backend+ '/user/' +this.props.user.id+ '/push-config/is-active')
+		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/is-active')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({isActive: !this.props.user.pushConfig.isActive})
 		.end((err, response) => {
 			
 			if (err) throw err
 		
-			this.props.onUser(response.body)
-			return
-		})
-	},
-	toggleSms: function () {
-		
-		Request
-		.put(backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/sms/is-active')
-		.set({Authorization: 'Bearer ' +this.props.jwt})
-		.send({isActive: !this.props.user.pushConfig.channelConfig.sms.isActive})
-		.end((err, response) => {
-			
-			if (err) throw err
-		
-			this.props.onUser(response.body)
-			return
-		})
-	},
-	toggleApi: function () {
-		
-		Request
-		.put(backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/api/is-active')
-		.set({Authorization: 'Bearer ' +this.props.jwt})
-		.send({isActive: !this.props.user.pushConfig.channelConfig.api.isActive})
-		.end((err, response) => {
-			
-			if (err) throw err
-		
-			this.props.onUser(response.body)
-			return
+			return this.props.onUser(response.body)
 		})
 	}
 })

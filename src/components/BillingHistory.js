@@ -18,16 +18,16 @@ module.exports = React.createClass({
 					})
 					.map((invoice) => {
 						return (
-							<div key={invoice.id} style={{border: '1px solid black', backgroundColor: !invoice.hasPaid ? 'red' : 'none'}}>
+							<div key={invoice.id} style={{border: '1px solid black', backgroundColor: !invoice.open ? 'red' : 'none'}}>
 								<p>
 									Bill posted: {new Date(invoice.creationDate).toDateString()}
 									{
-										!invoice.hasPaid
+										!invoice.open
 										? ' [OVERDUE]'
 										: null
 									}
 								</p>
-								<p>Paid: {invoice.hasPaid.toString()}</p>
+								<p>Open: {invoice.open.toString()}</p>
 								<p>Due: ${invoice.payable}</p>
 							</div>
 						)

@@ -1,7 +1,7 @@
 var React = require('react')
 var Request = require('superagent')
 
-var backend = require('../../config').backend
+var config = require('../../config')
 
 var EnforceVanillaHtml = require('../util/enforce-vanilla-html')
 
@@ -53,7 +53,7 @@ module.exports = React.createClass({
 	getArticles: function () {
 
 		Request
-		.get(backend+ '/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
+		.get(config.backend+ '/article?feed='  +encodeURIComponent(this.props._feed_)+ '&page=' +this.state.page)
 		.end((err, response) => {
 
 			if (err) throw err

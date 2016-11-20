@@ -6,7 +6,7 @@ var Main = require('./components/Main')
 var Nav = require('./components/Nav')
 var Footer = require('./components/Footer')
 
-var backend = require('../config').backend
+var config = require('../config')
 
 
 module.exports = React.createClass({
@@ -68,7 +68,7 @@ module.exports = React.createClass({
 		else {
 			
 			Request
-			.put(backend+ '/jwt')
+			.put(config.backend+ '/jwt')
 			.send({jwt: JSON.parse(localStorage.jwt)})
 			.end((err, response) => {
 
@@ -83,7 +83,7 @@ module.exports = React.createClass({
 	readUser: function () {
 
 		Request
-		.get(backend+ '/user/' +JwtDecode(this.state.jwt).id)
+		.get(config.backend+ '/user/' +JwtDecode(this.state.jwt).id)
 		.set({Authorization: 'Bearer ' +this.state.jwt})
 		.end((err, response) => {
 	

@@ -3,7 +3,7 @@ var React = require('react')
 var Request = require('superagent')
 var Validator = require('validator')
 
-var backend = require('../../config').backend
+var config = require('../../config')
 
 
 module.exports = React.createClass({
@@ -49,7 +49,7 @@ module.exports = React.createClass({
 		}
 
 		Request
-		.post(backend+ '/jwt')
+		.post(config.backend+ '/jwt')
 		.send(credentials)
 		.end((err, response) => {
 
@@ -65,7 +65,7 @@ module.exports = React.createClass({
 				var _user_ = JwtDecode(jwt).id
 				
 				Request
-				.get(backend+ '/user/' +_user_)
+				.get(config.backend+ '/user/' +_user_)
 				.set({Authorization: 'Bearer ' +jwt})
 				.end((err, response) => {
 					

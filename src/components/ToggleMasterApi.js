@@ -1,7 +1,7 @@
 var Request = require('superagent')
 var React = require('react')
 
-var backend = require('../../config').backend
+var config = require('../../config')
 
 var Modal = require('./Modal')
 var Toggle = require('./Toggle')
@@ -29,7 +29,7 @@ module.exports = React.createClass({
 					settings
 				</button>
 				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal}>
-					<div onClick={(e) => e.stopPropagation()} style={{maxWidth: '50%'}}>
+					<div onClick={(e) => e.stopPropagation()}>
 						<button onClick={this.closeModal}>X</button>
 						<input
 							type="text"
@@ -75,15 +75,14 @@ module.exports = React.createClass({
 	toggle: function () {
 
 		Request
-		.put(backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/api/is-active')
+		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/api/is-active')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({isActive: !this.props.user.pushConfig.channelConfig.api.isActive})
 		.end((err, response) => {
 			
 			if (err) throw err
 		
-			this.props.onUser(response.body)
-			return
+			return this.props.onUser(response.body)
 		})
 	},
 	update: function () {
@@ -98,7 +97,7 @@ module.exports = React.createClass({
 		}
 		
 		Request
-		.put(backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/api')
+		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/api')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({api: api})
 		.end((err, response) => {
@@ -106,8 +105,8 @@ module.exports = React.createClass({
 			if (err) throw err
 			
 			this.closeModal()
-			this.props.onUser(response.body)
-			return
+			
+			return this.props.onUser(response.body)
 		})
 	},
 })

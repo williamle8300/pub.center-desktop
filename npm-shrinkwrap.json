@@ -513,6 +513,11 @@
       "from": "react-router-component@latest",
       "resolved": "https://registry.npmjs.org/react-router-component/-/react-router-component-0.36.0.tgz"
     },
+    "react-stripe-checkout": {
+      "version": "2.2.5",
+      "from": "react-stripe-checkout@latest",
+      "resolved": "https://registry.npmjs.org/react-stripe-checkout/-/react-stripe-checkout-2.2.5.tgz"
+    },
     "react-toggle": {
       "version": "2.1.1",
       "from": "react-toggle@latest",

@@ -5,7 +5,7 @@ var Link = Router.Link
 var {InputFilter, FilterResults} = require('react-fuzzy-filter').default()
 var Validator = require('validator')
 
-var backend = require('../../config').backend
+var config = require('../../config')
 
 var Snackbar = require('./Snackbar')
 
@@ -47,7 +47,7 @@ module.exports = React.createClass({
 	readFeed: function () {
 		
 		Request
-		.get(backend+ '/feed')
+		.get(config.backend+ '/feed')
 		.end((err, response) => {
 			
 			if (err) throw err
@@ -90,7 +90,7 @@ module.exports = React.createClass({
 	createFeed: function (url) {
 				
 		Request
-		.post(backend+ '/feed')
+		.post(config.backend+ '/feed')
 		.send({url: url})
 		.end((err, response) => {
 			

@@ -2,7 +2,7 @@ var _ = require('lodash')
 var React = require('react')
 var Request = require('superagent')
 
-var backend = require('../../config').backend
+var config = require('../../config')
 
 var CurrentUsage = require('./CurrentUsage')
 var PushConfig = require('./PushConfig')
@@ -19,12 +19,11 @@ module.exports = React.createClass({
 		return {
 			email: '',
 			username: '',
-			password: '',
-			invoices: [],
+			password: ''
 		}
 	},
   render: function () {
-		
+
 		if (!this.props.user) return null
 		
     return (
@@ -56,7 +55,9 @@ module.exports = React.createClass({
 						onChange={this.onChangePassword}/>
 				</div>
 				<button onClick={this.updateUser}>update</button>
-				<CurrentUsage invoices={this.state.invoices} jwt={this.props.jwt} user={this.props.user}/>
+				<CurrentUsage
+					jwt={this.props.jwt}
+					user={this.props.user}/>
 				<h2>Subscriptions</h2>
 				<PushConfig jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
 				<h2>Logout</h2>
@@ -64,18 +65,6 @@ module.exports = React.createClass({
 			</div>
 		)
   },
-	componentDidMount: function () {
-
-		Request
-		.get(backend+ '/user/' +this.props.user.id+ '/invoices')
-		.set({Authorization: 'Bearer ' +this.props.jwt})
-		.end((err, response) => {
-			
-			if (err) throw err
-			
-			return this.setState({invoices: response.body})
-		})
-	},
 	onChangeEmail: function (e) {
 		
 		this.setState({email: e.target.value})
@@ -97,7 +86,7 @@ module.exports = React.createClass({
 		})
 			
 		Request
-		.put(backend+ '/user/' +this.props.user.id)
+		.put(config.backend+ '/user/' +this.props.user.id)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({user: user})
 		.end((err, response) => {

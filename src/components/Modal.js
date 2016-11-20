@@ -18,7 +18,9 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<div className="Modal" onClick={this.props.onClose} style={styleA(null, this.props)}>
-				{this.props.children}
+				<div style={{background: 'white'}}>
+					{this.props.children}
+				</div>
 			</div>
 		)
 	},
