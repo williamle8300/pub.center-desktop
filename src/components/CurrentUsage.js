@@ -5,7 +5,7 @@ var React = require('react')
 var Request = require('superagent')
 var StripeCheckout = require('react-stripe-checkout').default
 
-var config = require('../../config')
+var env = require('../../env')
 
 var BillingHistory = require('./BillingHistory')
 var Modal = require('./Modal')
@@ -49,7 +49,7 @@ module.exports = React.createClass({
 				<p>Pastdue: <u>${this._pastDue}</u></p>
 				<StripeCheckout
 					token={this.onStripeCollect}
-					stripeKey={config.stripePublicKey}>
+					stripeKey={env.stripePublicKey}>
 					<button>
 						Pay now
 					</button>
@@ -72,11 +72,11 @@ module.exports = React.createClass({
 	onStripeCollect: function (cardToken) {
 
 		Request
-		.post(config.backend+ '/payment')
+		.post(env.backend+ '/payment')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({
 			cardToken: cardToken,
-			pastDue: this._pastDue
+			paymentAmount: this._pastDue
 		})
 		.end((err, response) => {
 
@@ -88,7 +88,7 @@ module.exports = React.createClass({
 	getInvoices: function () {
 		
 		Request
-		.get(config.backend+ '/user/' +this.props.user.id+ '/invoices')
+		.get(env.backend+ '/user/' +this.props.user.id+ '/invoices')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 			

@@ -8,7 +8,7 @@ var React = require('react')
 var Request = require('superagent')
 
 var RoundedAverage = require('../util/rounded-average')
-var config = require('../../config')
+var env = require('../../env')
 
 var Modal = require('./Modal')
 var Toggle = require('./Toggle')
@@ -60,7 +60,7 @@ module.exports = React.createClass({
 	},
 	CopyToClipboard: function () {
 		
-		var url = config.backend+ '/feed/' +this.state.feed.id+ '/articles'
+		var url = env.backend+ '/feed/' +this.state.feed.id+ '/articles'
 		
 		return (
 			<div>
@@ -145,7 +145,7 @@ module.exports = React.createClass({
 	readFeed: function (callback) {
 
 		Request
-		.get(config.backend+ '/feed/' +encodeURIComponent(this.props._feed_))
+		.get(env.backend+ '/feed/' +encodeURIComponent(this.props._feed_))
 		.end((err, response) => {
 
 			if (err) throw err
@@ -156,7 +156,7 @@ module.exports = React.createClass({
 	createSubscription: function () {
 
 		Request
-		.post(config.backend+ '/subscription')
+		.post(env.backend+ '/subscription')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({
 			subscription: {
@@ -179,7 +179,7 @@ module.exports = React.createClass({
 	readSubscription: function () {
 
 		Request
-		.get(config.backend+ '/subscription?_feed_=' +this.state.feed.id+ '&_user_=' +this.props.user.id)
+		.get(env.backend+ '/subscription?_feed_=' +this.state.feed.id+ '&_user_=' +this.props.user.id)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 			
@@ -191,7 +191,7 @@ module.exports = React.createClass({
 	deleteSubscription: function () {
 
 		Request
-		.delete(config.backend+ '/subscription/' +this.state.subscription.id)
+		.delete(env.backend+ '/subscription/' +this.state.subscription.id)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 
@@ -203,7 +203,7 @@ module.exports = React.createClass({
 	toggleActive: function (_subscription_, isActive) {
 		
 		Request
-		.put(config.backend+ '/subscription/' +_subscription_+ '/is-active')
+		.put(env.backend+ '/subscription/' +_subscription_+ '/is-active')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({isActive: !isActive})
 		.end((err, response) => {
@@ -219,7 +219,7 @@ module.exports = React.createClass({
 		var newConfig = _.includes(config, key) ? _.pull(config, key) : config.concat(key)
 				
 		Request
-		.put(config.backend+ '/subscription/' +_subscription_+ '/config')
+		.put(env.backend+ '/subscription/' +_subscription_+ '/config')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({config: newConfig})
 		.end((err, response) => {

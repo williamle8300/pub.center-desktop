@@ -1,7 +1,7 @@
 var Request = require('superagent')
 var React = require('react')
 
-var config = require('../../config')
+var env = require('../../env')
 
 var Subscription = require('./Subscription')
 
@@ -41,7 +41,7 @@ module.exports = React.createClass({
 	readSubscriptions: function () {
 		
 		Request
-		.get(config.backend+ '/user/' +this.props.user.id+ '/subscriptions')
+		.get(env.backend+ '/user/' +this.props.user.id+ '/subscriptions')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 			

@@ -1,7 +1,7 @@
 var Request = require('superagent')
 var React = require('react')
 
-var config = require('../../config')
+var env = require('../../env')
 
 var Toggle = require('./Toggle')
 var ToggleMasterEmail = require('./ToggleMasterEmail')
@@ -44,7 +44,7 @@ module.exports = React.createClass({
 	toggleMaster: function () {
 	
 		Request
-		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/is-active')
+		.put(env.backend+ '/user/' +this.props.user.id+ '/push-config/is-active')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({isActive: !this.props.user.pushConfig.isActive})
 		.end((err, response) => {

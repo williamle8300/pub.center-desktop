@@ -4,7 +4,7 @@ var Request = require('superagent')
 var React = require('react')
 var VisibilitySensor = require('react-visibility-sensor')
 
-var config = require('../../config')
+var env = require('../../env')
 
 var Toggle = require('./Toggle')
 
@@ -67,7 +67,7 @@ module.exports = React.createClass({
 	toggleActive: function (_subscription_, isActive) {
 		
 		Request
-		.put(config.backend+ '/subscription/' +_subscription_+ '/is-active')
+		.put(env.backend+ '/subscription/' +_subscription_+ '/is-active')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({isActive: !isActive})
 		.end((err, response) => {
@@ -81,9 +81,9 @@ module.exports = React.createClass({
 	updateConfig: function (_subscription_, config, key) {
 		
 		var newConfig = _.includes(config, key) ? _.pull(config, key) : config.concat(key)
-				
+
 		Request
-		.put(config.backend+ '/subscription/' +_subscription_+ '/config')
+		.put(env.backend+ '/subscription/' +_subscription_+ '/config')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({config: newConfig})
 		.end((err, response) => {
@@ -99,7 +99,7 @@ module.exports = React.createClass({
 		if (isVisible && !this.state.feed) {
 			
 			Request
-			.get(config.backend+ '/feed/' +this.props.subscription.feed)
+			.get(env.backend+ '/feed/' +this.props.subscription.feed)
 			.set({Authorization: 'Bearer ' +this.props.jwt})
 			.end((err, response) => {
 			
@@ -112,7 +112,7 @@ module.exports = React.createClass({
 	deleteSubscription: function (_subscription_) {
 		
 		Request
-		.delete(config.backend+ '/subscription/' +_subscription_)
+		.delete(env.backend+ '/subscription/' +_subscription_)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 			

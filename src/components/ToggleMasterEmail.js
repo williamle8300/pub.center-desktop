@@ -1,7 +1,7 @@
 var Request = require('superagent')
 var React = require('react')
 
-var config = require('../../config')
+var env = require('../../env')
 
 var Modal = require('./Modal')
 var Toggle = require('./Toggle')
@@ -55,7 +55,7 @@ module.exports = React.createClass({
 	toggle: function () {
 
 		Request
-		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/email/is-active')
+		.put(env.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/email/is-active')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({isActive: !this.props.user.pushConfig.channelConfig.email.isActive})
 		.end((err, response) => {
@@ -73,7 +73,7 @@ module.exports = React.createClass({
 		}
 				
 		Request
-		.put(config.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/email')
+		.put(env.backend+ '/user/' +this.props.user.id+ '/push-config/channel-config/email')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({email: email})
 		.end((err, response) => {
