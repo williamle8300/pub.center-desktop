@@ -1,14 +1,14 @@
+var env = require('../../env')
+
+var BillingHistory = require('./BillingHistory')
+var Modal = require('./Modal')
+
 var IsCurrentBillingMonth = require('is-same-monthyear')
 var Moment = require('moment')
 var MoneyMath = require('money-math')
 var React = require('react')
 var Request = require('superagent')
 var StripeCheckout = require('react-stripe-checkout').default
-
-var env = require('../../env')
-
-var BillingHistory = require('./BillingHistory')
-var Modal = require('./Modal')
 
 
 module.exports = React.createClass({

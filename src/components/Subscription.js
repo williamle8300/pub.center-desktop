@@ -1,12 +1,12 @@
+var env = require('../../env')
+
+var Toggle = require('./Toggle')
+
 var _ = require('lodash')
 var Link = require('react-router-component').Link
 var Request = require('superagent')
 var React = require('react')
 var VisibilitySensor = require('react-visibility-sensor')
-
-var env = require('../../env')
-
-var Toggle = require('./Toggle')
 
 
 module.exports = React.createClass({
