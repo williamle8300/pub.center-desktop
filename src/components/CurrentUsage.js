@@ -5,7 +5,6 @@ var Modal = require('./Modal')
 
 var IsCurrentBillingMonth = require('is-same-monthyear')
 var Moment = require('moment')
-var MoneyMath = require('money-math')
 var React = require('react')
 var Request = require('superagent')
 var StripeCheckout = require('react-stripe-checkout').default
@@ -23,7 +22,7 @@ module.exports = React.createClass({
 			dateNow: new Date()
 		}
 	},
-	_pastDue: '0.00',
+	_pastDue: 0,
 	render: function () {
 	
 		if (!this.state.invoices.length) return null
@@ -37,23 +36,20 @@ module.exports = React.createClass({
 		
 		this._pastDue = (function() {
 			if (overdueInvoices.length === 1)  return overdueInvoices[0].payable
-			else if (overdueInvoices.length > 1) return overdueInvoices.reduce((invoiceA, invoiceB) => {return MoneyMath.add(invoiceA.payable, invoiceB.payable)})
-			else return '0.00'
+			else if (overdueInvoices.length > 1) return overdueInvoices.reduce((invoiceA, invoiceB) => {return invoiceA.payable + invoiceB.payable})
+			else return 0
 		})()
 		
 		
 		return (
 			<div>
 				<h2>Usage for {Moment(this.state.dateNow).format('MMMM')}</h2>
-				<h3>Current usage: ${currentInvoice.payable}</h3>
+				<h3 style={{color: currentInvoice.payable > 1 ? 'black' : 'orange'}}>Current usage: ${(currentInvoice.payable).toFixed(4)}</h3>
 				<p>Pastdue: <u>${this._pastDue}</u></p>
 				<StripeCheckout
 					token={this.onStripeCollect}
-					stripeKey={env.stripePublicKey}>
-					<button>
-						Pay now
-					</button>
-				</StripeCheckout>
+					stripeKey={env.stripePublicKey}
+					panelLabel={"Pay $" +this._pastDue}><button>Pay now</button></StripeCheckout>
 				<p>Payments are due end of month <i>({dueDate})</i></p>
 				<button onClick={() => {this.setState({modalVisible: true})}}>Billing history ({overdueInvoices.length})</button>
 				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal} style={{}}>
@@ -76,7 +72,7 @@ module.exports = React.createClass({
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({
 			cardToken: cardToken,
-			paymentAmount: this._pastDue
+			paymentAmount: (this._pastDue).toFixed(2)
 		})
 		.end((err, response) => {
 
