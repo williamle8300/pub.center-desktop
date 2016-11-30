@@ -32,7 +32,7 @@ module.exports = React.createClass({
 						<input
 							type="text"
 							value={this.state.phoneNumber}
-							placeholder={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '+11231234'}
+							placeholder={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '+01112223333'}
 							onChange={this.onChangePhoneNumber}/>
 						<button onClick={this.update}>Submit</button>
 					</div>
