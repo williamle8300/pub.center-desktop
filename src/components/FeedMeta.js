@@ -32,7 +32,7 @@ module.exports = React.createClass({
 	render: function () {
 		
 		if (!this.state.feed) return null
-		
+
 		return (
 			<div>
 				<h2>

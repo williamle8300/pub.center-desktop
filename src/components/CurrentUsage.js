@@ -38,7 +38,7 @@ module.exports = React.createClass({
 			if (overdueInvoices.length === 1)  return overdueInvoices[0].payable
 			else if (overdueInvoices.length > 1) return overdueInvoices.reduce((invoiceA, invoiceB) => {return invoiceA.payable + invoiceB.payable})
 			else return 0
-		})()
+		})().toFixed(2)
 		
 		
 		return (

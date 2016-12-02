@@ -1,8 +1,10 @@
+var env = require('../../env')
+
+var Signin = require('./Signin')
+
 var React = require('react')
 var Router = require('react-router-component')
 var Link = Router.Link
-
-var Signin = require('./Signin')
 
 
 module.exports = React.createClass({
@@ -19,7 +21,7 @@ module.exports = React.createClass({
 					<Link href="/">home</Link>
 				</li>
 				<li>
-					<Link href="/documentation">documentation</Link>
+					<Link href={env.backend+ '/documentation'}>documentation</Link>
 				</li>
 				<li>
 					<Link href="/feed">feed</Link>
