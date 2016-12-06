@@ -179,7 +179,7 @@ module.exports = React.createClass({
 	readSubscription: function () {
 
 		Request
-		.get(env.backend+ '/subscription?_feed_=' +this.state.feed.id+ '&_user_=' +this.props.user.id)
+		.get(env.backend+ '/subscription?_feed_=' +this.state.feed.id)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
 			
