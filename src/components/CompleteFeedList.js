@@ -47,7 +47,7 @@ module.exports = React.createClass({
 	readFeed: function () {
 		
 		Request
-		.get(env.backend+ '/feed')
+		.get(env.backend+ '/feed?limit=1000000000')
 		.end((err, response) => {
 			
 			if (err) throw err
