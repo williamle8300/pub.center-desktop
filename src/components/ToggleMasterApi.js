@@ -24,7 +24,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<th>
-				API
+				API $0.0001/each
 				<button onClick={() => {return this.setState({modalVisible: true})}}>
 					settings
 				</button>

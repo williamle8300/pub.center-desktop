@@ -22,7 +22,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<th>
-				Email
+				Email $0.001/each
 				<button onClick={() => {this.setState({modalVisible: true})}}>
 					settings
 				</button>

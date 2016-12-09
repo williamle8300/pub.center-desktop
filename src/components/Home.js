@@ -5,15 +5,13 @@ module.exports = React.createClass({
   render: function () {
     return (
 			<div>
-	    	<h1>pub.center</h1>
-				<p>pub.center provides a free REST interface for archived rss data.</p>
-				<p>we refresh 4/day [modal explaining good/bad types of rss feeds. this</p> approach satisfies the majority of popular rss feeds. rss feeds that are high volume should not rely on pub.center for data integrity (examples of this include reddit rss feeds, youtube rss feeds, twitter rss feeds)]
-				<p>to support us, consider using our push notifications. It is a utility</p> service.
-				<p>we have email [show example email], we have sms [show example sms on</p> iPhone], we have api [show example json]
-				<p>we charge: [prices]</p>
-				<p>for push notifications, you have a free $1 credit each month, and pub.center</p> will only "post" a bill if it exceeds $1.
-				<p>[breaks for each "channel"]</p>
-				<p>please reconcile your bills once they exceed $10. </p>
+	    	<h1>PubCenter</h1>
+				<p>PubCenter is a non-profit organization specialized in building archives of historical records of RSS news data. Access to this data will always be completely free-of-charge to the public (no signup is required). We believe in the marketplace of ideas, and want to facilitate dialogue. We believe this can be accomplished simply by 1)archiving ideas chronologically and 2)making access free to everyone.</p>
+				---------
+				<p>give some examples of blogs they can instantly click to see it action</p>
+				---------
+				<p>If you would like support PubCenter, consider using our notifications services. We charge [prices/rulez/breakpoints/exampleimgs]</p>
+				-----------
 			</div>
     )
   }

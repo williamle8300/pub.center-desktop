@@ -22,7 +22,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<th>
-				SMS
+				SMS $0.05/each
 				<button onClick={() => {this.setState({modalVisible: true})}}>
 					settings
 				</button>

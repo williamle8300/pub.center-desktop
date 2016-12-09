@@ -1,13 +1,13 @@
+var env = require('../../env')
+
+var Input = require('./Input')
+var Snackbar = require('./Snackbar')
+
 var React = require('react')
 var Request = require('superagent')
 var Router = require('react-router-component')
 var Link = Router.Link
-var {InputFilter, FilterResults} = require('react-fuzzy-filter').default()
 var Validator = require('validator')
-
-var env = require('../../env')
-
-var Snackbar = require('./Snackbar')
 
 
 module.exports = React.createClass({
@@ -22,21 +22,20 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<div>
-					<InputFilter debounceTime={500} inputProps={{placeholder: 'Search...'}} onChange={this.updateSearchTerm}/>
+					<Input
+						placeholder={'Type to filter...'}
+						onChange={this.searchFeeds}/>
 					<this.CreateFeedButton/>
 				</div>
-				<FilterResults
-					items={this.state.feeds}
-					fuseConfig={{keys: ['name', 'url']}}
-					renderItem={function (item, idx) {
-						return (
-							<div key={item.id} style={{margin: '1em 0'}}>
-								<Link href={'/feed/' +item.id}>{item.name ? item.name : item.url}</Link>
-								<br/>
-								<small>{item.url}</small>
-							</div>
-						)
-					}}/>
+				{
+					this.state.feeds.map((feed) => (
+						<div key={feed.id} style={{margin: '1em 0'}}>
+							<Link href={'/feed/' +feed.id}>{feed.name ? feed.name : feed.url}</Link>
+							<br/>
+							<small>{feed.url}</small>
+						</div>
+					))
+				}
 			</div>
 		)
 	},
@@ -47,7 +46,7 @@ module.exports = React.createClass({
 	readFeed: function () {
 		
 		Request
-		.get(env.backend+ '/feed?limit=1000000000')
+		.get(env.backend+ '/feed?limit=10')
 		.end((err, response) => {
 			
 			if (err) throw err
@@ -55,18 +54,19 @@ module.exports = React.createClass({
 			return this.setState({feeds: response.body})
 		})
 	},
-	updateSearchTerm: function (searchTerm) {
+	searchFeeds: function (e) {
 		
-		//this is a hack
-		//react-fuzzy-filter automatically
-		//sets searchTerm to undefined
-		//for some odd reason
-		//so gotta undo that erroneous behavior
-		if (!searchTerm) {
-			return this.setState({searchTerm: this.getInitialState().searchTerm})
-		}
-
-		return this.setState({searchTerm: searchTerm})
+		this.setState({searchTerm: e.target.value}, () => {
+			
+			Request
+			.get(env.backend+ '/feed?search=' +this.state.searchTerm)
+			.end((err, response) => {
+			
+				if (err) throw err
+			
+				return this.setState({feeds: response.body})
+			})
+		})
 	},
 	CreateFeedButton: function () {
 

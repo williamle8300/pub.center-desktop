@@ -77,16 +77,6 @@
       "from": "core-util-is@>=1.0.0 <1.1.0",
       "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz"
     },
-    "date-now": {
-      "version": "1.0.1",
-      "from": "date-now@1.0.1",
-      "resolved": "https://registry.npmjs.org/date-now/-/date-now-1.0.1.tgz"
-    },
-    "debounce": {
-      "version": "1.0.0",
-      "from": "debounce@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/debounce/-/debounce-1.0.0.tgz"
-    },
     "debug": {
       "version": "2.2.0",
       "from": "debug@>=2.2.0 <3.0.0",
@@ -232,11 +222,6 @@
       "version": "0.3.0",
       "from": "fresh@0.3.0",
       "resolved": "https://registry.npmjs.org/fresh/-/fresh-0.3.0.tgz"
-    },
-    "fuse.js": {
-      "version": "2.5.0",
-      "from": "fuse.js@>=2.3.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/fuse.js/-/fuse.js-2.5.0.tgz"
     },
     "geomicons-open": {
       "version": "3.0.0-beta.2",
@@ -483,11 +468,6 @@
       "from": "react-dom@latest",
       "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-15.3.1.tgz"
     },
-    "react-fuzzy-filter": {
-      "version": "2.3.0",
-      "from": "react-fuzzy-filter@latest",
-      "resolved": "https://registry.npmjs.org/react-fuzzy-filter/-/react-fuzzy-filter-2.3.0.tgz"
-    },
     "react-geomicons": {
       "version": "2.1.0",
       "from": "react-geomicons@latest",
@@ -528,11 +508,6 @@
       "from": "regexp-quote@0.0.0",
       "resolved": "https://registry.npmjs.org/regexp-quote/-/regexp-quote-0.0.0.tgz"
     },
-    "rxjs": {
-      "version": "5.0.0-beta.12",
-      "from": "rxjs@>=5.0.0-beta.10 <6.0.0",
-      "resolved": "https://registry.npmjs.org/rxjs/-/rxjs-5.0.0-beta.12.tgz"
-    },
     "sanitize-html": {
       "version": "1.13.0",
       "from": "sanitize-html@latest",
@@ -567,11 +542,6 @@
       "version": "2.2.0",
       "from": "superagent@latest",
       "resolved": "https://registry.npmjs.org/superagent/-/superagent-2.2.0.tgz"
-    },
-    "symbol-observable": {
-      "version": "1.0.2",
-      "from": "symbol-observable@>=1.0.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.0.2.tgz"
     },
     "toggle-selection": {
       "version": "1.0.5",
