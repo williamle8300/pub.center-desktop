@@ -1,5 +1,10 @@
 Landing page: https://d13yacurqjgara.cloudfront.net/users/1133834/screenshots/3055379/architecture-web-design.gif
 
+# Gotchas
+## React-Router-Component
+- use <Link> to prevent the whole page from reloading
+## Material-UI
+- muiThemeable() uses React Context to globally propagate the theme
 
 ----------------
 

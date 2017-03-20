@@ -1,3 +1,5 @@
+var styleguide = require('../../styleguide')
+
 var React = require('react')
 
 
@@ -19,10 +21,11 @@ module.exports = React.createClass({
 	},
 	style: function () {
 		return {
-	    borderRadius: '0.25rem',
+	    borderRadius: '0.1rem',
 	    border: '1px solid',
-	    padding: '0.5rem',
+	    // padding: '0.5rem',
 	    fontSize: '1rem',
+			fontFamily: styleguide().fontFamily
 		}
 	}
 })

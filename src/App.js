@@ -1,12 +1,18 @@
+var env = require('../env')
+var styleguide = require('../styleguide')
+
 var JwtDecode = require('jwt-decode')
 var Request = require('superagent')
 var React = require('react')
 
+// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
+// import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+
 var Main = require('./components/Main')
 var Nav = require('./components/Nav')
 var Footer = require('./components/Footer')
-
-var env = require('../env')
 
 
 module.exports = React.createClass({
@@ -17,20 +23,42 @@ module.exports = React.createClass({
 		}
 	},
   render: function () {
+		// console.log(1, lightBaseTheme);
+		var theme = {
+			fontFamily: '"Monda", sans-serif',
+			palette: {
+				// primary1Color: '#0097a7',
+				// primary2Color: '#0097a7',
+				// primary3Color: '#757575',
+				// accent1Color: '#ff4081',
+				// accent2Color: '#f50057',
+				// accent3Color: '#ff80ab',
+				// textColor: 'rgba(255, 255, 255, 1)',
+				// secondaryTextColor: 'rgba(255, 255, 255, 0.7)',
+				alternateTextColor: '#fff',
+				// borderColor: 'rgba(255, 255, 255, 0.3)',
+				// canvasColor: '#000',
+				// clockCircleColor: 'rgba(255, 255, 255, 0.12)',
+				// disabledColor: 'rgba(255, 255, 255, 0.3)',
+				// pickerHeaderColor: 'rgba(255, 255, 255, 0.12)'
+			}
+		}
     return (
-			<div className="App" style={styleA()}>
-				<Nav
-					onJwt={this.onJwt}
-					jwt={this.state.jwt}
-					onUser={this.onUser}
-					user={this.state.user}/>
-				<Main
-					jwt={this.state.jwt}
-					user={this.state.user}
-					onJwt={this.onJwt}
-					onUser={this.onUser}/>
-				<Footer/>
-			</div>
+		  <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+				<div className="App" style={styleguide()}>
+					<Nav
+						onJwt={this.onJwt}
+						jwt={this.state.jwt}
+						onUser={this.onUser}
+						user={this.state.user}/>
+					<Main
+						jwt={this.state.jwt}
+						user={this.state.user}
+						onJwt={this.onJwt}
+						onUser={this.onUser}/>
+					<Footer/>
+				</div>
+			</MuiThemeProvider>
     )
   },
 	componentDidMount: function () {
@@ -104,10 +132,3 @@ module.exports = React.createClass({
 	}
 })
 
-function styleA() {
-	return {
-		margin: '0 auto',
-		width: '50%',
-		fontFamily: 'Helvetica'
-	}
-}

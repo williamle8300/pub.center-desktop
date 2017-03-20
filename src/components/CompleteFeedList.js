@@ -1,4 +1,5 @@
 var env = require('../../env')
+var styleguide = require('../../styleguide')
 
 var Input = require('./Input')
 var Snackbar = require('./Snackbar')
@@ -24,15 +25,16 @@ module.exports = React.createClass({
 				<div>
 					<Input
 						placeholder={'Type to filter...'}
-						onChange={this.searchFeeds}/>
+						onChange={this.searchFeed}/>
 					<this.CreateFeedButton/>
 				</div>
 				{
 					this.state.feeds.map((feed) => (
-						<div key={feed.id} style={{margin: '1em 0'}}>
-							<Link href={'/feed/' +feed.id}>{feed.name ? feed.name : feed.url}</Link>
-							<br/>
-							<small>{feed.url}</small>
+						<div key={feed.id} style={{display: 'flex', flexDirection: 'row', padding: styleguide().padding}}>
+							<Link href={'/feed/' +feed.id}>
+									<img src={feed.favicon} width={16} alt={feed.name+ ' favicon'}/>
+									{feed.name}
+							</Link>
 						</div>
 					))
 				}
@@ -54,16 +56,16 @@ module.exports = React.createClass({
 			return this.setState({feeds: response.body})
 		})
 	},
-	searchFeeds: function (e) {
+	searchFeed: function (e) {
 		
 		this.setState({searchTerm: e.target.value}, () => {
-			
+		
 			Request
-			.get(env.backend+ '/feed?search=' +this.state.searchTerm)
+			.get(env.backend+ '/feed?limit=10' +(this.state.searchTerm ? '&search=' +this.state.searchTerm : ''))
 			.end((err, response) => {
-			
+		
 				if (err) throw err
-			
+		
 				return this.setState({feeds: response.body})
 			})
 		})

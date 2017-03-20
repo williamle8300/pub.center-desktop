@@ -3,6 +3,7 @@ var React = require('react')
 var FeedMeta = require('./FeedMeta')
 var CompleteFeedList = require('./CompleteFeedList')
 var ArticleList = require('./ArticleList')
+var {Block, Text, Heading} = require('rebass')
 
 
 module.exports = React.createClass({
@@ -14,7 +15,14 @@ module.exports = React.createClass({
   render: function () {
     return (
 			<div>
-	    	<h1>Feed</h1>
+				<Block borderLeft color="blue" px={2}>
+					<Heading>
+			      Archived Feeds
+			    </Heading>
+					<Text>
+			      Type to begin searching, or paste an RSS url
+			    </Text>
+				</Block>
 				{
 					this.props._feed_
 					? (

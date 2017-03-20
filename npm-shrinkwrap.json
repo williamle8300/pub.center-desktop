@@ -503,6 +503,11 @@
       "from": "readable-stream@>=2.0.5 <3.0.0",
       "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.1.5.tgz"
     },
+    "rebass": {
+      "version": "0.3.3",
+      "from": "rebass@latest",
+      "resolved": "https://registry.npmjs.org/rebass/-/rebass-0.3.3.tgz"
+    },
     "regexp-quote": {
       "version": "0.0.0",
       "from": "regexp-quote@0.0.0",
