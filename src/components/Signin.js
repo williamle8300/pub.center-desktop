@@ -1,11 +1,15 @@
 var React = require('react')
+var Router = require('react-router-component')
+var Link = Router.Link
+
+import MUIThemeable from 'material-ui/styles/muiThemeable';
 
 var Login = require('./Login')
 var Register = require('./Register')
 var Modal = require('./Modal')
 
 
-module.exports = React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	propTypes: {
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
@@ -20,9 +24,15 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<div className="Signin">
-				<a href="#" onClick={() => {return this.setState({modalVisible: true})}}>signin</a>
-				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal} style={{}}>
+			<Link
+				key={Math.random()}
+				style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
+				href="/#"
+				onClick={() => {return this.setState({modalVisible: true})}}>
+				
+				Login
+				
+				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} style={{}}>
 					<div onClick={(e) => e.stopPropagation()}>
 						<button onClick={this.closeModal}>X</button>
 						{
@@ -38,7 +48,8 @@ module.exports = React.createClass({
 						}
 					</div>
 				</Modal>
-			</div>
+				
+			</Link>
 		)
 	},
 	componentWillUpdate: function (newProps, newState) {
@@ -59,4 +70,4 @@ module.exports = React.createClass({
 		
 		return this.setState({loginOrRegisterMode: 'login'})
 	}
-})
+}))

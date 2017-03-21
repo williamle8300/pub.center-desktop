@@ -28,7 +28,7 @@ module.exports = React.createClass({
 				<button onClick={() => {return this.setState({modalVisible: true})}}>
 					settings
 				</button>
-				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal}>
+				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
 						<button onClick={this.closeModal}>X</button>
 						<input

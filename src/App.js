@@ -1,5 +1,4 @@
 var env = require('../env')
-var styleguide = require('../styleguide')
 
 var JwtDecode = require('jwt-decode')
 var Request = require('superagent')
@@ -24,7 +23,7 @@ module.exports = React.createClass({
 	},
   render: function () {
 		// console.log(1, lightBaseTheme);
-		var theme = {
+		var MUITheme = {
 			fontFamily: '"Monda", sans-serif',
 			palette: {
 				// primary1Color: '#0097a7',
@@ -44,8 +43,8 @@ module.exports = React.createClass({
 			}
 		}
     return (
-		  <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-				<div className="App" style={styleguide()}>
+		  <MuiThemeProvider muiTheme={getMuiTheme(MUITheme)}>
+				<div className="App">
 					<Nav
 						onJwt={this.onJwt}
 						jwt={this.state.jwt}
@@ -131,4 +130,3 @@ module.exports = React.createClass({
 		return this.setState({user: user}, callback)
 	}
 })
-

@@ -1,3 +1,6 @@
+import MUIList from 'material-ui/List/List'
+import MUIListItem from 'material-ui/List/ListItem';
+
 var IsCurrentBillingMonth = require('is-same-monthyear')
 var React = require('react')
 
@@ -10,7 +13,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<div>
+			<MUIList>
 				{
 					this.props.invoices
 					.filter((invoice) => {
@@ -18,7 +21,7 @@ module.exports = React.createClass({
 					})
 					.map((invoice) => {
 						return (
-							<div key={invoice.id} style={{border: '1px solid black', backgroundColor: invoice.open ? 'red' : 'none'}}>
+							<MUIListItem key={invoice.id} disabled style={{backgroundColor: invoice.open ? 'red' : 'none'}}>
 								<p>
 									Bill posted: {new Date(invoice.creationDate).toDateString()}
 									{
@@ -29,11 +32,11 @@ module.exports = React.createClass({
 								</p>
 								<p>Open: {invoice.open.toString()}</p>
 								<p>Due: ${invoice.payable}</p>
-							</div>
+							</MUIListItem>
 						)
 					})
 				}
-			</div>
+			</MUIList>
 		)
 	}
 })

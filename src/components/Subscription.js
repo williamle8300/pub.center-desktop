@@ -94,9 +94,9 @@ module.exports = React.createClass({
 			return
 		})
 	},
-	readFeed: function (isVisible) {
+	readFeed: function (isOpen) {
 		
-		if (isVisible && !this.state.feed) {
+		if (isOpen && !this.state.feed) {
 			
 			Request
 			.get(env.backend+ '/feed/' +this.props.subscription.feed)

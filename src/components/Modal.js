@@ -1,56 +1,28 @@
 var _ = require('lodash')
 var React = require('react')
 
+import MUIDialog from 'material-ui/Dialog';
+
 
 module.exports = React.createClass({
 	propTypes: {
 		children: React.PropTypes.element.isRequired,
-		isVisible: React.PropTypes.bool.isRequired,
-		disableEscape: React.PropTypes.bool,
+		isOpen: React.PropTypes.bool.isRequired,
 		style: React.PropTypes.object,
 		onClose: React.PropTypes.func.isRequired,
-	},
-	getDefaultProps: function () {
-		return {
-			disableEscape: false
-		}
+		title: React.PropTypes.string,
+		actions: React.PropTypes.node,
 	},
 	render: function () {
 		return (
-			<div className="Modal" onClick={this.props.onClose} style={styleA(null, this.props)}>
-				<div style={{background: 'white'}}>
-					{this.props.children}
-				</div>
-			</div>
+			<MUIDialog
+				title={this.props.title}
+				actions={this.props.actions}
+        open={this.props.isOpen}
+        onRequestClose={this.props.onClose}
+				style={Object.assign({}, this.props.style)}>
+        {this.props.children}
+      </MUIDialog>
 		)
 	},
-	componentDidMount: function () {
-		document.addEventListener('keydown', this.onEscape, false)
-	},
-	onEscape: function (e) {
-		
-		if (e.keyCode === 27 && !this.props.disableEscape) {
-			this.props.onClose()
-		}
-	}
 })
-
-function styleA(state, props) {
-
-	var genericStyle = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-		display: props.isVisible ? 'flex' : 'none',
-		alignItems: 'center',
-		justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-		background: 'rgba(0, 0, 0, 0.3333)',
-	}
-	
-	return _.merge(genericStyle, props.style)
-}
-// closebutton.
-// content.
-// listen for escape.

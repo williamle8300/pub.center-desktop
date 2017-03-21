@@ -2,10 +2,16 @@ var _ = require('lodash')
 var React = require('react')
 var Request = require('superagent')
 
+import MUIRaisedButton from 'material-ui/RaisedButton'
+import MUITextField from 'material-ui/TextField'
+
 var env = require('../../env')
 
 var CurrentUsage = require('./CurrentUsage')
 var PushConfig = require('./PushConfig')
+
+var H1 = require('./H1')
+var Container = require('./Container')
 
 
 module.exports = React.createClass({
@@ -27,42 +33,44 @@ module.exports = React.createClass({
 		if (!this.props.user) return null
 		
     return (
-			<div>
-				<h1>User</h1>
-				<h2>Information</h2>
+			<Container>
+			
+				<H1>Account</H1>
+			
 				<div>
-					<label>email</label>
-					<input
-						type="email"
-						placeholder={this.props.user.email || 'email'}
-						value={this.state.email}
-						onChange={this.onChangeEmail}/>
+					<h2>Information</h2>
+					<Container>
+						<MUITextField
+				      hintText={this.props.user.email || 'noel@email.com'}
+				      floatingLabelText="Email"
+				      floatingLabelFixed={true}
+							onChange={this.onChangeEmail}/>
+						<br/>
+						<MUITextField
+				      hintText={this.props.user.username || 'noel'}
+				      floatingLabelText="Username"
+				      floatingLabelFixed={true}
+							onChange={this.onChangeUsername}/>
+						<br/>
+						<MUITextField
+				      hintText={'•'.repeat(8)}
+				      floatingLabelText="Password"
+				      floatingLabelFixed={true}
+							onChange={this.onChangePassword}/>
+						<br/>
+					<MUIRaisedButton onTouchTap={this.updateUser} label="Update"/>
+					</Container>
 				</div>
-				<div>
-		    	<label>username</label>
-					<input
-						type="text"
-						placeholder={this.props.user.username || 'username'}
-						value={this.state.username}
-						onChange={this.onChangeUsername}/>
-				</div>
-				<div>
-					<label>password</label>
-					<input
-						type="password"
-						placeholder={'•'.repeat(8)}
-						value={this.state.password}
-						onChange={this.onChangePassword}/>
-				</div>
-				<button onClick={this.updateUser}>update</button>
+
 				<CurrentUsage
 					jwt={this.props.jwt}
 					user={this.props.user}/>
+					
 				<h2>Subscriptions</h2>
 				<PushConfig jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
 				<h2>Logout</h2>
 				<button onClick={this.wipeSession}>logout</button>
-			</div>
+			</Container>
 		)
   },
 	onChangeEmail: function (e) {

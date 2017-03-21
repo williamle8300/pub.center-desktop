@@ -1,5 +1,4 @@
 var env = require('../../env')
-var styleguide = require('../../styleguide')
 
 var Input = require('./Input')
 var Snackbar = require('./Snackbar')
@@ -30,7 +29,7 @@ module.exports = React.createClass({
 				</div>
 				{
 					this.state.feeds.map((feed) => (
-						<div key={feed.id} style={{display: 'flex', flexDirection: 'row', padding: styleguide().padding}}>
+						<div key={feed.id} style={{display: 'flex', flexDirection: 'row'}}>
 							<Link href={'/feed/' +feed.id}>
 									<img src={feed.favicon} width={16} alt={feed.name+ ' favicon'}/>
 									{feed.name}

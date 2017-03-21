@@ -1,3 +1,5 @@
+import MUIRaisedButton from 'material-ui/RaisedButton'
+
 var env = require('../../env')
 
 var BillingHistory = require('./BillingHistory')
@@ -8,6 +10,8 @@ var Moment = require('moment')
 var React = require('react')
 var Request = require('superagent')
 var StripeCheckout = require('react-stripe-checkout').default
+
+var Container = require('./Container')
 
 
 module.exports = React.createClass({
@@ -44,20 +48,20 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<h2>Usage for {Moment(this.state.dateNow).format('MMMM')}</h2>
-				<h3 style={{color: currentInvoice.payable > 1 ? 'black' : 'orange'}}>Current usage: ${(currentInvoice.payable).toFixed(4)}</h3>
-				<p>Pastdue: <u>${this._pastDue}</u></p>
-				<StripeCheckout
-					token={this.onStripeCollect}
-					stripeKey={env.stripePublicKey}
-					panelLabel={"Pay $" +this._pastDue}><button>Pay now</button></StripeCheckout>
-				<p>Payments are due end of month <i>({dueDate})</i></p>
-				<button onClick={() => {this.setState({modalVisible: true})}}>Billing history ({overdueInvoices.length})</button>
-				<Modal isVisible={this.state.modalVisible} onClose={this.closeModal} style={{}}>
-					<div onClick={(e) => e.stopPropagation()}>
-						<button onClick={this.closeModal}>X</button>
+				<Container>
+					<b>Current usage: ${currentInvoice ? (currentInvoice.payable).toFixed(4) : 0}</b>
+					<p>Pastdue: <u>${this._pastDue}</u></p>
+					<StripeCheckout
+						token={this.onStripeCollect}
+						stripeKey={env.stripePublicKey}
+						panelLabel={"Pay $" +this._pastDue}>
+						<MUIRaisedButton label={'Pay now ('+ dueDate +')'}/>
+					</StripeCheckout>  
+					<MUIRaisedButton onTouchTap={() => {this.setState({modalVisible: true})}} label={'Billing history ('+ overdueInvoices.length +')'}/>
+					<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title="Billing History">
 						<BillingHistory jwt={this.props.jwt} user={this.props.user} invoices={this.state.invoices}/>
-					</div>
-				</Modal>
+					</Modal>
+				</Container>
 			</div>
 		)
 	},

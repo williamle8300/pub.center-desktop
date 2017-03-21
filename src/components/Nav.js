@@ -6,30 +6,27 @@ var React = require('react')
 var Router = require('react-router-component')
 var Link = Router.Link
 
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUIAppBar from 'material-ui/AppBar'
-import MUIFlatButton from 'material-ui/FlatButton';
 
 
-module.exports = muiThemeable()(React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	propTypes: {
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
 		onJwt: React.PropTypes.func.isRequired,
 		onUser: React.PropTypes.func.isRequired,
 	},
-	_MUITHEME: this.props.muiTheme,
+	// _MUITHEME: this.props.muiTheme, //React Context
 	render: function () {
 		
 		var Account = this.props.jwt && this.props.user
-		? <MUIFlatButton
+		? <Link
 				key={Math.random()}
-				disableTouchRipple={true}
-				hoverColor="transparent"
-				style={{color: _MUITHEME.palette.alternateTextColor}}
+				style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
 				href="/user">
-				user
-			</MUIFlatButton>
+				Account
+			</Link>
 		: <Signin
 			  key={Math.random()}
 				onJwt={this.props.onJwt}
@@ -43,8 +40,15 @@ module.exports = muiThemeable()(React.createClass({
 				showMenuIconButton={false}
 				onTitleTouchTap={() => {window.location = '/'}}
 				children={[
-					<MUIFlatButton key={Math.random()} disableTouchRipple={true} hoverColor="transparent" style={{color: _MUITHEME.palette.alternateTextColor}} href="/feed">feeds</MUIFlatButton>,
-					<MUIFlatButton key={Math.random()} disableTouchRipple={true} hoverColor="transparent" style={{color: _MUITHEME.palette.alternateTextColor}} href={env.backend+ '/documentation'}>documentation</MUIFlatButton>,
+					<Link
+						key={Math.random()}
+						style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
+						href="/feed">Feed Archives</Link>,
+					<a
+						key={Math.random()}
+						style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
+						href={env.backend+ '/documentation'}
+						target="_blank">Docs</a>,
 					Account
 				]}/>
 		)
