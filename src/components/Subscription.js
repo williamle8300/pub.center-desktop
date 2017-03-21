@@ -1,6 +1,9 @@
 var env = require('../../env')
 
-var Toggle = require('./Toggle')
+import MUIThemeable from 'material-ui/styles/muiThemeable'
+import MUITableRow from 'material-ui/Table/TableRow'
+import MUITableRowColumn from 'material-ui/Table/TableRowColumn'
+import MUIToggle from 'material-ui/Toggle'
 
 var _ = require('lodash')
 var Link = require('react-router-component').Link
@@ -9,7 +12,7 @@ var React = require('react')
 var VisibilitySensor = require('react-visibility-sensor')
 
 
-module.exports = React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	propTypes: {
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
@@ -24,30 +27,29 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<VisibilitySensor onChange={this.readFeed}>
-				<tr>
-				  <td style={styleA()}>
+				<MUITableRow>
+				  <MUITableRowColumn style={this.style1()}>
 						<this.FeedMeta/>
-						<Toggle
-							checked={this.props.subscription.isActive}
-							onChange={this.toggleActive.bind(this, this.props.subscription.id, this.props.subscription.isActive)}/>
-						<button onClick={this.deleteSubscription.bind(this, this.props.subscription.id)}>unsubscribe</button>
-					</td>
-					<td style={styleA()}>
-						<Toggle
-							checked={_.includes(this.props.subscription.config, 'email')}
-							onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'email')}/>
-					</td>
-					<td style={styleA()}>
-						<Toggle
-							checked={_.includes(this.props.subscription.config, 'sms')}
-							onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'sms')}/>
-					</td>
-					<td style={styleA()}>
-						<Toggle
-							checked={_.includes(this.props.subscription.config, 'api')}
-							onChange={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'api')}/>
-					</td>
-				</tr>
+						<Link href={'/feed/' +this.props.subscription.feed}>view</Link>
+						    
+						<a href="#" onTouchTap={this.deleteSubscription.bind(this, this.props.subscription.id)}>unsubscribe</a>
+					</MUITableRowColumn>
+					<MUITableRowColumn style={this.style1()}>
+						<MUIToggle
+							toggled={_.includes(this.props.subscription.config, 'email')}
+							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'email')}/>
+					</MUITableRowColumn>
+					<MUITableRowColumn style={this.style1()}>
+						<MUIToggle
+							toggled={_.includes(this.props.subscription.config, 'sms')}
+							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'sms')}/>
+					</MUITableRowColumn>
+					<MUITableRowColumn style={this.style1()}>
+						<MUIToggle
+							toggled={_.includes(this.props.subscription.config, 'api')}
+							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'api')}/>
+					</MUITableRowColumn>
+				</MUITableRow>
 			</VisibilitySensor>
 		)
 	},
@@ -55,10 +57,10 @@ module.exports = React.createClass({
 		
 		if (this.state.feed) {
 			return (
-				<div>
-					<img src={this.state.feed.favicon} alt="favicon" width={24}/>
-					<Link href={'/feed/' +this.props.subscription.feed}>{this.state.feed.name}</Link>
-				</div>
+				<MUIToggle
+					label={<div><img src={this.state.feed.favicon} alt="favicon" style={{width: 24}}/><span>{this.state.feed.name}</span></div>}
+					toggled={this.props.subscription.isActive}
+					onTouchTap={this.toggleActive.bind(this, this.props.subscription.id, this.props.subscription.isActive)}/>
 			)
 		}
 		
@@ -121,13 +123,12 @@ module.exports = React.createClass({
 			this.props.onChange()
 			return
 		})
+	},
+	style1: function () {
+		return {
+			padding: this.props.muiTheme.spacing.desktopGutter,
+			// display: 'flex'
+			// border: '1px solid black'
+		}
 	}
-})
-
-function styleA() {
-	return {
-		// display: 'flex'
-		textAlign: 'center',
-		// border: '1px solid black'
-	}
-}
+}))

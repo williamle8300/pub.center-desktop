@@ -1,4 +1,3 @@
-var _ = require('lodash')
 var React = require('react')
 
 import MUIDialog from 'material-ui/Dialog';

@@ -11,8 +11,9 @@ var RoundedAverage = require('../util/rounded-average')
 var env = require('../../env')
 
 var Modal = require('./Modal')
-var Toggle = require('./Toggle')
 var Snackbar = require('./Snackbar')
+
+var Toggle = require('./Toggle')
 
 
 module.exports = React.createClass({

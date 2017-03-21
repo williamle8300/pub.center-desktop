@@ -5,7 +5,7 @@ var Request = require('superagent')
 var React = require('react')
 
 // import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
-// import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
@@ -22,7 +22,7 @@ module.exports = React.createClass({
 		}
 	},
   render: function () {
-		// console.log(1, lightBaseTheme);
+		console.log(1, lightBaseTheme);
 		var MUITheme = {
 			fontFamily: '"Monda", sans-serif',
 			palette: {

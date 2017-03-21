@@ -36,7 +36,7 @@ module.exports = MUIThemeable()(React.createClass({
 				
 		return (
 			<MUIAppBar
-				title="PubCenter"
+				title={<span style={{cursor: 'pointer'}}>PubCenter</span>}
 				showMenuIconButton={false}
 				onTitleTouchTap={() => {window.location = '/'}}
 				children={[

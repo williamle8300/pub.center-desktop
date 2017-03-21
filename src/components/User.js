@@ -37,39 +37,42 @@ module.exports = React.createClass({
 			
 				<H1>Account</H1>
 			
-				<div>
+				<Container>
 					<h2>Information</h2>
-					<Container>
-						<MUITextField
-				      hintText={this.props.user.email || 'noel@email.com'}
-				      floatingLabelText="Email"
-				      floatingLabelFixed={true}
-							onChange={this.onChangeEmail}/>
-						<br/>
-						<MUITextField
-				      hintText={this.props.user.username || 'noel'}
-				      floatingLabelText="Username"
-				      floatingLabelFixed={true}
-							onChange={this.onChangeUsername}/>
-						<br/>
-						<MUITextField
-				      hintText={'•'.repeat(8)}
-				      floatingLabelText="Password"
-				      floatingLabelFixed={true}
-							onChange={this.onChangePassword}/>
-						<br/>
+					<MUITextField
+			      hintText={this.props.user.email || 'noel@email.com'}
+			      floatingLabelText="Email"
+			      floatingLabelFixed={true}
+						onChange={this.onChangeEmail}/>
+					<br/>
+					<MUITextField
+			      hintText={this.props.user.username || 'noel'}
+			      floatingLabelText="Username"
+			      floatingLabelFixed={true}
+						onChange={this.onChangeUsername}/>
+					<br/>
+					<MUITextField
+			      hintText={'•'.repeat(8)}
+			      floatingLabelText="Password"
+			      floatingLabelFixed={true}
+						onChange={this.onChangePassword}/>
+					<br/>
 					<MUIRaisedButton onTouchTap={this.updateUser} label="Update"/>
-					</Container>
-				</div>
-
+				</Container>
+				
 				<CurrentUsage
 					jwt={this.props.jwt}
 					user={this.props.user}/>
+				
+				<Container>
+					<h2>Subscriptions</h2>
+					<PushConfig jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
+				</Container>
+
+				<Container>				
+					<MUIRaisedButton onTouchTap={this.wipeSession} label="Logout"/>
+				</Container>
 					
-				<h2>Subscriptions</h2>
-				<PushConfig jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
-				<h2>Logout</h2>
-				<button onClick={this.wipeSession}>logout</button>
 			</Container>
 		)
   },

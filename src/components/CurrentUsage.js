@@ -46,23 +46,21 @@ module.exports = React.createClass({
 		
 		
 		return (
-			<div>
+			<Container>
 				<h2>Usage for {Moment(this.state.dateNow).format('MMMM')}</h2>
-				<Container>
-					<b>Current usage: ${currentInvoice ? (currentInvoice.payable).toFixed(4) : 0}</b>
-					<p>Pastdue: <u>${this._pastDue}</u></p>
-					<StripeCheckout
-						token={this.onStripeCollect}
-						stripeKey={env.stripePublicKey}
-						panelLabel={"Pay $" +this._pastDue}>
-						<MUIRaisedButton label={'Pay now ('+ dueDate +')'}/>
-					</StripeCheckout>  
-					<MUIRaisedButton onTouchTap={() => {this.setState({modalVisible: true})}} label={'Billing history ('+ overdueInvoices.length +')'}/>
-					<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title="Billing History">
-						<BillingHistory jwt={this.props.jwt} user={this.props.user} invoices={this.state.invoices}/>
-					</Modal>
-				</Container>
-			</div>
+				<b>Current usage: ${currentInvoice ? (currentInvoice.payable).toFixed(4) : 0}</b>
+				<p>Pastdue: <u>${this._pastDue}</u></p>
+				<StripeCheckout
+					token={this.onStripeCollect}
+					stripeKey={env.stripePublicKey}
+					panelLabel={"Pay $" +this._pastDue}>
+					<MUIRaisedButton label={'Pay now ('+ dueDate +')'}/>
+				</StripeCheckout>  
+				<MUIRaisedButton onTouchTap={() => {this.setState({modalVisible: true})}} label={'Billing history ('+ overdueInvoices.length +')'}/>
+				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title="Billing History">
+					<BillingHistory jwt={this.props.jwt} user={this.props.user} invoices={this.state.invoices}/>
+				</Modal>
+			</Container>
 		)
 	},
 	componentDidMount: function () {

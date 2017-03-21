@@ -1,10 +1,12 @@
 var Request = require('superagent')
 var React = require('react')
 
+import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
+import MUIToggle from 'material-ui/Toggle'
+
 var env = require('../../env')
 
 var Modal = require('./Modal')
-var Toggle = require('./Toggle')
 
 
 module.exports = React.createClass({
@@ -23,7 +25,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<th>
+			<MUITableHeaderColumn>
 				API $0.0001/each
 				<button onClick={() => {return this.setState({modalVisible: true})}}>
 					settings
@@ -49,11 +51,11 @@ module.exports = React.createClass({
 						<button onClick={this.update}>Submit</button>
 					</div>
 				</Modal>
-				<Toggle
+				<MUIToggle
 					disabled={!this.props.user.pushConfig.channelConfig.api.endpoint ? true : false}
-				  checked={this.props.user.pushConfig.channelConfig.api.isActive && this.props.user.pushConfig.channelConfig.api.endpoint ? true : false}
-				  onChange={this.toggle} />
-			</th>
+				  toggled={this.props.user.pushConfig.channelConfig.api.isActive && this.props.user.pushConfig.channelConfig.api.endpoint ? true : false}
+				  onTouchTap={this.toggle} />
+			</MUITableHeaderColumn>
 		)
 	},
 	closeModal: function () {

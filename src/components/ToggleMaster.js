@@ -1,9 +1,12 @@
 var Request = require('superagent')
 var React = require('react')
 
+import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
+import MUITableRow from 'material-ui/Table/TableRow'
+import MUIToggle from 'material-ui/Toggle'
+
 var env = require('../../env')
 
-var Toggle = require('./Toggle')
 var ToggleMasterEmail = require('./ToggleMasterEmail')
 var ToggleMasterSms = require('./ToggleMasterSms')
 var ToggleMasterApi = require('./ToggleMasterApi')
@@ -17,28 +20,26 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<thead>
-				<tr>
-				  <th>
-						Master
-						<Toggle
-						  checked={this.props.user.pushConfig.isActive || false}
-						  onChange={this.toggleMaster} />
-					</th>
-					<ToggleMasterEmail
-						jwt={this.props.jwt}
-						user={this.props.user}
-						onUser={this.props.onUser}/>
-					<ToggleMasterSms
-						jwt={this.props.jwt}
-						user={this.props.user}
-						onUser={this.props.onUser}/>
-					<ToggleMasterApi
-						jwt={this.props.jwt}
-						user={this.props.user}
-						onUser={this.props.onUser}/>
-				</tr>
-			</thead>
+			<MUITableRow>
+			  <MUITableHeaderColumn>
+					<MUIToggle
+						label="Master"
+					  toggled={this.props.user.pushConfig.isActive || false}
+					  onTouchTap={this.toggleMaster} />
+				</MUITableHeaderColumn>
+				<ToggleMasterEmail
+					jwt={this.props.jwt}
+					user={this.props.user}
+					onUser={this.props.onUser}/>
+				<ToggleMasterSms
+					jwt={this.props.jwt}
+					user={this.props.user}
+					onUser={this.props.onUser}/>
+				<ToggleMasterApi
+					jwt={this.props.jwt}
+					user={this.props.user}
+					onUser={this.props.onUser}/>
+			</MUITableRow>
 		)
 	},
 	toggleMaster: function () {
