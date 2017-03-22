@@ -28,7 +28,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<MUITextField
-		      hintText={'Type to filter...'}
+		      hintText={'Filter or paste RSS URL...'}
 		      floatingLabelText="Search"
 		      floatingLabelFixed={true}
 					fullWidth={true}

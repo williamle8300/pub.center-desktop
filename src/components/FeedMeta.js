@@ -12,7 +12,7 @@ import MUIAvatar from 'material-ui/Avatar'
 import MUIList from 'material-ui/List/List'
 import MUIListItem from 'material-ui/List/ListItem'
 import MUIRaisedButton from 'material-ui/RaisedButton'
-import MUIRssFeedIcon from 'material-ui/svg-icons/communication/rss-feed'
+import MUISatellite from 'material-ui/svg-icons/maps/satellite'
 import MUICopy from 'material-ui/svg-icons/content/content-paste'
 import MUITable from 'material-ui/Table/Table'
 import MUITableHeader from 'material-ui/Table/TableHeader'
@@ -51,7 +51,7 @@ module.exports = MUIThemeable()(React.createClass({
 
 		return (
 			<div style={{display: 'flex'}}>
-				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '70%', background: this.props.muiTheme.palette.primary3Color, color: this.props.muiTheme.palette.alternateTextColor}}>
+				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '70%', background: this.props.muiTheme.palette.primary2Color, color: this.props.muiTheme.palette.alternateTextColor}}>
 			
 					<MUIList>
 						<MUIListItem
@@ -64,9 +64,9 @@ module.exports = MUIThemeable()(React.createClass({
 						
 					</MUIList>
 				</div>
-				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '30%', background: this.props.muiTheme.palette.primary3Color, color: this.props.muiTheme.palette.alternateTextColor}}>
-					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUIRssFeedIcon/>}/>
+				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '30%', background: this.props.muiTheme.palette.primary2Color, color: this.props.muiTheme.palette.alternateTextColor}}>
 					{this.CopyButton()}
+					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUISatellite/>} fullWidth/>
 					<p>Articles/Day: {RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
 					<p>Last checked: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
 					<p>Archived: {new Date(this.state.feed.archiveDate).toDateString()}</p>
@@ -102,7 +102,7 @@ module.exports = MUIThemeable()(React.createClass({
 							})
 						})
 					}}>
-					<MUIRaisedButton label="JSON" icon={<MUICopy/>}/>
+					<MUIRaisedButton label="API" icon={<MUICopy/>} fullWidth/>
 				</CopyToClipboard>
 				<Snackbar
 					snacks={this.state.snacks}
