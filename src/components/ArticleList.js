@@ -1,8 +1,16 @@
 var React = require('react')
 var Request = require('superagent')
+import ReactCollapsible from 'react-collapsible';
+
+import MUIRaisedButton from 'material-ui/RaisedButton'
+import MUIList from 'material-ui/List/List'
+import MUIListItem from 'material-ui/List/ListItem'
+import MUIPaper from 'material-ui/Paper'
+import MUIDivider from 'material-ui/Divider';
 
 var env = require('../../env')
 
+var Container = require('./Container')
 var EnforceVanillaHtml = require('../util/enforce-vanilla-html')
 
 
@@ -25,22 +33,16 @@ module.exports = React.createClass({
 				{
 					this.state.articles.map(function (article) {						
 						return (
-							<article key={article.id} style={{clear: 'both'}}>
-								<header>
-									<h3>
-										<div>
-											<a href={article.url}>{article.title}</a>
-										</div>
-									</h3>
-									<div>{article.author}</div>
-									<div>{new Date(article.date).toDateString()}</div>
-								</header>
-								<div dangerouslySetInnerHTML={{__html: EnforceVanillaHtml(article.description)}}/>
-							</article>
+							<ReactCollapsible key={article.id} trigger={<MUIPaper><Container style={{cursor: 'pointer'}}>{article.title}</Container></MUIPaper>}>
+								<Container>
+									<div dangerouslySetInnerHTML={{__html: EnforceVanillaHtml(article.description)}}/>
+								</Container>
+							</ReactCollapsible>
 						)
 					})
 				}
-				<button onClick={this.getArticles}>Show More</button>
+				<br/>
+				<MUIRaisedButton fullWidth label="Show More" onTouchTap={this.getArticles}/>
 			</div>
 		)
 	},

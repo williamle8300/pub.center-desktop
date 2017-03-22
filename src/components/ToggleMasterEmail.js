@@ -2,7 +2,9 @@ var Request = require('superagent')
 var React = require('react')
 
 import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
+import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIToggle from 'material-ui/Toggle'
+import MUITextField from 'material-ui/TextField'
 
 var env = require('../../env')
 
@@ -23,26 +25,29 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<MUITableHeaderColumn>
+			<MUITableHeaderColumn style={{textAlign: 'center'}}>
 				Email $0.001/each
 				<button onClick={() => {this.setState({modalVisible: true})}}>
 					settings
 				</button>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
-						<button onClick={this.closeModal}>X</button>
-						<input
+						<MUITextField
 							type="email"
 							value={this.state.address}
-							placeholder={this.props.user.pushConfig.channelConfig.email.address || 'email@address.xyz'}
+				      floatingLabelText="Email"
+				      hintText={this.props.user.pushConfig.channelConfig.email.address || 'email@address.xyz'}
+				      floatingLabelFixed={true}
 							onChange={this.onChangeEmail}/>
-						<button onClick={this.update}>Submit</button>
+						<br/>
+						<MUIRaisedButton label="Submit" onTouchTap={this.update}/>
 					</div>
 				</Modal>
 				<MUIToggle
 					disabled={!this.props.user.pushConfig.channelConfig.email.address ? true : false}
 				  toggled={this.props.user.pushConfig.channelConfig.email.isActive && this.props.user.pushConfig.channelConfig.email.address ? true : false}
-				  onTouchTap={this.toggle} />
+				  onTouchTap={this.toggle}
+					style={{textAlign: 'center', display: 'inline',}}/>
 			</MUITableHeaderColumn>
 		)
 	},

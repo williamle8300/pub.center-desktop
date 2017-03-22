@@ -7,6 +7,13 @@ var Elapsed = require('elapsed')
 var React = require('react')
 var Request = require('superagent')
 
+import MUIAvatar from 'material-ui/Avatar'
+import MUIList from 'material-ui/List/List'
+import MUIListItem from 'material-ui/List/ListItem'
+import MUIRaisedButton from 'material-ui/RaisedButton'
+import MUIRssFeedIcon from 'material-ui/svg-icons/communication/rss-feed'
+import MUICopy from 'material-ui/svg-icons/content/content-paste'
+
 var RoundedAverage = require('../util/rounded-average')
 var env = require('../../env')
 
@@ -35,16 +42,27 @@ module.exports = React.createClass({
 		if (!this.state.feed) return null
 
 		return (
-			<div>
-				<h2>
-					<img src={this.state.feed.favicon} alt="favicon" width={24}/> 
-					<a href={this.state.feed.url}>{this.state.feed.name}</a>
-					{this.CopyToClipboard()}
-				</h2>
-				<p>Archived: {new Date(this.state.feed.archiveDate).toDateString()}</p>
-				<p>Articles per day: {RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
-				<p>Last checked: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
-				{this.SubscribeButton()}
+			<div style={{display: 'flex'}}>
+				<div style={{width: '70%'}}>
+			
+					<MUIList>
+						<MUIListItem
+							disabled
+							leftAvatar={<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 48, imageRendering: 'pixelated'}}/>}
+							primaryText={<div>
+								<h2>{this.state.feed.name}</h2>
+							</div>}/>
+						{this.SubscribeButton()}
+						
+					</MUIList>
+				</div>
+				<div style={{width: '30%'}}>
+					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUIRssFeedIcon/>}/>
+					{this.CopyButton()}
+					<p>{RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)} articles/day</p>
+					<p>Last checked: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
+					<p>Archived: {new Date(this.state.feed.archiveDate).toDateString()}</p>
+				</div>
 			</div>
 		)
 	},
@@ -59,13 +77,12 @@ module.exports = React.createClass({
 			this.readSubscription()
 		}
 	},
-	CopyToClipboard: function () {
+	CopyButton: function () {
 		
 		var url = env.backend+ '/feed/' +this.state.feed.id+ '/articles'
 		
 		return (
-			<div>
-				<input value={url} readOnly/>
+			<span>
 				<CopyToClipboard
 					text={url}
 					onCopy={() => {
@@ -77,7 +94,7 @@ module.exports = React.createClass({
 							})
 						})
 					}}>
-					<button>copy</button>
+					<MUIRaisedButton label="JSON" icon={<MUICopy/>}/>
 				</CopyToClipboard>
 				<Snackbar
 					snacks={this.state.snacks}
@@ -87,7 +104,7 @@ module.exports = React.createClass({
 							return snacks.key !== key
 						})})
 					}}/>
-			</div>
+			</span>
 		)
 	},
 	SubscribeButton: function () {
@@ -103,7 +120,7 @@ module.exports = React.createClass({
 		if (this.state.subscription) {
 			return (
 				<div>
-					<button onClick={this.deleteSubscription}>Unsubscribe</button>
+					<MUIRaisedButton label="Unsubscribe" onTouchTap={this.deleteSubscription}/>
 					<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 						<div onClick={(e) => e.stopPropagation()}>
 							<button onClick={this.closeModal}>X</button>
@@ -138,7 +155,7 @@ module.exports = React.createClass({
 		else {
 			return (
 				<div>
-					<button onClick={this.createSubscription}>Subscribe</button>
+					<MUIRaisedButton secondary label="Subscribe" onTouchTap={this.createSubscription}/>
 				</div>
 			)
 		}

@@ -2,7 +2,9 @@ var Request = require('superagent')
 var React = require('react')
 
 import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
+import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIToggle from 'material-ui/Toggle'
+import MUITextField from 'material-ui/TextField'
 
 var env = require('../../env')
 
@@ -30,13 +32,15 @@ module.exports = React.createClass({
 				</button>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
-						<button onClick={this.closeModal}>X</button>
-						<input
+						<MUITextField
 							type="text"
 							value={this.state.phoneNumber}
-							placeholder={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '[+][countrycode][areacode & number]'}
+				      floatingLabelText="SMS phone number"
+				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '[+][countrycode][areacode & number]'}
+				      floatingLabelFixed={true}
 							onChange={this.onChangePhoneNumber}/>
-						<button onClick={this.update}>Submit</button>
+						<br/>
+						<MUIRaisedButton label="Submit" onTouchTap={this.update}/>
 					</div>
 				</Modal>
 				<MUIToggle

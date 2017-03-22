@@ -38,7 +38,7 @@ module.exports = React.createClass({
 				<H1>Account</H1>
 			
 				<Container>
-					<h2>Information</h2>
+					<h2>Profile</h2>
 					<MUITextField
 			      hintText={this.props.user.email || 'noel@email.com'}
 			      floatingLabelText="Email"

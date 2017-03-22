@@ -3,7 +3,9 @@ var React = require('react')
 var FeedMeta = require('./FeedMeta')
 var CompleteFeedList = require('./CompleteFeedList')
 var ArticleList = require('./ArticleList')
-var {Block, Text, Heading} = require('rebass')
+
+var H1 = require('./H1')
+var Container = require('./Container')
 
 
 module.exports = React.createClass({
@@ -14,26 +16,19 @@ module.exports = React.createClass({
 	},
   render: function () {
     return (
-			<div>
-				<Block borderLeft color="blue" px={2}>
-					<Heading>
-			      Archived Feeds
-			    </Heading>
-					<Text>
-			      Type to begin searching, or paste an RSS url
-			    </Text>
-				</Block>
+			<Container>
+	      <H1>Feed Archives</H1>
 				{
 					this.props._feed_
 					? (
-						<div>
+						<Container>
 				    	<FeedMeta jwt={this.props.jwt} user={this.props.user} _feed_={this.props._feed_}/>
 							<ArticleList _feed_={this.props._feed_}/>
-						</div>
+						</Container>
 					)
 					: <CompleteFeedList/> 
 				}
-			</div>
+			</Container>
     )
   }
 })

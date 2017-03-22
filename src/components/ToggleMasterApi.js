@@ -2,7 +2,9 @@ var Request = require('superagent')
 var React = require('react')
 
 import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
+import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIToggle from 'material-ui/Toggle'
+import MUITextField from 'material-ui/TextField'
 
 var env = require('../../env')
 
@@ -32,23 +34,31 @@ module.exports = React.createClass({
 				</button>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
-						<button onClick={this.closeModal}>X</button>
-						<input
+						<MUITextField
 							type="text"
 							value={this.state.endpoint}
-							placeholder={this.props.user.pushConfig.channelConfig.api.endpoint || 'http://endpoint.com'}
+							hintText={this.props.user.pushConfig.channelConfig.api.endpoint || 'http://example.com'}
+							floatingLabelText="Your Endpoint"
+							floatingLabelFixed={true}
 							onChange={this.onChangeEndpoint}/>
-						<input
+						<br/>
+						<MUITextField
 							type="text"
 							value={this.state.apiHeadersKey}
-							placeholder={this.props.user.pushConfig.channelConfig.api.headers.key || 'headerkey'}
+							hintText={this.props.user.pushConfig.channelConfig.api.headers.key || 'a1b2'}
+							floatingLabelText="Header Value"
+							floatingLabelFixed={true}
 							onChange={this.onChangeApiHeadersKey}/>
-						<input
+						<br/>
+						<MUITextField
 							type="text"
 							value={this.state.apiHeadersValue}
-							placeholder={this.props.user.pushConfig.channelConfig.api.headers.value || 'headervalue'}
+							hintText={this.props.user.pushConfig.channelConfig.api.headers.value || 'z0y9'}
+							floatingLabelText="Header Key"
+							floatingLabelFixed={true}
 							onChange={this.onChangeApiHeadersValue}/>
-						<button onClick={this.update}>Submit</button>
+						<br/>
+						<MUIRaisedButton onTouchTap={this.update}>Submit</MUIRaisedButton>
 					</div>
 				</Modal>
 				<MUIToggle

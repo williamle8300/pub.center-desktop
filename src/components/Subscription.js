@@ -6,10 +6,11 @@ import MUITableRowColumn from 'material-ui/Table/TableRowColumn'
 import MUIToggle from 'material-ui/Toggle'
 
 var _ = require('lodash')
-var Link = require('react-router-component').Link
 var Request = require('superagent')
 var React = require('react')
 var VisibilitySensor = require('react-visibility-sensor')
+
+var RouterLink = require('./RouterLink')
 
 
 module.exports = MUIThemeable()(React.createClass({
@@ -30,9 +31,9 @@ module.exports = MUIThemeable()(React.createClass({
 				<MUITableRow>
 				  <MUITableRowColumn style={this.style1()}>
 						<this.FeedMeta/>
-						<Link href={'/feed/' +this.props.subscription.feed}>view</Link>
+						<RouterLink href={'/feed/' +this.props.subscription.feed}>view</RouterLink>
 						    
-						<a href="#" onTouchTap={this.deleteSubscription.bind(this, this.props.subscription.id)}>unsubscribe</a>
+						<a onTouchTap={this.deleteSubscription.bind(this, this.props.subscription.id)} style={{color: this.props.muiTheme.palette.textColor, textDecoration: 'underline'}}>unsubscribe</a>
 					</MUITableRowColumn>
 					<MUITableRowColumn style={this.style1()}>
 						<MUIToggle
