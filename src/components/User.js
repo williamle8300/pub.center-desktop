@@ -40,18 +40,21 @@ module.exports = React.createClass({
 				<Container>
 					<h2>Profile</h2>
 					<MUITextField
+						type="email"
 			      hintText={this.props.user.email || 'noel@email.com'}
 			      floatingLabelText="Email"
 			      floatingLabelFixed={true}
 						onChange={this.onChangeEmail}/>
 					<br/>
 					<MUITextField
+						type="text"
 			      hintText={this.props.user.username || 'noel'}
 			      floatingLabelText="Username"
 			      floatingLabelFixed={true}
 						onChange={this.onChangeUsername}/>
 					<br/>
 					<MUITextField
+						type="password"
 			      hintText={'•'.repeat(8)}
 			      floatingLabelText="Password"
 			      floatingLabelFixed={true}
@@ -60,9 +63,13 @@ module.exports = React.createClass({
 					<MUIRaisedButton onTouchTap={this.updateUser} label="Update"/>
 				</Container>
 				
-				<CurrentUsage
-					jwt={this.props.jwt}
-					user={this.props.user}/>
+				{
+/*
+					<CurrentUsage
+						jwt={this.props.jwt}
+						user={this.props.user}/>
+*/
+				}
 				
 				<Container>
 					<h2>Subscriptions</h2>

@@ -28,7 +28,7 @@ module.exports = React.createClass({
 				<MUITableHeader displaySelectAll={false} adjustForCheckbox={false}>
 					<ToggleMaster jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
 				</MUITableHeader>
-				<MUITableBody>
+				<MUITableBody displayRowCheckbox={false}>
 					{
 						this.state.subscriptions.map((subscription) => {
 							return (

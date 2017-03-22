@@ -33,20 +33,17 @@ module.exports = MUIThemeable()(React.createClass({
 				Login
 				
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} style={{}}>
-					<div onClick={(e) => e.stopPropagation()}>
-						<button onClick={this.closeModal}>X</button>
-						{
-							this.state.loginOrRegisterMode === 'login'
-							? <Login
-								onJwt={this.props.onJwt}
-								onUser={this.props.onUser}
-								toggleSigninMode={this.toggleSigninMode}/>
-							: <Register
-								onJwt={this.props.onJwt}
-								onUser={this.props.onUser}
-								toggleSigninMode={this.toggleSigninMode}/>
-						}
-					</div>
+					{
+						this.state.loginOrRegisterMode === 'login'
+						? <Login
+							onJwt={this.props.onJwt}
+							onUser={this.props.onUser}
+							toggleSigninMode={this.toggleSigninMode}/>
+						: <Register
+							onJwt={this.props.onJwt}
+							onUser={this.props.onUser}
+							toggleSigninMode={this.toggleSigninMode}/>
+					}
 				</Modal>
 				
 			</Link>

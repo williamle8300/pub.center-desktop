@@ -27,11 +27,10 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<MUITableHeaderColumn>
-				API $0.0001/each
-				<button onClick={() => {return this.setState({modalVisible: true})}}>
-					settings
-				</button>
+			<MUITableHeaderColumn style={{textAlign: 'center'}}>
+				<MUIRaisedButton label="API" onTouchTap={() => {return this.setState({modalVisible: true})}}/>
+				<br/>
+				<br/>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
 						<MUITextField
@@ -58,13 +57,16 @@ module.exports = React.createClass({
 							floatingLabelFixed={true}
 							onChange={this.onChangeApiHeadersValue}/>
 						<br/>
+						<br/>
 						<MUIRaisedButton onTouchTap={this.update}>Submit</MUIRaisedButton>
 					</div>
 				</Modal>
 				<MUIToggle
 					disabled={!this.props.user.pushConfig.channelConfig.api.endpoint ? true : false}
 				  toggled={this.props.user.pushConfig.channelConfig.api.isActive && this.props.user.pushConfig.channelConfig.api.endpoint ? true : false}
-				  onTouchTap={this.toggle} />
+				  onTouchTap={this.toggle}
+					iconStyle={{margin: '0 auto'}}/>
+				<br/>
 			</MUITableHeaderColumn>
 		)
 	},

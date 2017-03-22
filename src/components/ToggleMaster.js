@@ -25,7 +25,7 @@ module.exports = React.createClass({
 					<MUIToggle
 						label="Master"
 					  toggled={this.props.user.pushConfig.isActive || false}
-					  onTouchTap={this.toggleMaster} />
+					  onTouchTap={this.toggleMaster}/>
 				</MUITableHeaderColumn>
 				<ToggleMasterEmail
 					jwt={this.props.jwt}

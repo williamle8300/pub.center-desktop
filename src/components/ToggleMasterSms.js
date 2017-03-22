@@ -25,20 +25,20 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<MUITableHeaderColumn>
-				SMS $0.05/each
-				<button onClick={() => {this.setState({modalVisible: true})}}>
-					settings
-				</button>
+			<MUITableHeaderColumn style={{textAlign: 'center'}}>
+				<MUIRaisedButton label="SMS" onTouchTap={() => {this.setState({modalVisible: true})}}/>
+				<br/>
+				<br/>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
 						<MUITextField
 							type="text"
 							value={this.state.phoneNumber}
 				      floatingLabelText="SMS phone number"
-				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '[+][countrycode][areacode & number]'}
+				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '+11231231234'}
 				      floatingLabelFixed={true}
 							onChange={this.onChangePhoneNumber}/>
+						<br/>
 						<br/>
 						<MUIRaisedButton label="Submit" onTouchTap={this.update}/>
 					</div>
@@ -46,7 +46,9 @@ module.exports = React.createClass({
 				<MUIToggle
 					disabled={!this.props.user.pushConfig.channelConfig.sms.phoneNumber ? true : false}
 				  toggled={this.props.user.pushConfig.channelConfig.sms.isActive && this.props.user.pushConfig.channelConfig.sms.phoneNumber ? true : false}
-				  onTouchTap={this.toggle} />
+				  onTouchTap={this.toggle}
+					iconStyle={{margin: '0 auto'}}/>
+				<br/>
 			</MUITableHeaderColumn>
 		)
 	},

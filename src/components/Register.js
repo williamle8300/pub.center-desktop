@@ -1,7 +1,13 @@
 var Request = require('superagent')
 var React = require('react')
 
+import MUIRaisedButton from 'material-ui/RaisedButton'
+import MUIFlatButton from 'material-ui/FlatButton';
+import MUITextField from 'material-ui/TextField'
+
 var env = require('../../env')
+
+var H1 = require('./H1')
 
 
 module.exports = React.createClass({
@@ -20,11 +26,32 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<input type="email" value={this.state.email} onChange={this.onChangeEmail} placeholder="email"/>
-				<input type="text" value={this.state.username} onChange={this.onChangeUsername} placeholder="username"/>
-				<input type="password" value={this.state.password} onChange={this.onChangePassword} placeholder="password"/>
-				<button onClick={this.onSubmit}>Submit</button>
-				<button onClick={this.props.toggleSigninMode}>Have an account? Login</button>
+				<H1>Signup</H1>
+				<MUITextField
+					type="email"
+		      hintText={this.state.email || 'noel@email.com'}
+		      floatingLabelText="Email"
+		      floatingLabelFixed={true}
+					onChange={this.onChangeEmail}/>
+				<br/>
+				<MUITextField
+					type="text"
+		      hintText={this.state.username || 'noel'}
+		      floatingLabelText="Username"
+		      floatingLabelFixed={true}
+					onChange={this.onChangeUsername}/>
+				<br/>
+				<MUITextField
+					type="password"
+		      hintText={this.state.password || '•'.repeat(8)}
+		      floatingLabelText="Password"
+		      floatingLabelFixed={true}
+					onChange={this.onChangePassword}/>
+				<br/>
+				<br/>
+				<MUIRaisedButton onTouchTap={this.onSubmit} label="Submit"/>
+				    
+				<MUIFlatButton onTouchTap={this.props.toggleSigninMode} label="Have an account? Login" hoverColor="transparent"/>
 			</div>
 		)
 	},

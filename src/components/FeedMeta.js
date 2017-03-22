@@ -14,6 +14,13 @@ import MUIListItem from 'material-ui/List/ListItem'
 import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIRssFeedIcon from 'material-ui/svg-icons/communication/rss-feed'
 import MUICopy from 'material-ui/svg-icons/content/content-paste'
+import MUITable from 'material-ui/Table/Table'
+import MUITableHeader from 'material-ui/Table/TableHeader'
+import MUITableBody from 'material-ui/Table/TableBody'
+import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
+import MUITableRow from 'material-ui/Table/TableRow'
+import MUITableRowColumn from 'material-ui/Table/TableRowColumn'
+import MUIToggle from 'material-ui/Toggle'
 
 var RoundedAverage = require('../util/rounded-average')
 var env = require('../../env')
@@ -123,31 +130,48 @@ module.exports = MUIThemeable()(React.createClass({
 				<div>
 					<MUIRaisedButton label="Unsubscribe" onTouchTap={this.deleteSubscription}/>
 					<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
-						<div onClick={(e) => e.stopPropagation()}>
-							<button onClick={this.closeModal}>X</button>
-							<div>
-								<img src={this.state.feed.favicon} alt="favicon" width={24}/> 
-								{this.state.feed.name}
-								<div>
-									isActive
-									<Toggle
-										checked={this.state.subscription.isActive}
-										onChange={this.toggleActive.bind(this, this.state.subscription.id, this.state.subscription.isActive)}/>
-									email
-									<Toggle
-										checked={_.includes(this.state.subscription.config, 'email')}
-										onChange={this.updateConfig.bind(this, this.state.subscription.id, this.state.subscription.config, 'email')}/>
-									sms
-									<Toggle
-										checked={_.includes(this.state.subscription.config, 'sms')}
-										onChange={this.updateConfig.bind(this, this.state.subscription.id, this.state.subscription.config, 'sms')}/>
-									api
-									<Toggle
-										checked={_.includes(this.state.subscription.config, 'api')}
-										onChange={this.updateConfig.bind(this, this.state.subscription.id, this.state.subscription.config, 'api')}/>
-								</div>
-							</div>
-						</div>
+						<MUITable selectable={false}>
+							<MUITableHeader displaySelectAll={false} adjustForCheckbox={false}>
+								<MUITableRow>
+									<MUITableHeaderColumn>
+										<img src={this.state.feed.favicon} alt="favicon" style={{width: 24}}/>{this.state.feed.name}
+									</MUITableHeaderColumn>
+									<MUITableHeaderColumn>
+										Email
+									</MUITableHeaderColumn>
+									<MUITableHeaderColumn>
+										SMS
+									</MUITableHeaderColumn>
+									<MUITableHeaderColumn>
+										API
+									</MUITableHeaderColumn>
+								</MUITableRow>
+							</MUITableHeader>
+							<MUITableBody displayRowCheckbox={false}>
+								<MUITableRow>
+									<MUITableRowColumn>
+										<MUIToggle
+											toggled={this.state.subscription.isActive}
+											onTouchTap={this.toggleActive.bind(this, this.state.subscription.id, this.state.subscription.isActive)}/>
+									</MUITableRowColumn>
+									<MUITableRowColumn>
+										<MUIToggle
+											toggled={_.includes(this.state.subscription.config, 'email')}
+											onTouchTap={this.updateConfig.bind(this, this.state.subscription.id, this.state.subscription.config, 'email')}/>
+									</MUITableRowColumn>
+									<MUITableRowColumn>
+										<MUIToggle
+											toggled={_.includes(this.state.subscription.config, 'sms')}
+											onTouchTap={this.updateConfig.bind(this, this.state.subscription.id, this.state.subscription.config, 'sms')}/>
+									</MUITableRowColumn>
+									<MUITableRowColumn>
+										<MUIToggle
+											toggled={_.includes(this.state.subscription.config, 'api')}
+											onTouchTap={this.updateConfig.bind(this, this.state.subscription.id, this.state.subscription.config, 'api')}/>
+									</MUITableRowColumn>
+								</MUITableRow>
+							</MUITableBody>
+						</MUITable>
 					</Modal>
 				</div>
 			)

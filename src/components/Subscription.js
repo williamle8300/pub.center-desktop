@@ -38,17 +38,20 @@ module.exports = MUIThemeable()(React.createClass({
 					<MUITableRowColumn style={this.style1()}>
 						<MUIToggle
 							toggled={_.includes(this.props.subscription.config, 'email')}
-							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'email')}/>
+							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'email')}
+							iconStyle={{margin: '0 auto'}}/>
 					</MUITableRowColumn>
 					<MUITableRowColumn style={this.style1()}>
 						<MUIToggle
 							toggled={_.includes(this.props.subscription.config, 'sms')}
-							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'sms')}/>
+							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'sms')}
+							iconStyle={{margin: '0 auto'}}/>
 					</MUITableRowColumn>
 					<MUITableRowColumn style={this.style1()}>
 						<MUIToggle
 							toggled={_.includes(this.props.subscription.config, 'api')}
-							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'api')}/>
+							onTouchTap={this.updateConfig.bind(this, this.props.subscription.id, this.props.subscription.config, 'api')}
+							iconStyle={{margin: '0 auto'}}/>
 					</MUITableRowColumn>
 				</MUITableRow>
 			</VisibilitySensor>

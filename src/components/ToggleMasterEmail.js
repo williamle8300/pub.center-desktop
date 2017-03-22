@@ -26,10 +26,9 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<MUITableHeaderColumn style={{textAlign: 'center'}}>
-				Email $0.001/each
-				<button onClick={() => {this.setState({modalVisible: true})}}>
-					settings
-				</button>
+				<MUIRaisedButton label="Email" onTouchTap={() => {this.setState({modalVisible: true})}}/>
+				<br/>
+				<br/>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
 						<MUITextField
@@ -40,6 +39,7 @@ module.exports = React.createClass({
 				      floatingLabelFixed={true}
 							onChange={this.onChangeEmail}/>
 						<br/>
+						<br/>
 						<MUIRaisedButton label="Submit" onTouchTap={this.update}/>
 					</div>
 				</Modal>
@@ -47,7 +47,8 @@ module.exports = React.createClass({
 					disabled={!this.props.user.pushConfig.channelConfig.email.address ? true : false}
 				  toggled={this.props.user.pushConfig.channelConfig.email.isActive && this.props.user.pushConfig.channelConfig.email.address ? true : false}
 				  onTouchTap={this.toggle}
-					style={{textAlign: 'center', display: 'inline',}}/>
+					iconStyle={{margin: '0 auto'}}/>
+				<br/>
 			</MUITableHeaderColumn>
 		)
 	},
