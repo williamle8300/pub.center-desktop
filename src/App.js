@@ -22,7 +22,6 @@ module.exports = React.createClass({
 		}
 	},
   render: function () {
-		console.log(1, lightBaseTheme);
 		var MUITheme = {
 			fontFamily: '"Monda", sans-serif',
 			palette: {
@@ -42,6 +41,7 @@ module.exports = React.createClass({
 				// pickerHeaderColor: 'rgba(255, 255, 255, 0.12)'
 			}
 		}
+		console.log(1, getMuiTheme(MUITheme));
     return (
 		  <MuiThemeProvider muiTheme={getMuiTheme(MUITheme)}>
 				<div className="App">

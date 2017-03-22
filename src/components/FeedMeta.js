@@ -7,6 +7,7 @@ var Elapsed = require('elapsed')
 var React = require('react')
 var Request = require('superagent')
 
+import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUIAvatar from 'material-ui/Avatar'
 import MUIList from 'material-ui/List/List'
 import MUIListItem from 'material-ui/List/ListItem'
@@ -23,7 +24,7 @@ var Snackbar = require('./Snackbar')
 var Toggle = require('./Toggle')
 
 
-module.exports = React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	propTypes: {
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
@@ -43,23 +44,23 @@ module.exports = React.createClass({
 
 		return (
 			<div style={{display: 'flex'}}>
-				<div style={{width: '70%'}}>
+				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '70%', background: this.props.muiTheme.palette.primary3Color, color: this.props.muiTheme.palette.alternateTextColor}}>
 			
 					<MUIList>
 						<MUIListItem
 							disabled
 							leftAvatar={<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 48, imageRendering: 'pixelated'}}/>}
 							primaryText={<div>
-								<h2>{this.state.feed.name}</h2>
+								<h2 style={{color: this.props.muiTheme.palette.alternateTextColor}}>{this.state.feed.name}</h2>
 							</div>}/>
 						{this.SubscribeButton()}
 						
 					</MUIList>
 				</div>
-				<div style={{width: '30%'}}>
+				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '30%', background: this.props.muiTheme.palette.primary3Color, color: this.props.muiTheme.palette.alternateTextColor}}>
 					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUIRssFeedIcon/>}/>
 					{this.CopyButton()}
-					<p>{RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)} articles/day</p>
+					<p>Articles/Day: {RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
 					<p>Last checked: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
 					<p>Archived: {new Date(this.state.feed.archiveDate).toDateString()}</p>
 				</div>
@@ -251,4 +252,4 @@ module.exports = React.createClass({
 
 		return this.setState({modalVisible: false})
 	}
-})
+}))

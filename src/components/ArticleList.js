@@ -2,6 +2,7 @@ var React = require('react')
 var Request = require('superagent')
 import ReactCollapsible from 'react-collapsible';
 
+import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIList from 'material-ui/List/List'
 import MUIListItem from 'material-ui/List/ListItem'
@@ -14,7 +15,7 @@ var Container = require('./Container')
 var EnforceVanillaHtml = require('../util/enforce-vanilla-html')
 
 
-module.exports = React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	
 	propTypes: {
 		_feed_: React.PropTypes.string.isRequired,
@@ -29,12 +30,13 @@ module.exports = React.createClass({
 	
 	render: function () {
 		return (
-			<div>
+			<div style={{margin: '1rem 0 0'}}>
 				{
-					this.state.articles.map(function (article) {						
+					this.state.articles.map((article) => {						
 						return (
 							<ReactCollapsible key={article.id} trigger={<MUIPaper><Container style={{cursor: 'pointer'}}>{article.title}</Container></MUIPaper>}>
-								<Container>
+								<Container style={{background: this.props.muiTheme.palette.primary3Color}}>
+									<h3><a href={article.url}>{article.title}</a>  {Date(article.date)}</h3>
 									<div dangerouslySetInnerHTML={{__html: EnforceVanillaHtml(article.description)}}/>
 								</Container>
 							</ReactCollapsible>
@@ -66,4 +68,4 @@ module.exports = React.createClass({
 			})
 		})
 	}
-})
+}))
