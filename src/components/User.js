@@ -62,15 +62,9 @@ module.exports = React.createClass({
 					<br/>
 					<MUIRaisedButton onTouchTap={this.updateUser} label="Update"/>
 				</Container>
-				
-				{
-/*
-					<CurrentUsage
-						jwt={this.props.jwt}
-						user={this.props.user}/>
-*/
-				}
-				
+				<CurrentUsage
+					jwt={this.props.jwt}
+					user={this.props.user}/>
 				<Container>
 					<h2>Subscriptions</h2>
 					<PushConfig jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>

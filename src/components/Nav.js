@@ -8,6 +8,7 @@ var Link = Router.Link
 
 import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUIAppBar from 'material-ui/AppBar'
+import MUILogo from 'material-ui/svg-icons/content/select-all'
 
 
 module.exports = MUIThemeable()(React.createClass({
@@ -36,7 +37,7 @@ module.exports = MUIThemeable()(React.createClass({
 				
 		return (
 			<MUIAppBar
-				title={<span style={{cursor: 'pointer'}}>PubCenter</span>}
+				title={<span style={{cursor: 'pointer'}}><MUILogo style={{color: this.props.muiTheme.palette.alternateTextColor}}/>PubCenter</span>}
 				showMenuIconButton={false}
 				onTitleTouchTap={() => {window.location = '/'}}
 				children={[
@@ -47,8 +48,7 @@ module.exports = MUIThemeable()(React.createClass({
 					<a
 						key={Math.random()}
 						style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
-						href={env.backend+ '/documentation'}
-						target="_blank">Docs</a>,
+						href={env.backend+ '/documentation'}>API</a>,
 					Account
 				]}/>
 		)
