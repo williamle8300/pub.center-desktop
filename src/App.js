@@ -33,6 +33,7 @@ module.exports = React.createClass({
 				// accent3Color: '#ff80ab',
 				// textColor: 'rgba(255, 255, 255, 1)',
 				// secondaryTextColor: 'rgba(255, 255, 255, 0.7)',
+				textColor: 'rgba(0, 0, 0, 0.6)',
 				alternateTextColor: '#fff',
 				// borderColor: 'rgba(255, 255, 255, 0.3)',
 				// canvasColor: '#000',
@@ -41,7 +42,7 @@ module.exports = React.createClass({
 				// pickerHeaderColor: 'rgba(255, 255, 255, 0.12)'
 			}
 		}
-		console.log(1, getMuiTheme(MUITheme));
+		console.log(1, getMuiTheme(MUITheme), 'cooo');
     return (
 		  <MuiThemeProvider muiTheme={getMuiTheme(MUITheme)}>
 				<div className="App">
