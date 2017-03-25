@@ -39,7 +39,8 @@ module.exports = MUIThemeable()(React.createClass({
 						<p style={this.style3()}>We&#39;re a non-profit that archives RSS feeds.</p>
 						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible. As such, we&#39;ve undertaken efforts to archive and provide this data free-of-charge to the public.</p>
 						<br/>
-						<MUIRaisedButton label="Browse feeds" onTouchTap={() => window.location = "/feed"} secondary/>
+						<MUIRaisedButton label="Browse feeds" onTouchTap={() => window.location = "/feed"} secondary style={{width: 180, height: 45}}/>
+						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We do not log user activity and resell it to anybody (like advertisers, businesses, or governments). We are 100% supported via our metered notifications service.</p>
 					</div>
 				</div>
 
@@ -66,19 +67,19 @@ module.exports = MUIThemeable()(React.createClass({
 					<div style={this.style7()}>
 						<MUIServerIcon style={this.style8()}/>
 						<b style={this.style9()}>Free for All</b>
-						Our data will always be free. Responses are lightning-fast, and served in the JSON format.
+						Our data will always be free. If you can&#39;t find your favorite RSS feed, just add it and we&#39;ll start archiving it. Response times are lightning-fast, and served in the JSON format.
 					</div>
 					<div style={this.style7()}>
 						<MUIShieldIcon style={this.style8()}/>
 						<b style={this.style9()}>SSL/TLS</b>
-						All connections are encrypted over HTTPS. Have the peace of mind that your activity on PubCenter will always be private.
+						All connections are encrypted over HTTPS. Your activity on PubCenter is private and secure.
 					</div>
 				</div>
 				<div style={this.style10()}>
 					<div style={this.style7()}>
 						<MUIDialogIcon style={this.style8()}/>
 						<b style={this.style9()}>Free Speech</b>
-						We believe different opinions are a good thing, so we&#39;ll always defend the right of the press and free speech.
+						We believe different opinions are a good thing, so we&#39;ll always defend the right of the press and free speech. We will host all sorts of RSS feeds here without imposing our own moral/political views.
 					</div>
 					<div style={this.style7()}>
 						<MUINotificationsIcon style={this.style8()}/>
@@ -156,9 +157,8 @@ module.exports = MUIThemeable()(React.createClass({
 			padding: this.props.muiTheme.spacing.desktopGutter * 2,
 			textAlign: 'center',
 			color: this.props.muiTheme.palette.textColor,
-			borderRight: '1px solid #f3f3f3',
-			borderLeft: '1px solid #f3f3f3',
-			background: 'url('+ <MUIServerIcon/> +')'
+			// border: '1px solid rgb(208, 208, 208)',
+			// borderLeft: '1px solid rgb(208, 208, 208)',
 		}
 	},
 	style5: function () {
@@ -180,10 +180,10 @@ module.exports = MUIThemeable()(React.createClass({
 			justifyContent: 'center',
 			alignItems: 'center',
 			padding: '4rem',
-			background: this.props.muiTheme.palette.primary3Color,
-			color: '#f3f3f3',
+			background: this.props.muiTheme.palette.accent1Color,
+			color: '#e2e4e4',
 			textAlign: 'center',
-			border: '1px solid #f3f3f3'
+			border: '1px solid #8cb7a8'
 		}
 	},
 	style8: function () {
@@ -191,7 +191,7 @@ module.exports = MUIThemeable()(React.createClass({
 			margin: '0 0 1rem',
 			width: 48,
 			height: 48,
-			color: '#f3f3f3',
+			color: '#e2e4e4',
 		}
 	},
 	style9: function () {

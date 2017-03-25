@@ -27,7 +27,7 @@ module.exports = React.createClass({
 			palette: {
 				primary1Color: '#51658a',
 				primary2Color: '#58606f',
-				primary3Color: '#868d9a',
+				primary3Color: '#b4c8ec',
 				accent1Color: '#89b3a4',
 				// accent2Color: '#f50057',
 				// accent3Color: '#ff80ab',
