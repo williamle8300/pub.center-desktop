@@ -25,15 +25,15 @@ module.exports = React.createClass({
 		var MUITheme = {
 			fontFamily: '"Monda", sans-serif',
 			palette: {
-				// primary1Color: '#0097a7',
-				// primary2Color: '#0097a7',
-				// primary3Color: '#757575',
-				// accent1Color: '#ff4081',
+				primary1Color: '#51658a',
+				primary2Color: '#58606f',
+				primary3Color: '#868d9a',
+				accent1Color: '#89b3a4',
 				// accent2Color: '#f50057',
 				// accent3Color: '#ff80ab',
 				// textColor: 'rgba(255, 255, 255, 1)',
 				// secondaryTextColor: 'rgba(255, 255, 255, 0.7)',
-				textColor: 'rgba(0, 0, 0, 0.6)',
+				textColor: 'rgba(0, 0, 0, 0.5)',
 				alternateTextColor: '#fff',
 				// borderColor: 'rgba(255, 255, 255, 0.3)',
 				// canvasColor: '#000',
@@ -56,7 +56,7 @@ module.exports = React.createClass({
 						user={this.state.user}
 						onJwt={this.onJwt}
 						onUser={this.onUser}/>
-					<Footer/>
+					{/*<Footer/>*/}
 				</div>
 			</MuiThemeProvider>
     )

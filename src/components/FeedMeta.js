@@ -12,8 +12,8 @@ import MUIAvatar from 'material-ui/Avatar'
 import MUIList from 'material-ui/List/List'
 import MUIListItem from 'material-ui/List/ListItem'
 import MUIRaisedButton from 'material-ui/RaisedButton'
-import MUISatellite from 'material-ui/svg-icons/maps/satellite'
-import MUICopy from 'material-ui/svg-icons/content/content-paste'
+import MUIRssIcon from 'material-ui/svg-icons/communication/rss-feed'
+import MUICopyIcon from 'material-ui/svg-icons/content/content-paste'
 import MUITable from 'material-ui/Table/Table'
 import MUITableHeader from 'material-ui/Table/TableHeader'
 import MUITableBody from 'material-ui/Table/TableBody'
@@ -66,7 +66,7 @@ module.exports = MUIThemeable()(React.createClass({
 				</div>
 				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '30%', background: this.props.muiTheme.palette.primary2Color, color: this.props.muiTheme.palette.alternateTextColor}}>
 					{this.CopyButton()}
-					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUISatellite/>} fullWidth/>
+					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUIRssIcon/>} style={{borderRadius: 0}} fullWidth/>
 					<p>Articles/Day: {RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
 					<p>Last checked: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
 					<p>Archived: {new Date(this.state.feed.archiveDate).toDateString()}</p>
@@ -90,7 +90,7 @@ module.exports = MUIThemeable()(React.createClass({
 		var url = env.backend+ '/feed/' +this.state.feed.id+ '/articles'
 		
 		return (
-			<span>
+			<div>
 				<CopyToClipboard
 					text={url}
 					onCopy={() => {
@@ -102,7 +102,7 @@ module.exports = MUIThemeable()(React.createClass({
 							})
 						})
 					}}>
-					<MUIRaisedButton label="API" icon={<MUICopy/>} fullWidth/>
+					<MUIRaisedButton label="API" icon={<MUICopyIcon style={{borderRadius: 0}}/>} fullWidth/>
 				</CopyToClipboard>
 				<Snackbar
 					snacks={this.state.snacks}
@@ -112,7 +112,7 @@ module.exports = MUIThemeable()(React.createClass({
 							return snacks.key !== key
 						})})
 					}}/>
-			</span>
+			</div>
 		)
 	},
 	SubscribeButton: function () {

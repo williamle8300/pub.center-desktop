@@ -19,7 +19,8 @@ module.exports = React.createClass({
 				actions={this.props.actions}
         open={this.props.isOpen}
         onRequestClose={this.props.onClose}
-				style={Object.assign({}, this.props.style)}>
+				style={Object.assign({}, this.props.style)}
+				bodyStyle={{overflow: 'scroll'}}>
         {this.props.children}
       </MUIDialog>
 		)
