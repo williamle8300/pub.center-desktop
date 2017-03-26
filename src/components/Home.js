@@ -37,10 +37,10 @@ module.exports = MUIThemeable()(React.createClass({
 					<div style={{width: '50%', paddingTop: '15vh', paddingRight: this.props.muiTheme.spacing.desktopGutter, paddingLeft: this.props.muiTheme.spacing.desktopGutter, color: this.props.muiTheme.palette.textColor}}>
 						<div style={{fontSize: '3rem'}}>Archiving the<br/>world&#39;s RSS data</div>
 						<p style={this.style3()}>We&#39;re a non-profit that archives RSS feeds.</p>
-						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible. As such, we&#39;ve undertaken efforts to archive and provide this data free-of-charge to the public.</p>
+						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive and provide this data free-of-charge to the public.</p>
 						<br/>
 						<MUIRaisedButton label="Browse feeds" onTouchTap={() => window.location = "/feed"} secondary style={{width: 180, height: 45}}/>
-						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We do not log user activity and resell it to anybody (like advertisers, businesses, or governments). We are 100% supported via our metered notifications service.</p>
+						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log user activity and resell it to anybody (like advertisers, businesses, or governments). We&#39;re 100% supported via our metered notifications service.</p>
 					</div>
 				</div>
 
@@ -55,7 +55,7 @@ module.exports = MUIThemeable()(React.createClass({
 					</div>
 					<div style={Object.assign(this.style4(), {background: 'url('+ IconClock +') no-repeat -80px'})}>
 						<div style={this.style5()}>4x</div>
-						<div style={this.style6()}>Updated Daily</div>
+						<div style={this.style6()}>Daily RSS polling</div>
 					</div>
 					<div style={Object.assign(this.style4(), {background: 'url('+ IconBuiding +') no-repeat -30px bottom'})}>
 						<div style={this.style5()}>July 3, 2016</div>
@@ -67,7 +67,7 @@ module.exports = MUIThemeable()(React.createClass({
 					<div style={this.style7()}>
 						<MUIServerIcon style={this.style8()}/>
 						<b style={this.style9()}>Free for All</b>
-						Our data will always be free. If you can&#39;t find your favorite RSS feed, just add it and we&#39;ll start archiving it. Response times are lightning-fast, and served in the JSON format.
+						Our data will always be free. If you can&#39;t find your favorite RSS feed, just add it and we&#39;ll start archiving it. API response times are lightning-fast, and served in JSON.
 					</div>
 					<div style={this.style7()}>
 						<MUIShieldIcon style={this.style8()}/>
@@ -95,7 +95,7 @@ module.exports = MUIThemeable()(React.createClass({
   },
 	PricingModal: function () {
 		return (
-			<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title="Pricing for Push Notifications">
+			<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title={<h1>Push Notifications Pricing<sup>*</sup></h1>}>
 				<MUITable selectable={false}>
 					<MUITableHeader displaySelectAll={false} adjustForCheckbox={false}>
 						<MUITableRow>
@@ -118,6 +118,7 @@ module.exports = MUIThemeable()(React.createClass({
 						</MUITableRow>
 					</MUITableBody>
 				</MUITable>
+				<small><sup>*</sup>You will be locked into your pricing when you sign-up, and always get the lower rate if prices increase</small>
 			</Modal>
 		)
 	},
@@ -180,10 +181,10 @@ module.exports = MUIThemeable()(React.createClass({
 			justifyContent: 'center',
 			alignItems: 'center',
 			padding: '4rem',
-			background: this.props.muiTheme.palette.accent1Color,
-			color: '#e2e4e4',
+			background: '#d3d3d3',
+			color: this.props.muiTheme.palette.textColor,
 			textAlign: 'center',
-			border: '1px solid #8cb7a8'
+			border: '1px solid #e2e4e4'
 		}
 	},
 	style8: function () {
@@ -191,7 +192,7 @@ module.exports = MUIThemeable()(React.createClass({
 			margin: '0 0 1rem',
 			width: 48,
 			height: 48,
-			color: '#e2e4e4',
+			color: this.props.muiTheme.palette.textColor,
 		}
 	},
 	style9: function () {
