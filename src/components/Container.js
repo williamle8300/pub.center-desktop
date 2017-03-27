@@ -7,8 +7,8 @@ module.exports = MUIThemeable()(React.createClass({
 	render: function () {
 
 		var defaultStyle = {
-			// fontFamily: this.props.muiTheme.fontFamily,
-			padding: this.props.muiTheme.spacing.desktopGutter
+			padding: this.props.muiTheme.spacing.desktopGutter,
+			backgroundColor: this.props.muiTheme.palette.canvasColor,
 		}
 		
 		return (

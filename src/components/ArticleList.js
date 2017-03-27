@@ -1,3 +1,4 @@
+var Color = require('color')
 var React = require('react')
 var Request = require('superagent')
 import ReactCollapsible from 'react-collapsible';
@@ -7,7 +8,7 @@ import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIList from 'material-ui/List/List'
 import MUIListItem from 'material-ui/List/ListItem'
 import MUIPaper from 'material-ui/Paper'
-import MUIDivider from 'material-ui/Divider';
+import MUIDivider from 'material-ui/Divider'
 
 var env = require('../../env')
 
@@ -34,8 +35,8 @@ module.exports = MUIThemeable()(React.createClass({
 				{
 					this.state.articles.map((article) => {						
 						return (
-							<ReactCollapsible key={article.id} trigger={<MUIPaper><Container style={{cursor: 'pointer'}}>{article.title}</Container></MUIPaper>}>
-								<Container style={{background: this.props.muiTheme.palette.primary3Color}}>
+							<ReactCollapsible key={article.id} trigger={<MUIPaper rounded={false} zDepth={1}><Container style={{cursor: 'pointer', fontFamily: 'Helvetica'}}>{article.title}</Container></MUIPaper>}>
+								<Container style={this.style1()}>
 									<h3><a href={article.url}>{article.title}</a>  {Date(article.date)}</h3>
 									<div dangerouslySetInnerHTML={{__html: EnforceVanillaHtml(article.description)}}/>
 								</Container>
@@ -67,5 +68,11 @@ module.exports = MUIThemeable()(React.createClass({
 				page: ++this.state.page
 			})
 		})
+	},
+	style1: function () {
+		return {
+			color: this.props.muiTheme.palette.textColor,
+			background: this.props.muiTheme.palette.primary3Color
+		}
 	}
 }))

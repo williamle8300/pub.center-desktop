@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<MUITableRow>
-			  <MUITableHeaderColumn>
+			  <MUITableHeaderColumn style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
 					<MUIToggle
 						label="Master"
 					  toggled={this.props.user.pushConfig.isActive || false}

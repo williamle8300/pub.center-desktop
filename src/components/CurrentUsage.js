@@ -54,7 +54,7 @@ module.exports = React.createClass({
 					token={this.onStripeCollect}
 					stripeKey={env.stripePublicKey}
 					panelLabel={"Pay $" +this._pastDue}>
-					<MUIRaisedButton label={'Pay (Duedate: '+ dueDate +')'}/>
+					<MUIRaisedButton primary label={'Submit Payment (Duedate: '+ dueDate +')'}/>
 				</StripeCheckout>  
 				<MUIRaisedButton onTouchTap={() => {this.setState({modalVisible: true})}} label={'Billing history ('+ overdueInvoices.length +')'}/>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title="Billing History">

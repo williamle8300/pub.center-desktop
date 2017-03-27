@@ -2,6 +2,7 @@ var _ = require('lodash')
 var React = require('react')
 var Request = require('superagent')
 
+import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUITextField from 'material-ui/TextField'
 
@@ -14,7 +15,7 @@ var H1 = require('./H1')
 var Container = require('./Container')
 
 
-module.exports = React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	propTypes: {
 		jwt: React.PropTypes.string.isRequired,
 		user: React.PropTypes.object.isRequired,
@@ -33,7 +34,7 @@ module.exports = React.createClass({
 		if (!this.props.user) return null
 		
     return (
-			<Container>
+			<Container style={{color: this.props.muiTheme.palette.textColor}}>
 			
 				<H1>Account</H1>
 			
@@ -71,7 +72,7 @@ module.exports = React.createClass({
 				</Container>
 
 				<Container>				
-					<MUIRaisedButton onTouchTap={this.wipeSession} label="Logout"/>
+					<MUIRaisedButton secondary onTouchTap={this.wipeSession} label="Logout"/>
 				</Container>
 					
 			</Container>
@@ -116,4 +117,4 @@ module.exports = React.createClass({
 			})
 		})
 	},
-})
+}))

@@ -2,6 +2,7 @@ var Request = require('superagent')
 var React = require('react')
 
 import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
+import MUIFlatButton from 'material-ui/FlatButton'
 import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIToggle from 'material-ui/Toggle'
 import MUITextField from 'material-ui/TextField'
@@ -26,7 +27,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<MUITableHeaderColumn style={{textAlign: 'center'}}>
-				<MUIRaisedButton label="SMS" onTouchTap={() => {this.setState({modalVisible: true})}}/>
+				<MUIFlatButton secondary  label="SMS" onTouchTap={() => {this.setState({modalVisible: true})}}/>
 				<br/>
 				<br/>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>

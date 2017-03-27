@@ -4,7 +4,7 @@ var Request = require('superagent')
 var Validator = require('validator')
 
 import MUIRaisedButton from 'material-ui/RaisedButton'
-import MUIFlatButton from 'material-ui/FlatButton';
+import MUIFlatButton from 'material-ui/FlatButton'
 import MUITextField from 'material-ui/TextField'
 
 var env = require('../../env')

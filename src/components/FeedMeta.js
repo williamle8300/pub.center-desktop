@@ -12,6 +12,7 @@ import MUIAvatar from 'material-ui/Avatar'
 import MUIList from 'material-ui/List/List'
 import MUIListItem from 'material-ui/List/ListItem'
 import MUIRaisedButton from 'material-ui/RaisedButton'
+import MUIPaper from 'material-ui/Paper'
 import MUIRssIcon from 'material-ui/svg-icons/communication/rss-feed'
 import MUICopyIcon from 'material-ui/svg-icons/content/content-paste'
 import MUITable from 'material-ui/Table/Table'
@@ -50,28 +51,25 @@ module.exports = MUIThemeable()(React.createClass({
 		if (!this.state.feed) return null
 
 		return (
-			<div style={{display: 'flex'}}>
-				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '70%', background: this.props.muiTheme.palette.primary2Color, color: this.props.muiTheme.palette.alternateTextColor}}>
-			
-					<MUIList>
-						<MUIListItem
-							disabled
-							leftAvatar={<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 48, imageRendering: 'pixelated'}}/>}
-							primaryText={<div>
-								<h2 style={{color: this.props.muiTheme.palette.alternateTextColor}}>{this.state.feed.name}</h2>
-							</div>}/>
-						{this.SubscribeButton()}
+			<MUIPaper style={{display: 'flex', color: this.props.muiTheme.palette.textColor}}>
+				<div style={this.style1()}>
+					<div style={{display: 'flex', alignItems: 'center'}}>
+					
+						<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 48, imageRendering: 'pixelated'}}/>
+						<span style={{marginLeft: this.props.muiTheme.spacing.desktopGutter, fontSize: '2.75rem', fontWeight: 'bold', color: this.props.muiTheme.palette.textColor}}>{this.state.feed.name}</span>
 						
-					</MUIList>
+					</div>
+					<br/>
+					{this.SubscribeButton()}
 				</div>
-				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '30%', background: this.props.muiTheme.palette.primary2Color, color: this.props.muiTheme.palette.alternateTextColor}}>
+				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '30%', background: this.props.muiTheme.palette.primary2Color, color: this.props.muiTheme.palette.alternateTextColor, fontFamily: '"Monda", sans-serif'}}>
 					{this.CopyButton()}
-					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUIRssIcon/>} style={{borderRadius: 0}} fullWidth/>
-					<p>Articles/Day: {RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
-					<p>Last checked: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
-					<p>Archived: {new Date(this.state.feed.archiveDate).toDateString()}</p>
+					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUIRssIcon/>} buttonStyle={{borderRadius: 0}} fullWidth/>
+					<p><b>Articles/Day</b>: {RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
+					<p><b>Last checked</b>: {new Elapsed(new Date(this.state.feed.lastChecked), new Date()).optimal+ ' ago'}</p>
+					<p><b>Archived</b>: {new Date(this.state.feed.archiveDate).toDateString()}</p>
 				</div>
-			</div>
+			</MUIPaper>
 		)
 	},
 	componentDidMount: function () {
@@ -102,7 +100,7 @@ module.exports = MUIThemeable()(React.createClass({
 							})
 						})
 					}}>
-					<MUIRaisedButton label="API" icon={<MUICopyIcon style={{borderRadius: 0}}/>} fullWidth/>
+					<MUIRaisedButton label="API" icon={<MUICopyIcon/>} buttonStyle={{borderRadius: 0}} fullWidth/>
 				</CopyToClipboard>
 				<Snackbar
 					snacks={this.state.snacks}
@@ -275,5 +273,15 @@ module.exports = MUIThemeable()(React.createClass({
 	closeModal: function () {
 
 		return this.setState({modalVisible: false})
+	},
+	style1: function () {
+		return {
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center',
+			padding: this.props.muiTheme.spacing.desktopGutter,
+			width: '70%',
+			background: this.props.muiTheme.palette.primary3Color
+		}
 	}
 }))

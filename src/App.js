@@ -5,6 +5,7 @@ var Request = require('superagent')
 var React = require('react')
 
 // import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
+import MUIThemeable from 'material-ui/styles/muiThemeable'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -14,29 +15,31 @@ var Nav = require('./components/Nav')
 var Footer = require('./components/Footer')
 
 
-module.exports = React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	getInitialState: function () {
 		return {
 			jwt: null,
 			user: null
 		}
 	},
+	_theme: {
+		canvasColor: '#f7f7f7'
+	},
   render: function () {
 		var MUITheme = {
 			fontFamily: '"Monda", sans-serif',
 			palette: {
-				primary1Color: '#51658a',
-				primary2Color: '#58606f',
-				primary3Color: '#6b7280',//#b4c8ec
-				accent1Color: '#563092',
+				primary1Color: '#3737a7',
+				primary2Color: '#cfcfde',
+				primary3Color: '#e3e3ec',
+				accent1Color: '#0000ee',
 				// accent2Color: '#f50057',
 				// accent3Color: '#ff80ab',
-				// textColor: 'rgba(255, 255, 255, 1)',
 				// secondaryTextColor: 'rgba(255, 255, 255, 0.7)',
-				textColor: 'rgba(0, 0, 0, 0.5)',
+				textColor: 'rgba(0, 0, 0, 0.6)',
 				alternateTextColor: '#fff',
 				// borderColor: 'rgba(255, 255, 255, 0.3)',
-				// canvasColor: '#000',
+				canvasColor: this._theme.canvasColor,
 				// clockCircleColor: 'rgba(255, 255, 255, 0.12)',
 				// disabledColor: 'rgba(255, 255, 255, 0.3)',
 				// pickerHeaderColor: 'rgba(255, 255, 255, 0.12)'
@@ -45,7 +48,7 @@ module.exports = React.createClass({
 		console.log(1, getMuiTheme(MUITheme), 'cooo');
     return (
 		  <MuiThemeProvider muiTheme={getMuiTheme(MUITheme)}>
-				<div className="App">
+				<div className="App" style={{height: '100%', backgroundColor: this._theme.canvasColor}}>
 					<Nav
 						onJwt={this.onJwt}
 						jwt={this.state.jwt}
@@ -130,4 +133,4 @@ module.exports = React.createClass({
 		
 		return this.setState({user: user}, callback)
 	}
-})
+}))

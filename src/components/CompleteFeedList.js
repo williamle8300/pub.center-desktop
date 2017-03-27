@@ -40,7 +40,8 @@ module.exports = React.createClass({
 							<MUIListItem
 								primaryText={feed.name}
 								leftAvatar={<MUIAvatar src={feed.favicon} style={{imageRendering: 'pixelated'}}/>}
-								onTouchTap={() => window.location = '/feed/' +feed.id}/>
+								onTouchTap={() => window.location = '/feed/' +feed.id}
+								style={{padding: '0.5rem 0', fontFamily: 'Helvetica, sans-serif', fontWeight: 'bold'}}/>
 						))
 					}
 				</MUIList>

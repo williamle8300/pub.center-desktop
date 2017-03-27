@@ -1,5 +1,7 @@
 var React = require('react')
 
+import MUIThemeable from 'material-ui/styles/muiThemeable'
+
 var FeedMeta = require('./FeedMeta')
 var CompleteFeedList = require('./CompleteFeedList')
 var ArticleList = require('./ArticleList')
@@ -8,7 +10,7 @@ var H1 = require('./H1')
 var Container = require('./Container')
 
 
-module.exports = React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	propTypes: {
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
@@ -31,4 +33,4 @@ module.exports = React.createClass({
 			</Container>
     )
   }
-})
+}))

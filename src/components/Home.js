@@ -35,12 +35,12 @@ module.exports = MUIThemeable()(React.createClass({
 			
 				<div style={this.style2()}>
 					<div style={{width: '50%', paddingTop: '15vh', paddingRight: this.props.muiTheme.spacing.desktopGutter, paddingLeft: this.props.muiTheme.spacing.desktopGutter, color: this.props.muiTheme.palette.textColor}}>
-						<div style={{fontSize: '3rem'}}>Archiving the<br/>world&#39;s RSS data</div>
+						<div style={{fontSize: '3rem', fontWeight: 'bold'}}>Archiving the<br/>world&#39;s RSS data</div>
 						<p style={this.style3()}>We&#39;re a non-profit that archives RSS feeds.</p>
-						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive and provide this data free-of-charge to the public.</p>
+						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive the world&#39;s RSS feeds and offer this data free-of-charge to the public.</p>
 						<br/>
 						<MUIRaisedButton label="Browse feeds" onTouchTap={() => window.location = "/feed"} secondary style={{width: 180, height: 45}}/>
-						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log user activity and resell it to anybody (like advertisers, businesses, or governments). We&#39;re 100% supported via our metered notifications service.</p>
+						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our premium notifications service</p>
 					</div>
 				</div>
 
@@ -58,7 +58,7 @@ module.exports = MUIThemeable()(React.createClass({
 						<div style={this.style6()}>Daily RSS polling</div>
 					</div>
 					<div style={Object.assign(this.style4(), {background: 'url('+ IconBuiding +') no-repeat -30px bottom'})}>
-						<div style={this.style5()}>July 3, 2016</div>
+						<div style={this.style5()}>July 2016</div>
 						<div style={this.style6()}>Established</div>
 					</div>
 				</div>
@@ -118,7 +118,7 @@ module.exports = MUIThemeable()(React.createClass({
 						</MUITableRow>
 					</MUITableBody>
 				</MUITable>
-				<small><sup>*</sup>You will be locked into your pricing when you sign-up, and always get the lower rate if prices increase</small>
+				<small><sup>*</sup>You will be locked into your pricing when you sign-up, and always get the lower rate as prices fluctuate</small>
 			</Modal>
 		)
 	},
@@ -137,7 +137,7 @@ module.exports = MUIThemeable()(React.createClass({
 		return {
 			padding: this.props.muiTheme.spacing.desktopGutter,
 			height: '80%',
-			backgroundImage: 'url(' + heroGraphic + '), linear-gradient(#f3f3f3, #e2e4e4)',
+			backgroundImage: 'url(' + heroGraphic + '), linear-gradient(#f9f9f9, #e2e4e4)',
 			backgroundPosition: 'right bottom',
 			backgroundRepeat: 'no-repeat'
 		}
@@ -184,7 +184,9 @@ module.exports = MUIThemeable()(React.createClass({
 			background: '#d3d3d3',
 			color: this.props.muiTheme.palette.textColor,
 			textAlign: 'center',
-			border: '1px solid #e2e4e4'
+			borderRight: '1px solid #ccc',
+			borderBottom: '1px solid #ccc',
+			// borderLeft: '1px solid #e2e4e4',
 		}
 	},
 	style8: function () {
