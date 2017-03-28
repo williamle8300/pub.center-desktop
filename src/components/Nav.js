@@ -44,7 +44,7 @@ module.exports = MUIThemeable()(React.createClass({
 					<Link
 						key={Math.random()}
 						style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
-						href="/feed">Indexed Feeds</Link>,
+						href="/feed">Archived Feeds</Link>,
 					<a
 						key={Math.random()}
 						style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}

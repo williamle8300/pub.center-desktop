@@ -1,7 +1,10 @@
 var React = require('react')
 var Request = require('superagent')
 var Validator = require('validator')
+var Router = require('react-router-component')
+var Link = Router.Link
 
+import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUITextField from 'material-ui/TextField'
 import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIList from 'material-ui/List/List'
@@ -16,7 +19,7 @@ var Container = require('./Container')
 var RouterLink = require('./RouterLink')
 
 
-module.exports = React.createClass({
+module.exports = MUIThemeable()(React.createClass({
 	getInitialState: function () {
 		return {
 			feeds: [],
@@ -34,17 +37,17 @@ module.exports = React.createClass({
 					fullWidth={true}
 					onChange={this.searchFeed}/>
 				<this.NewFeedButton/>
-				<MUIList>
+				<div style={{padding: '0.5rem 0'}}>
 					{
 						this.state.feeds.map((feed) => (
-							<MUIListItem
-								primaryText={feed.name}
-								leftAvatar={<MUIAvatar src={feed.favicon} style={{imageRendering: 'pixelated'}}/>}
-								onTouchTap={() => window.location = '/feed/' +feed.id}
-								style={{padding: '0.5rem 0', fontFamily: 'Helvetica, sans-serif', fontWeight: 'bold'}}/>
+							<Link key={feed.id} href={'/feed/' +feed.id} style={this.style1()}>
+								<MUIAvatar src={feed.favicon} style={{imageRendering: 'pixelated'}}/>
+							     
+								{feed.name}
+							</Link>
 						))
 					}
-				</MUIList>
+				</div>
 			</div>
 		)
 	},
@@ -122,5 +125,20 @@ module.exports = React.createClass({
 				})
 			}, this.readFeed)
 		})
+	},
+	style1: function () {
+		return {
+			display: 'flex',
+			alignItems: 'center',
+			padding: '1rem',
+			fontFamily: 'Helvetica, sans-serif',
+			fontSize: '1rem',
+			fontWeight: 'bold',
+			color: this.props.muiTheme.palette.textColor,
+			textDecoration: 'none',
+			// backgroundColor: this.props.muiTheme.palette.primary3Color,
+			// borderTop: '1px solid '+ this.props.muiTheme.palette.primary2Color
+			// borderLeft: '1px solid '+ this.props.muiTheme.palette.primary2Color
+		}
 	}
-})
+}))

@@ -10,7 +10,7 @@ module.exports = MUIThemeable()(React.createClass({
 
 		var defaultStyle = {
 			fontFamily: this.props.muiTheme.fontFamily,
-			color: this.props.muiTheme.palette.textColor
+			color: this.props.muiTheme.palette.primary1Color
 		}
 		
 		return (

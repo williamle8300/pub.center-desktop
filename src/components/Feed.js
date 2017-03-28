@@ -19,7 +19,7 @@ module.exports = MUIThemeable()(React.createClass({
   render: function () {
     return (
 			<Container>
-	      <H1>Feed Archives</H1>
+	      <H1>Archived Feeds</H1>
 				{
 					this.props._feed_
 					? (

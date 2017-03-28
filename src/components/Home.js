@@ -1,4 +1,6 @@
 var React = require('react')
+var Router = require('react-router-component')
+var Link = Router.Link
 
 import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUIRaisedButton from 'material-ui/RaisedButton'
@@ -39,7 +41,7 @@ module.exports = MUIThemeable()(React.createClass({
 						<p style={this.style3()}>We&#39;re a non-profit that archives RSS feeds.</p>
 						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive the world&#39;s RSS feeds and offer this data free-of-charge to the public.</p>
 						<br/>
-						<MUIRaisedButton label="Browse feeds" onTouchTap={() => window.location = "/feed"} secondary style={{width: 180, height: 45}}/>
+						<Link href="/feed" style={this.style11()}>Browse Feeds</Link>
 						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our premium notifications service</p>
 					</div>
 				</div>
@@ -67,7 +69,7 @@ module.exports = MUIThemeable()(React.createClass({
 					<div style={this.style7()}>
 						<MUIServerIcon style={this.style8()}/>
 						<b style={this.style9()}>Free for All</b>
-						Our data will always be free. If you can&#39;t find your favorite RSS feed, just add it and we&#39;ll start archiving it. API response times are lightning-fast, and served in JSON.
+						Our data will always be free. If you can&#39;t find your favorite RSS feed, just add it and we&#39;ll start archiving it. API response times are fast, and served in JSON.
 					</div>
 					<div style={this.style7()}>
 						<MUIShieldIcon style={this.style8()}/>
@@ -209,4 +211,20 @@ module.exports = MUIThemeable()(React.createClass({
 			height: '40%'
 		}
 	},
+	style11: function () {
+		return {
+	    display: 'flex',
+	    justifyContent: 'center',
+	    alignItems: 'center',
+			width: 164,
+			height: 45,
+	    padding: '0.15rem',
+	    color: this.props.muiTheme.palette.alternateTextColor,
+			fontFamily: this.props.muiTheme.fontFamily,
+			fontSize: '0.9rem',
+	    textDecoration: 'none',
+			textTransform: 'uppercase',
+			background: this.props.muiTheme.palette.accent1Color,
+		}
+	}
 }))
