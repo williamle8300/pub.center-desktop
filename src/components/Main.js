@@ -13,6 +13,8 @@ var User = require('./User')
 
 module.exports = React.createClass({
 	propTypes: {
+		width: React.PropTypes.number,
+		height: React.PropTypes.number,
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
 		onJwt: React.PropTypes.func.isRequired,
@@ -21,7 +23,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<Locations>
-				<Location path="/" handler={Home}/>
+				<Location width={this.props.width} height={this.props.height} path="/" handler={Home}/>
 				<Location path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} jwt={this.props.jwt} user={this.props.user} handler={Feed}/>
 				<Location path="/documentation" handler={Docs}/>
 				{

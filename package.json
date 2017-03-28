@@ -28,6 +28,7 @@
     "react-visibility-sensor": "^3.7.0",
     "rebass": "^0.3.4",
     "sanitize-html": "^1.14.1",
+    "styled-components": "^1.4.4",
     "superagent": "^2.3.0",
     "validator": "^6.3.0"
   },

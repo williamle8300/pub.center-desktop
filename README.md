@@ -1,3 +1,12 @@
+Archived RSS feeds
+
+Hi. I the maker behind this app. This is basiclly asdflkj
+
+Comparable services are Feedly Cloud, and the defunct Google Reader.
+
+It's free to use the REST API, but if you want notifications delivered to you (email, SMS, or your own custom API endpoint) there's a small fee/notification. I have no clue what kind of apps can be built from this than the obvious RSS reader app... but have at it! Eventually, the world's RSS data will be archived there.
+
+
 Landing page: https://d13yacurqjgara.cloudfront.net/users/1133834/screenshots/3055379/architecture-web-design.gif
 
 # Gotchas

@@ -10,14 +10,22 @@ module.exports = MUIThemeable()(React.createClass({
 	getInitialState: function () {
 		return {
 			modalTermsOfServiceVisible: false,
+			modalContactVisible: false,
 		}
 	},
   render: function () {
     return (
 			<div style={this.style1()}>
-				Copyright © 2016 PubCenter <span onTouchTap={() => this.setState({modalTermsOfServiceVisible: true})} style={{textDecoration: 'underline', cursor: 'pointer'}}>Terms of Service</span>
+				PubCenter © {new Date().getFullYear()}
+				  
+				<span onTouchTap={() => this.setState({modalContactVisible: true})} style={{textDecoration: 'underline', cursor: 'pointer'}}>Contact</span>
+				  
+				<span onTouchTap={() => this.setState({modalTermsOfServiceVisible: true})} style={{textDecoration: 'underline', cursor: 'pointer'}}>Terms of Service</span>
 				<Modal isOpen={this.state.modalTermsOfServiceVisible} onClose={this.closeTermsOfServiceModal} actions={[<MUIRaisedButton onTouchTap={this.closeTermsOfServiceModal} label="Close"/>]} title="PubCenter Terms of Service and Privacy Policy">
 					<this.TermsOfService/>
+				</Modal>
+				<Modal isOpen={this.state.modalContactVisible} onClose={this.closeContactModal} actions={[<MUIRaisedButton onTouchTap={this.closeContactModal} label="Close"/>]} title="Contact">
+					<div>Reach us on Twitter <a href="https://twitter.com/Pub_Center">(@Pub_Center)</a></div>
 				</Modal>
 			</div>
     )
@@ -69,19 +77,27 @@ module.exports = MUIThemeable()(React.createClass({
 				  <li>We will only retain personal information for as long as necessary for the fulfilment of those purposes.</li>
 				</ul>
 				<p>We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained. PubCenter may change this privacy policy from time to time at PubCenter&#39;s sole discretion.</p>
-				</div>
+			</div>
 		)
 	},
 	closeTermsOfServiceModal: function () {
 		
 		this.setState({modalTermsOfServiceVisible: false})
 	},
+	closeContactModal: function () {
+		
+		this.setState({modalContactVisible: false})
+	},
 	style1: function () {
 		return {
-			
+			// position: 'absolute',
+			// bottom: 0,
+			// width: '100%',
 			padding: this.props.muiTheme.spacing.desktopGutter,
-			background: this.props.muiTheme.palette.primary2Color,
-			color: 'white',
+			fontFamily: this.props.muiTheme.fontFamily,
+			fontSize: '0.75rem',
+			// background: this.props.muiTheme.palette.primary2Color,
+			color: this.props.muiTheme.palette.textColor,
 			textAlign: 'center'
 		}
 	}

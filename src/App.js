@@ -18,55 +18,61 @@ var Footer = require('./components/Footer')
 module.exports = MUIThemeable()(React.createClass({
 	getInitialState: function () {
 		return {
+			width: 0,
+			height: 0,
 			jwt: null,
-			user: null
+			user: null,
 		}
 	},
 	_theme: {
-		canvasColor: '#f7f7f7'
+		fontFamily: '"Monda", sans-serif',
+		palette: {
+			primary1Color: '#3737a7',
+			primary2Color: '#dedee2',
+			primary3Color: '#e3e3ec',
+			accent1Color: '#0000ee',
+			// accent2Color: '#f50057',
+			// accent3Color: '#ff80ab',
+			// secondaryTextColor: 'rgba(255, 255, 255, 0.7)',
+			textColor: 'rgba(0, 0, 0, 0.6)',
+			alternateTextColor: '#fff',
+			// borderColor: 'rgba(255, 255, 255, 0.3)',
+			canvasColor: '#f7f7f7',
+			// clockCircleColor: 'rgba(255, 255, 255, 0.12)',
+			// disabledColor: 'rgba(255, 255, 255, 0.3)',
+			// pickerHeaderColor: 'rgba(255, 255, 255, 0.12)'
+		}
 	},
   render: function () {
-		var MUITheme = {
-			fontFamily: '"Monda", sans-serif',
-			palette: {
-				primary1Color: '#3737a7',
-				primary2Color: '#cfcfde',
-				primary3Color: '#e3e3ec',
-				accent1Color: '#0000ee',
-				// accent2Color: '#f50057',
-				// accent3Color: '#ff80ab',
-				// secondaryTextColor: 'rgba(255, 255, 255, 0.7)',
-				textColor: 'rgba(0, 0, 0, 0.6)',
-				alternateTextColor: '#fff',
-				// borderColor: 'rgba(255, 255, 255, 0.3)',
-				canvasColor: this._theme.canvasColor,
-				// clockCircleColor: 'rgba(255, 255, 255, 0.12)',
-				// disabledColor: 'rgba(255, 255, 255, 0.3)',
-				// pickerHeaderColor: 'rgba(255, 255, 255, 0.12)'
-			}
-		}
-		console.log(1, getMuiTheme(MUITheme), 'cooo');
     return (
-		  <MuiThemeProvider muiTheme={getMuiTheme(MUITheme)}>
-				<div className="App" style={{height: '100%', backgroundColor: this._theme.canvasColor}}>
+		  <MuiThemeProvider muiTheme={getMuiTheme(this._theme)}>
+				<div className="App" style={{height: '100%', backgroundColor: this._theme.palette.canvasColor, overflow: 'auto'}}>
 					<Nav
+						width={this.state.width}
+						height={this.state.height}
 						onJwt={this.onJwt}
 						jwt={this.state.jwt}
 						onUser={this.onUser}
 						user={this.state.user}/>
 					<Main
+						width={this.state.width}
+						height={this.state.height}
 						jwt={this.state.jwt}
 						user={this.state.user}
 						onJwt={this.onJwt}
 						onUser={this.onUser}/>
-					{/*<Footer/>*/}
+					<Footer/>
 				</div>
 			</MuiThemeProvider>
     )
   },
 	componentDidMount: function () {
-
+		
+		this.listenToResize()
 		this.establishSession()
+		
+		//initialize Browser dimensions
+		this.setState({width: window.innerWidth, height: window.innerHeight})
 	},
 	componentDidUpdate: function (prevProps, prevState) {
 		
@@ -75,6 +81,34 @@ module.exports = MUIThemeable()(React.createClass({
 
 			this.readUser()
 		}
+	},
+	listenToResize: function () {
+		
+		function customThrottledListener (type, eventName) {
+
+		  var running = false
+
+		  window.addEventListener(type, () => {
+
+		    if (running) return
+			
+		    running = true
+			
+		    requestAnimationFrame(() => {
+			 
+		       window.dispatchEvent(new CustomEvent(eventName))
+		       running = false
+		    })
+		  })
+		}
+
+		/* init - you can init any event */
+		customThrottledListener('resize', 'optimizedResize')
+		
+		window.addEventListener('optimizedResize', (e) => {
+
+			this.setState({width: window.innerWidth, height: window.innerHeight})
+		})
 	},
 	establishSession: function () {
 		

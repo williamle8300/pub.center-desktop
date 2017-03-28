@@ -35,7 +35,7 @@ module.exports = MUIThemeable()(React.createClass({
 				{
 					this.state.articles.map((article) => {						
 						return (
-							<ReactCollapsible key={article.id} trigger={<MUIPaper rounded={false} zDepth={1}><Container style={{cursor: 'pointer', fontFamily: 'Helvetica', fontWeight: 'bold', backgroundColor: this.props.muiTheme.palette.primary3Color}}>{article.title}</Container></MUIPaper>}>
+							<ReactCollapsible key={article.id} trigger={<MUIPaper rounded={false} zDepth={1}><Container style={this.style2()}>{article.title}</Container></MUIPaper>}>
 								<Container style={this.style1()}>
 									<h3><a href={article.url}>{article.title}</a>  {new Date(article.date).toDateString()}</h3>
 									<div dangerouslySetInnerHTML={{__html: EnforceVanillaHtml(article.description)}}/>
@@ -73,6 +73,14 @@ module.exports = MUIThemeable()(React.createClass({
 		return {
 			color: this.props.muiTheme.palette.textColor,
 			background: this.props.muiTheme.palette.primary2Color
+		}
+	},
+	style2: function () {
+		return {
+			cursor: 'pointer',
+			fontFamily: 'Helvetica',
+			fontWeight: 'bold',
+			backgroundColor: 'white'
 		}
 	}
 }))

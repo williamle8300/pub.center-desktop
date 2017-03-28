@@ -51,7 +51,7 @@ module.exports = MUIThemeable()(React.createClass({
 		if (!this.state.feed) return null
 
 		return (
-			<MUIPaper style={{display: 'flex', color: this.props.muiTheme.palette.textColor}}>
+			<MUIPaper zDepth={0} style={{display: 'flex', color: this.props.muiTheme.palette.textColor}}>
 				<div style={this.style1()}>
 					<div style={{display: 'flex', alignItems: 'center'}}>
 					
@@ -62,7 +62,7 @@ module.exports = MUIThemeable()(React.createClass({
 					<br/>
 					{this.SubscribeButton()}
 				</div>
-				<div style={{padding: this.props.muiTheme.spacing.desktopGutter, width: '30%', background: this.props.muiTheme.palette.primary2Color, color: this.props.muiTheme.palette.textColor, fontFamily: '"Monda", sans-serif'}}>
+				<div style={this.style2()}>
 					{this.CopyButton()}
 					<MUIRaisedButton onTouchTap={() => window.location = this.state.feed.url} label="RSS" icon={<MUIRssIcon/>} buttonStyle={{borderRadius: 0}} fullWidth/>
 					<p><b>Articles/Day</b>: {RoundedAverage(this.state.feed.articlesPerMonth, 'count', 10)}</p>
@@ -281,7 +281,16 @@ module.exports = MUIThemeable()(React.createClass({
 			justifyContent: 'center',
 			padding: this.props.muiTheme.spacing.desktopGutter,
 			width: '70%',
-			background: this.props.muiTheme.palette.primary3Color
+			// background: this.props.muiTheme.palette.primary3Color
+		}
+	},
+	style2: function () {
+		return {
+			padding: this.props.muiTheme.spacing.desktopGutter,
+			width: '30%',
+			// background: this.props.muiTheme.palette.primary2Color,
+			color: this.props.muiTheme.palette.textColor,
+			fontFamily: '"Monda", sans-serif'
 		}
 	}
 }))

@@ -1,5 +1,6 @@
 var React = require('react')
 var Router = require('react-router-component')
+import styled from 'styled-components'
 var Link = Router.Link
 
 import MUIThemeable from 'material-ui/styles/muiThemeable'
@@ -26,6 +27,10 @@ import IconDocument from '../images/icon-document.png'
 
 
 module.exports = MUIThemeable()(React.createClass({
+	propTypes: {
+		width: React.PropTypes.number,
+		height: React.PropTypes.number
+	},
 	getInitialState: function () {
 		return {
 			modalVisible: false,
@@ -39,14 +44,14 @@ module.exports = MUIThemeable()(React.createClass({
 					<div style={{width: '50%', paddingTop: '15vh', paddingRight: this.props.muiTheme.spacing.desktopGutter, paddingLeft: this.props.muiTheme.spacing.desktopGutter, color: this.props.muiTheme.palette.textColor}}>
 						<div style={{fontSize: '3rem', fontWeight: 'bold'}}>Archiving the<br/>world&#39;s RSS data</div>
 						<p style={this.style3()}>We&#39;re a non-profit that archives RSS feeds.</p>
-						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive the world&#39;s RSS feeds and offer this data free-of-charge to the public.</p>
+						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive the world&#39;s RSS feeds and offer this data for free.</p>
 						<br/>
 						<Link href="/feed" style={this.style11()}>Browse Feeds</Link>
-						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our premium notifications service</p>
+						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our paid notifications service</p>
 					</div>
 				</div>
-
-				<div style={{ display: 'flex', height: '20%', backgroundColor: '#e2e4e4'}}>
+			
+				<div style={{display: this.props.width > 1000 ? 'flex' : 'none', height: '20%', backgroundColor: '#e2e4e4'}}>
 					<div style={Object.assign(this.style4(), {background: 'url('+ IconDatabase +') no-repeat -84px 0px'})}>
 						<div style={this.style5()}>1636</div>
 						<div style={this.style6()}>Indexed RSS Feeds</div>
@@ -97,30 +102,32 @@ module.exports = MUIThemeable()(React.createClass({
   },
 	PricingModal: function () {
 		return (
-			<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title={<h1>Push Notifications Pricing<sup>*</sup></h1>}>
-				<MUITable selectable={false}>
-					<MUITableHeader displaySelectAll={false} adjustForCheckbox={false}>
-						<MUITableRow>
-							<MUITableHeaderColumn>
-								Email
-							</MUITableHeaderColumn>
-							<MUITableHeaderColumn>
-								SMS
-							</MUITableHeaderColumn>
-							<MUITableHeaderColumn>
-								API
-							</MUITableHeaderColumn>
-						</MUITableRow>
-					</MUITableHeader>
-					<MUITableBody displayRowCheckbox={false}>
-						<MUITableRow>
-							<MUITableRowColumn>$0.001</MUITableRowColumn>
-							<MUITableRowColumn>$0.05</MUITableRowColumn>
-							<MUITableRowColumn>$0.0001</MUITableRowColumn>
-						</MUITableRow>
-					</MUITableBody>
-				</MUITable>
-				<small><sup>*</sup>You will be locked into your pricing when you sign-up, and always get the lower rate as prices fluctuate</small>
+			<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title="Push Notifications Pricing">
+				<div>
+					<MUITable selectable={false}>
+						<MUITableHeader displaySelectAll={false} adjustForCheckbox={false}>
+							<MUITableRow>
+								<MUITableHeaderColumn>
+									Email
+								</MUITableHeaderColumn>
+								<MUITableHeaderColumn>
+									SMS
+								</MUITableHeaderColumn>
+								<MUITableHeaderColumn>
+									API
+								</MUITableHeaderColumn>
+							</MUITableRow>
+						</MUITableHeader>
+						<MUITableBody displayRowCheckbox={false}>
+							<MUITableRow>
+								<MUITableRowColumn>$0.001</MUITableRowColumn>
+								<MUITableRowColumn>$0.05</MUITableRowColumn>
+								<MUITableRowColumn>$0.0001</MUITableRowColumn>
+							</MUITableRow>
+						</MUITableBody>
+					</MUITable>
+					<small><sup>*</sup>You will be locked into your pricing when you sign-up, and always get the lower rate as prices fluctuate</small>
+				</div>
 			</Modal>
 		)
 	},
@@ -130,14 +137,15 @@ module.exports = MUIThemeable()(React.createClass({
 	},
 	style1: function () {
 		return {
-			height: '100vh',
-			minHeight: 800
+			// height: '100vh',
+			// minHeight: 800,
+			overflow: 'auto',
 			// background: this.props.muiTheme.palette.primary2Color,
 		}
 	},
 	style2: function () {
 		return {
-			padding: this.props.muiTheme.spacing.desktopGutter,
+			padding: '0 ' +this.props.muiTheme.spacing.desktopGutter+ 'px 10% '	+this.props.muiTheme.spacing.desktopGutter+ 'px',
 			height: '80%',
 			backgroundImage: 'url(' + heroGraphic + '), linear-gradient(#f9f9f9, #e2e4e4)',
 			backgroundPosition: 'right bottom',
@@ -184,6 +192,7 @@ module.exports = MUIThemeable()(React.createClass({
 			alignItems: 'center',
 			padding: '4rem',
 			background: '#d3d3d3',
+			// background: this.props.muiTheme.palette.canvasColor,
 			color: this.props.muiTheme.palette.textColor,
 			textAlign: 'center',
 			borderRight: '1px solid #ccc',
@@ -207,7 +216,7 @@ module.exports = MUIThemeable()(React.createClass({
 	},
 	style10: function () {
 		return {
-			display: 'flex',
+			display: this.props.width > 1000 ? 'flex' : 'none',
 			height: '40%'
 		}
 	},
@@ -224,7 +233,7 @@ module.exports = MUIThemeable()(React.createClass({
 			fontSize: '0.9rem',
 	    textDecoration: 'none',
 			textTransform: 'uppercase',
-			background: this.props.muiTheme.palette.accent1Color,
+			background: this.props.muiTheme.palette.primary1Color,
 		}
 	}
 }))
