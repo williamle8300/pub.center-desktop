@@ -27,14 +27,7 @@ module.exports = React.createClass({
 	},
 	
 	/*
-						<MUITextField
-							type="text"
-							value={this.state.phoneNumber}
-				      floatingLabelText="SMS phone number"
-				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '+11231231234'}
-				      floatingLabelFixed={true}
-							onChange={this.onChangePhoneNumber}/>
-		
+	 	<PhoneInput defaultCountry={'us'} onChange={this.onChangePhoneNumber} value={this.props.user.pushConfig.channelConfig.sms.phoneNumber}/>
 	*/
 	render: function () {
 		return (
@@ -44,7 +37,14 @@ module.exports = React.createClass({
 				<br/>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
-					 	<PhoneInput defaultCountry={'us'} onChange={this.onChangePhoneNumber} value={this.props.user.pushConfig.channelConfig.sms.phoneNumber}/>
+						<MUITextField
+							type="text"
+							value={this.state.phoneNumber}
+				      floatingLabelText="SMS phone number"
+				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '+<country><areacode><number> (EXAMPLE "+18881230987")'}
+				      floatingLabelFixed={true}
+							onChange={this.onChangePhoneNumber}
+							fullWidth/>
 						<br/>
 						<br/>
 						<MUIRaisedButton onTouchTap={this.closeModal}>Cancel</MUIRaisedButton> <MUIRaisedButton label="Submit" onTouchTap={this.update}/>
@@ -63,9 +63,10 @@ module.exports = React.createClass({
 		
 		this.setState({modalVisible: false})
 	},
-	onChangePhoneNumber: function (value) {
+	onChangePhoneNumber: function (e) {
 
-		this.setState({phoneNumber: value.replace(/[^\d]/gi, '')})
+		// this.setState({phoneNumber: value.replace(/[^\d]/gi, '')})
+		this.setState({phoneNumber: e.target.value})
 	},
 	toggle: function () {
 
