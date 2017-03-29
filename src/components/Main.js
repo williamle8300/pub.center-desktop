@@ -41,6 +41,4 @@ module.exports = React.createClass({
 
 		ReactGA.pageview(window.location.pathname);
 	}
-}
-
 })
