@@ -3,8 +3,8 @@ var Router = require('react-router-component')
 var Location = Router.Location
 var Locations = Router.Locations
 var NotFound = Router.NotFound
-var ReactGA = require('react-ga')
-ReactGA.initialize('UA-96463485-1')
+// var ReactGA = require('react-ga')
+// ReactGA.initialize('UA-96463485-1')
 
 var Docs = require('./Docs')
 var Feed = require('./Feed')
@@ -24,7 +24,8 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<Locations onNavigation={this.logAnalytics}>
+			{/*<Locations onNavigation={this.logAnalytics}>*/}
+			<Locations>
 				<Location width={this.props.width} height={this.props.height} path="/" handler={Home}/>
 				<Location width={this.props.width} height={this.props.height} path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} jwt={this.props.jwt} user={this.props.user} handler={Feed}/>
 				<Location path="/documentation" handler={Docs}/>
@@ -37,9 +38,9 @@ module.exports = React.createClass({
 			</Locations>
 		)
 	},
-	logAnalytics: function () {
-
-	  ReactGA.set({page: window.location.pathname})
-	  ReactGA.pageview(window.location.pathname)
-	}
+	// logAnalytics: function () {
+	//
+	//   ReactGA.set({page: window.location.pathname})
+	//   ReactGA.pageview(window.location.pathname)
+	// }
 })
