@@ -57,7 +57,7 @@ module.exports = MUIThemeable()(React.createClass({
 				<div style={this.style1()}>
 					<div style={{display: 'flex', alignItems: 'center'}}>
 					
-						<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 'inherit', imageRendering: 'pixelated'}}/>
+						<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 48, imageRendering: 'pixelated'}}/>
 						<span style={{marginLeft: this.props.muiTheme.spacing.desktopGutter, fontSize: this.props.width > 1000 ? '2.75rem' : '1.75rem', fontWeight: 'bold', color: this.props.muiTheme.palette.textColor}}>{this.state.feed.name}</span>
 						
 					</div>
