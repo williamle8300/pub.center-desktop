@@ -23,8 +23,9 @@ module.exports = React.createClass({
 		onUser: React.PropTypes.func.isRequired,
 	},
 	render: function () {
+		
+		/*<Locations onNavigation={this.logAnalytics}>*/
 		return (
-			{/*<Locations onNavigation={this.logAnalytics}>*/}
 			<Locations>
 				<Location width={this.props.width} height={this.props.height} path="/" handler={Home}/>
 				<Location width={this.props.width} height={this.props.height} path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} jwt={this.props.jwt} user={this.props.user} handler={Feed}/>
