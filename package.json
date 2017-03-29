@@ -19,7 +19,6 @@
     "react-collapsible": "^1.4.0",
     "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.4.2",
-    "react-ga": "^2.1.2",
     "react-geomicons": "^2.1.0",
     "react-notification": "^6.6.0",
     "react-router-component": "^0.36.5",
