@@ -102,7 +102,6 @@ module.exports = MUIThemeable()(React.createClass({
 		  })
 		}
 
-		/* init - you can init any event */
 		customThrottledListener('resize', 'optimizedResize')
 		
 		window.addEventListener('optimizedResize', (e) => {

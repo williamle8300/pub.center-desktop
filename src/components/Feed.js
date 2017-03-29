@@ -12,6 +12,8 @@ var Container = require('./Container')
 
 module.exports = MUIThemeable()(React.createClass({
 	propTypes: {
+		width: React.PropTypes.number,
+		height: React.PropTypes.number,
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
 		_feed_: React.PropTypes.string
@@ -23,8 +25,8 @@ module.exports = MUIThemeable()(React.createClass({
 				{
 					this.props._feed_
 					? (
-						<Container>
-				    	<FeedMeta jwt={this.props.jwt} user={this.props.user} _feed_={this.props._feed_}/>
+						<Container style={{padding: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : '0'}}>
+				    	<FeedMeta width={this.props.width} height={this.props.height} jwt={this.props.jwt} user={this.props.user} _feed_={this.props._feed_}/>
 							<ArticleList _feed_={this.props._feed_}/>
 						</Container>
 					)

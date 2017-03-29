@@ -34,6 +34,8 @@ var Toggle = require('./Toggle')
 
 module.exports = MUIThemeable()(React.createClass({
 	propTypes: {
+		width: React.PropTypes.number,
+		height: React.PropTypes.number,
 		jwt: React.PropTypes.string,
 		user: React.PropTypes.object,
 		_feed_: React.PropTypes.string.isRequired,
@@ -51,12 +53,12 @@ module.exports = MUIThemeable()(React.createClass({
 		if (!this.state.feed) return null
 
 		return (
-			<MUIPaper zDepth={0} style={{display: 'flex', color: this.props.muiTheme.palette.textColor}}>
+			<MUIPaper zDepth={0} style={this.style3()}>
 				<div style={this.style1()}>
 					<div style={{display: 'flex', alignItems: 'center'}}>
 					
-						<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 48, imageRendering: 'pixelated'}}/>
-						<span style={{marginLeft: this.props.muiTheme.spacing.desktopGutter, fontSize: '2.75rem', fontWeight: 'bold', color: this.props.muiTheme.palette.textColor}}>{this.state.feed.name}</span>
+						<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 'inherit', imageRendering: 'pixelated'}}/>
+						<span style={{marginLeft: this.props.muiTheme.spacing.desktopGutter, fontSize: this.props.width > 1000 ? '2.75rem' : '1.75rem', fontWeight: 'bold', color: this.props.muiTheme.palette.textColor}}>{this.state.feed.name}</span>
 						
 					</div>
 					<br/>
@@ -280,17 +282,25 @@ module.exports = MUIThemeable()(React.createClass({
 			flexDirection: 'column',
 			justifyContent: 'center',
 			padding: this.props.muiTheme.spacing.desktopGutter,
-			width: '70%',
+			width: this.props.width > 1000 ? '70%' : 'inherit',
 			// background: this.props.muiTheme.palette.primary3Color
 		}
 	},
 	style2: function () {
 		return {
 			padding: this.props.muiTheme.spacing.desktopGutter,
-			width: '30%',
+			width: this.props.width > 1000 ? '30%' : 'inherit',
 			// background: this.props.muiTheme.palette.primary2Color,
 			color: this.props.muiTheme.palette.textColor,
 			fontFamily: '"Monda", sans-serif'
+		}
+	},
+	style3: function () {
+		return {
+			display: 'flex',
+			flexDirection: this.props.width > 1000 ? 'row' : 'column',
+			padding: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : '0',
+			color: this.props.muiTheme.palette.textColor
 		}
 	}
 }))

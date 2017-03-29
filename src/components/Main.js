@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		return (
 			<Locations>
 				<Location width={this.props.width} height={this.props.height} path="/" handler={Home}/>
-				<Location path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} jwt={this.props.jwt} user={this.props.user} handler={Feed}/>
+				<Location width={this.props.width} height={this.props.height} path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} jwt={this.props.jwt} user={this.props.user} handler={Feed}/>
 				<Location path="/documentation" handler={Docs}/>
 				{
 					this.props.jwt && this.props.user

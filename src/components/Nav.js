@@ -30,16 +30,16 @@ module.exports = MUIThemeable()(React.createClass({
 		
 		var FeedsLink = <Link
 			key={Math.random()}
-			style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
+			style={this.style1()}
 			href="/feed">Archived Feeds</Link>
 		var DocsLink = <a
 			key={Math.random()}
-			style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
+			style={this.style1()}
 			href={env.backend+ '/documentation'}>API</a>
 		var AccountLink = this.props.jwt && this.props.user
 		? <Link
 				key={Math.random()}
-				style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
+				style={this.style1()}
 				href="/user">
 				Account
 			</Link>
@@ -49,7 +49,7 @@ module.exports = MUIThemeable()(React.createClass({
 				jwt={this.props.jwt}
 				onUser={this.props.onUser}
 				user={this.props.user}/>
-		var Logo = <span style={{cursor: 'pointer'}}><MUILogo style={{color: this.props.muiTheme.palette.alternateTextColor}}/>PubCenter</span>
+		var Logo = <div style={{display: 'flex', alignItems: 'center', cursor: 'pointer'}}><MUILogo style={{color: this.props.muiTheme.palette.alternateTextColor}}/>PubCenter</div>
 						
 		return (
 			this.props.width > 1000
@@ -68,11 +68,19 @@ module.exports = MUIThemeable()(React.createClass({
 				onTitleTouchTap={() => {window.location = '/'}}
 				iconElementRight={<MUIIconMenu
 			    iconButtonElement={ <MUIIconButton><MUIDotIcon /></MUIIconButton> }
-			    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-			    anchorOrigin={{horizontal: 'right', vertical: 'top'}}>
+			    targetOrigin={{vertical: 'top', horizontal: 'right'}}
+			    anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
 			    <MUIMenuItem primaryText={FeedsLink} />
 			    <MUIMenuItem primaryText={DocsLink} />
 			    <MUIMenuItem primaryText={AccountLink} />
 				</MUIIconMenu>}/>)
 		)
-}}))
+	},
+	style1: function () {
+		return {
+			margin: '1.5rem',
+			color: this.props.width > 1000 ? this.props.muiTheme.palette.alternateTextColor : this.props.muiTheme.palette.textColor,
+			textDecoration: 'none'
+		}
+	},
+}))

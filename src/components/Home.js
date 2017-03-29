@@ -17,7 +17,8 @@ import MUIShieldIcon from 'material-ui/svg-icons/hardware/security'
 import MUIDialogIcon from 'material-ui/svg-icons/communication/forum'
 import MUINotificationsIcon from 'material-ui/svg-icons/social/notifications-active'
 
-import heroGraphic from '../images/orb.png'
+import heroGraphicLarge from '../images/orb.png'
+import heroGraphicSmall from '../images/orb-small.png'
 var H1 = require('./H1')
 var Modal = require('./Modal')
 import IconBuiding from '../images/icon-building.png'
@@ -41,13 +42,13 @@ module.exports = MUIThemeable()(React.createClass({
 			<div style={this.style1()}>
 			
 				<div style={this.style2()}>
-					<div style={{width: '50%', paddingTop: '15vh', paddingRight: this.props.muiTheme.spacing.desktopGutter, paddingLeft: this.props.muiTheme.spacing.desktopGutter, color: this.props.muiTheme.palette.textColor}}>
-						<div style={{fontSize: '3rem', fontWeight: 'bold'}}>Archiving the<br/>world&#39;s RSS data</div>
+					<div style={this.style12()}>
+						<div style={{fontSize: this.props.width > 1000 ? '3rem' : '2rem', fontWeight: 'bold', textAlign: this.props.width > 1000 ? 'left' : 'center'}}>Archiving the<br/>world&#39;s RSS data</div>
 						<p style={this.style3()}>We&#39;re a non-profit that archives RSS feeds.</p>
 						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive the world&#39;s RSS feeds and offer this data for free.</p>
 						<br/>
 						<Link href="/feed" style={this.style11()}>Browse Feeds</Link>
-						<p style={{width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our paid notifications service</p>
+						<p style={{display: this.props.width > 1000 ? 'block' : 'none', width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our paid notifications service</p>
 					</div>
 				</div>
 			
@@ -146,17 +147,19 @@ module.exports = MUIThemeable()(React.createClass({
 	style2: function () {
 		return {
 			padding: '0 ' +this.props.muiTheme.spacing.desktopGutter+ 'px 10% '	+this.props.muiTheme.spacing.desktopGutter+ 'px',
-			height: '80%',
-			backgroundImage: 'url(' + heroGraphic + '), linear-gradient(#f9f9f9, #e2e4e4)',
+			height: this.props.width > 1000 ? 'inherit' : '85vh',
+			backgroundImage: this.props.width > 1000 ? 'url(' + heroGraphicLarge + '), linear-gradient(#f9f9f9, #e2e4e4)' : 'url(' + heroGraphicSmall + '), linear-gradient(#e2e4e4, #f9f9f9)',
 			backgroundPosition: 'right bottom',
-			backgroundRepeat: 'no-repeat'
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: this.props.width > 1000 ? 'inherit' : '100%'
 		}
 	},
 	style3: function () {
 		return {
 			fontFamily: 'Helvetica',
-	    lineHeight: '1.9rem',
-	    fontSize: '1.3rem',
+	    lineHeight: this.props.width > 1000 ? '1.9rem' : 'inherit',
+	    fontSize: this.props.width > 1000 ? '1.3rem' : '1rem',
+			textAlign: this.props.width > 1000 ? 'left' : 'center'
 		}
 	},
 	style4: function () {
@@ -225,15 +228,26 @@ module.exports = MUIThemeable()(React.createClass({
 	    display: 'flex',
 	    justifyContent: 'center',
 	    alignItems: 'center',
+			margin: this.props.width > 1000 ? '0' : '0 auto',
 			width: 164,
 			height: 45,
 	    padding: '0.15rem',
 	    color: this.props.muiTheme.palette.alternateTextColor,
 			fontFamily: this.props.muiTheme.fontFamily,
 			fontSize: '0.9rem',
+			textAlign: this.props.width > 1000 ? 'left' : 'center',
 	    textDecoration: 'none',
 			textTransform: 'uppercase',
 			background: this.props.muiTheme.palette.primary1Color,
+		}
+	},
+	style12: function () {
+		return {
+			width: this.props.width > 1000 ? '50%' : '100%',
+			paddingTop: this.props.width > 1000 ? '15vh' : '23vh',
+			paddingRight: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : 0,
+			paddingLeft: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : 0,
+			color: this.props.muiTheme.palette.textColor
 		}
 	}
 }))
