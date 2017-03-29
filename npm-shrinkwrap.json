@@ -663,6 +663,11 @@
       "from": "react-notification@6.6.0",
       "resolved": "https://registry.npmjs.org/react-notification/-/react-notification-6.6.0.tgz"
     },
+    "react-phone-input": {
+      "version": "1.2.1",
+      "from": "react-phone-input@latest",
+      "resolved": "https://registry.npmjs.org/react-phone-input/-/react-phone-input-1.2.1.tgz"
+    },
     "react-router-component": {
       "version": "0.36.5",
       "from": "react-router-component@0.36.5",

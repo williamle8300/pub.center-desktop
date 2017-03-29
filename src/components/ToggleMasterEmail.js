@@ -41,7 +41,7 @@ module.exports = React.createClass({
 							onChange={this.onChangeEmail}/>
 						<br/>
 						<br/>
-						<MUIRaisedButton label="Submit" onTouchTap={this.update}/>
+						<MUIRaisedButton onTouchTap={this.closeModal}>Cancel</MUIRaisedButton> <MUIRaisedButton label="Submit" onTouchTap={this.update}/>
 					</div>
 				</Modal>
 				<MUIToggle

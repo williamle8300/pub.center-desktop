@@ -1,5 +1,6 @@
 var Request = require('superagent')
 var React = require('react')
+import PhoneInput from 'react-phone-input'
 
 import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
 import MUIFlatButton from 'material-ui/FlatButton'
@@ -24,6 +25,17 @@ module.exports = React.createClass({
 			modalVisible: false
 		}
 	},
+	
+	/*
+						<MUITextField
+							type="text"
+							value={this.state.phoneNumber}
+				      floatingLabelText="SMS phone number"
+				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '+11231231234'}
+				      floatingLabelFixed={true}
+							onChange={this.onChangePhoneNumber}/>
+		
+	*/
 	render: function () {
 		return (
 			<MUITableHeaderColumn style={{textAlign: 'center'}}>
@@ -32,16 +44,10 @@ module.exports = React.createClass({
 				<br/>
 				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
 					<div onClick={(e) => e.stopPropagation()}>
-						<MUITextField
-							type="text"
-							value={this.state.phoneNumber}
-				      floatingLabelText="SMS phone number"
-				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '+11231231234'}
-				      floatingLabelFixed={true}
-							onChange={this.onChangePhoneNumber}/>
+					 	<PhoneInput defaultCountry={'us'} onChange={this.onChangePhoneNumber} value={this.props.user.pushConfig.channelConfig.sms.phoneNumber}/>
 						<br/>
 						<br/>
-						<MUIRaisedButton label="Submit" onTouchTap={this.update}/>
+						<MUIRaisedButton onTouchTap={this.closeModal}>Cancel</MUIRaisedButton> <MUIRaisedButton label="Submit" onTouchTap={this.update}/>
 					</div>
 				</Modal>
 				<MUIToggle
@@ -57,9 +63,9 @@ module.exports = React.createClass({
 		
 		this.setState({modalVisible: false})
 	},
-	onChangePhoneNumber: function (e) {
-		
-		this.setState({phoneNumber: e.target.value})
+	onChangePhoneNumber: function (value) {
+
+		this.setState({phoneNumber: value.replace(/[^\d]/gi, '')})
 	},
 	toggle: function () {
 
