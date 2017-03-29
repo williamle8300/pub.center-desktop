@@ -48,7 +48,7 @@ module.exports = MUIThemeable()(React.createClass({
 						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive the world&#39;s RSS feeds and offer this data for free.</p>
 						<br/>
 						<Link href="/feed" style={this.style11()}>Browse Feeds</Link>
-						<p style={{display: this.props.width > 1000 ? 'block' : 'none', width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our paid notifications service</p>
+						<p style={{display: this.props.width > 1000 ? 'block' : 'none', width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our paid notifications delivery service</p>
 					</div>
 				</div>
 			
@@ -93,7 +93,7 @@ module.exports = MUIThemeable()(React.createClass({
 						<MUINotificationsIcon style={this.style8()}/>
 						<b style={this.style9()}>Push Notifications</b>
 						<div>
-							If you would like to financially support us, consider using our push notifications services. See <span onTouchTap={() => this.setState({modalVisible: true})} style={{textDecoration: 'underline', cursor: 'pointer'}}>pricing</span>
+							If you would like to financially support us, consider using our notifications delivery service. See <span onTouchTap={() => this.setState({modalVisible: true})} style={{textDecoration: 'underline', cursor: 'pointer'}}>pricing</span>
 							<this.PricingModal/>
 						</div>
 					</div>
