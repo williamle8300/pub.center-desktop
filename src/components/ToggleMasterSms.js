@@ -35,19 +35,16 @@ module.exports = React.createClass({
 				<MUIFlatButton secondary  label="SMS" onTouchTap={() => {this.setState({modalVisible: true})}}/>
 				<br/>
 				<br/>
-				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
+				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIFlatButton onTouchTap={this.closeModal} label="Cancel"/>, <MUIFlatButton primary label="Submit" onTouchTap={this.update}/>]}>
 					<div onClick={(e) => e.stopPropagation()}>
 						<MUITextField
 							type="text"
 							value={this.state.phoneNumber}
 				      floatingLabelText="SMS phone number"
-				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || '+<country><areacode><number> (EXAMPLE "+18881230987")'}
+				      hintText={this.props.user.pushConfig.channelConfig.sms.phoneNumber || 'Format: "+18880001111"'}
 				      floatingLabelFixed={true}
 							onChange={this.onChangePhoneNumber}
 							fullWidth/>
-						<br/>
-						<br/>
-						<MUIRaisedButton onTouchTap={this.closeModal}>Cancel</MUIRaisedButton> <MUIRaisedButton label="Submit" onTouchTap={this.update}/>
 					</div>
 				</Modal>
 				<MUIToggle

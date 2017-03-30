@@ -30,7 +30,7 @@ module.exports = React.createClass({
 				<MUIFlatButton secondary label="Email" onTouchTap={() => {this.setState({modalVisible: true})}}/>
 				<br/>
 				<br/>
-				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
+				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIFlatButton onTouchTap={this.closeModal} label="Cancel"/>, <MUIFlatButton primary label="Submit" onTouchTap={this.update}/>]}>
 					<div onClick={(e) => e.stopPropagation()}>
 						<MUITextField
 							type="email"
@@ -39,9 +39,6 @@ module.exports = React.createClass({
 				      hintText={this.props.user.pushConfig.channelConfig.email.address || 'email@address.xyz'}
 				      floatingLabelFixed={true}
 							onChange={this.onChangeEmail}/>
-						<br/>
-						<br/>
-						<MUIRaisedButton onTouchTap={this.closeModal}>Cancel</MUIRaisedButton> <MUIRaisedButton label="Submit" onTouchTap={this.update}/>
 					</div>
 				</Modal>
 				<MUIToggle

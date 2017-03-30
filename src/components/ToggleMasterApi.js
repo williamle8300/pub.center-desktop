@@ -32,7 +32,7 @@ module.exports = React.createClass({
 				<MUIFlatButton secondary  label="API" onTouchTap={() => {return this.setState({modalVisible: true})}}/>
 				<br/>
 				<br/>
-				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal}>
+				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIFlatButton onTouchTap={this.closeModal} label="Cancel"/>, <MUIFlatButton primary label="Submit" onTouchTap={this.update}/>]}>
 					<div onClick={(e) => e.stopPropagation()}>
 						<MUITextField
 							type="text"
@@ -79,9 +79,6 @@ module.exports = React.createClass({
  "url": "https://www.eff.org/deeplinks/2017/03/lets-make-copyright-office-less-political-not-more"
 }`}						  
 						</pre>
-						<br/>
-						<br/>
-						<MUIRaisedButton onTouchTap={this.closeModal}>Cancel</MUIRaisedButton> <MUIRaisedButton onTouchTap={this.update}>Submit</MUIRaisedButton>
 					</div>
 				</Modal>
 				<MUIToggle
