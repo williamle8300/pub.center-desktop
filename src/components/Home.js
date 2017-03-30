@@ -48,7 +48,7 @@ module.exports = MUIThemeable()(React.createClass({
 						<p style={this.style3()}>We believe the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive the world&#39;s RSS feeds and offer this data to the public free-of-charge.</p>
 						<br/>
 						<Link href="/feed" style={this.style11()}>Browse Feeds</Link>
-						<p style={{display: this.props.width > 1000 ? 'block' : 'none', width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our paid notifications delivery service</p>
+						<p style={{display: this.props.width > 1000 ? 'block' : 'none', width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our notifications delivery service</p>
 					</div>
 				</div>
 			

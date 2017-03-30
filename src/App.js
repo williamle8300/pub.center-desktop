@@ -29,7 +29,7 @@ module.exports = MUIThemeable()(React.createClass({
 		palette: {
 			primary1Color: '#3737a7',
 			primary2Color: '#dedee2',
-			primary3Color: '#e3e3ec',
+			primary3Color: '#65657b',
 			accent1Color: '#0000ee',
 			// accent2Color: '#f50057',
 			// accent3Color: '#ff80ab',
@@ -46,7 +46,7 @@ module.exports = MUIThemeable()(React.createClass({
   render: function () {
     return (
 		  <MuiThemeProvider muiTheme={getMuiTheme(this._theme)}>
-				<div className="App" style={{height: '100%', backgroundColor: this._theme.palette.canvasColor, overflow: 'auto'}}>
+				<div className="App" style={{height: '100%', backgroundColor: this._theme.palette.primary3Color, overflow: 'auto'}}>
 					<Nav
 						width={this.state.width}
 						height={this.state.height}

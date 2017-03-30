@@ -97,8 +97,9 @@ module.exports = MUIThemeable()(React.createClass({
 			fontFamily: this.props.muiTheme.fontFamily,
 			fontSize: '0.75rem',
 			// background: this.props.muiTheme.palette.primary2Color,
-			color: this.props.muiTheme.palette.textColor,
-			textAlign: 'center'
+			color: this.props.muiTheme.palette.alternateTextColor,
+			textAlign: 'center',
+			backgroundColor: this.props.muiTheme.palette.primary3Color,
 		}
 	}
 }))
