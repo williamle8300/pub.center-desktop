@@ -15,7 +15,6 @@ module.exports = React.createClass({
 		onJwt: React.PropTypes.func.isRequired,
 		onUser: React.PropTypes.func.isRequired,
 		toggleSigninMode: React.PropTypes.func.isRequired,
-		closeModal: React.PropTypes.func.isRequired,
 	},
 	getInitialState: function () {
 		return {
@@ -51,9 +50,8 @@ module.exports = React.createClass({
 				<br/>
 				<br/>
 				<MUIRaisedButton primary onTouchTap={this.onSubmit} label="Submit"/>
-				<MUIRaisedButton onTouchTap={this.props.closeModal} label="Cancel"/>
 				    
-				<MUIFlatButton onTouchTap={this.props.toggleSigninMode} label="Have an account? Login" hoverColor="transparent"/>
+				<MUIFlatButton onTouchTap={this.props.toggleSigninMode} label="Have an account? Login"/>
 			</div>
 		)
 	},

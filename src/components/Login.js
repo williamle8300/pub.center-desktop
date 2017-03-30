@@ -17,7 +17,6 @@ module.exports = React.createClass({
 		onJwt: React.PropTypes.func.isRequired,
 		onUser: React.PropTypes.func.isRequired,
 		toggleSigninMode: React.PropTypes.func.isRequired,
-		closeModal: React.PropTypes.func.isRequired,
 	},
 	getInitialState: function () {
 		return {
@@ -28,7 +27,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<H1>Login</H1>
+				<H1>Sign-in</H1>
 				<MUITextField
 					type="text"
 		      hintText={this.state.usernameOrEmail || 'noel'}
@@ -45,9 +44,8 @@ module.exports = React.createClass({
 				<br/>
 				<br/>
 				<MUIRaisedButton primary onTouchTap={this.onSubmit} label="Submit"/>
-				<MUIRaisedButton onTouchTap={this.props.closeModal} label="Cancel"/>
 				    
-				<MUIFlatButton onTouchTap={this.props.toggleSigninMode} label="No account? Register" hoverColor="transparent"/>
+				<MUIFlatButton onTouchTap={this.props.toggleSigninMode} label="No account? Register"/>
 			</div>
 		)
 	},

@@ -26,17 +26,15 @@ module.exports = MUIThemeable()(React.createClass({
 	render: function () {
 		return (
 			<Container>
-			{
+				{
 					this.state.loginOrRegisterMode === 'login'
 					? <Login
 						onJwt={this.props.onJwt}
 						onUser={this.props.onUser}
-						closeModal={this.closeModal}
 						toggleSigninMode={this.toggleSigninMode}/>
 					: <Register
 						onJwt={this.props.onJwt}
 						onUser={this.props.onUser}
-						closeModal={this.closeModal}
 						toggleSigninMode={this.toggleSigninMode}/>
 				}
 			</Container>
