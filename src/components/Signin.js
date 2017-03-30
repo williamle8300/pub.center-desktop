@@ -4,9 +4,10 @@ var Link = Router.Link
 
 import MUIThemeable from 'material-ui/styles/muiThemeable';
 
+var H1 = require('./H1')
+var Container = require('./Container')
 var Login = require('./Login')
 var Register = require('./Register')
-var Modal = require('./Modal')
 
 
 module.exports = MUIThemeable()(React.createClass({
@@ -24,40 +25,28 @@ module.exports = MUIThemeable()(React.createClass({
 	},
 	render: function () {
 		return (
-			<Link
-				key={Math.random()}
-				style={{margin: '1.5rem', color: this.props.muiTheme.palette.alternateTextColor, textDecoration: 'none'}}
-				href="/#"
-				onClick={() => {return this.setState({modalVisible: true})}}>
-				
-				Login
-				
-				<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} style={{}}>
-					{
-						this.state.loginOrRegisterMode === 'login'
-						? <Login
-							onJwt={this.props.onJwt}
-							onUser={this.props.onUser}
-							toggleSigninMode={this.toggleSigninMode}/>
-						: <Register
-							onJwt={this.props.onJwt}
-							onUser={this.props.onUser}
-							toggleSigninMode={this.toggleSigninMode}/>
-					}
-				</Modal>
-				
-			</Link>
+			<Container>
+			{
+					this.state.loginOrRegisterMode === 'login'
+					? <Login
+						onJwt={this.props.onJwt}
+						onUser={this.props.onUser}
+						closeModal={this.closeModal}
+						toggleSigninMode={this.toggleSigninMode}/>
+					: <Register
+						onJwt={this.props.onJwt}
+						onUser={this.props.onUser}
+						closeModal={this.closeModal}
+						toggleSigninMode={this.toggleSigninMode}/>
+				}
+			</Container>
 		)
 	},
 	componentWillUpdate: function (newProps, newState) {
 		
 		if (newProps.jwt && newProps.user) {
-			this.closeModal()
+			window.location = '/user'
 		} 
-	},
-	closeModal: function () {
-		
-		return this.setState({modalVisible: false})
 	},
 	toggleSigninMode: function () {
 		

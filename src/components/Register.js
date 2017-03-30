@@ -14,7 +14,8 @@ module.exports = React.createClass({
 	propTypes: {
 		onJwt: React.PropTypes.func.isRequired,
 		onUser: React.PropTypes.func.isRequired,
-		toggleSigninMode: React.PropTypes.func.isRequired
+		toggleSigninMode: React.PropTypes.func.isRequired,
+		closeModal: React.PropTypes.func.isRequired,
 	},
 	getInitialState: function () {
 		return {
@@ -49,7 +50,8 @@ module.exports = React.createClass({
 					onChange={this.onChangePassword}/>
 				<br/>
 				<br/>
-				<MUIRaisedButton onTouchTap={this.onSubmit} label="Submit"/>
+				<MUIRaisedButton primary onTouchTap={this.onSubmit} label="Submit"/>
+				<MUIRaisedButton onTouchTap={this.props.closeModal} label="Cancel"/>
 				    
 				<MUIFlatButton onTouchTap={this.props.toggleSigninMode} label="Have an account? Login" hoverColor="transparent"/>
 			</div>

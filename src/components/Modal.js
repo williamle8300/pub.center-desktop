@@ -6,6 +6,7 @@ import MUIDialog from 'material-ui/Dialog';
 module.exports = React.createClass({
 	propTypes: {
 		children: React.PropTypes.element.isRequired,
+		modal: React.PropTypes.bool,
 		isOpen: React.PropTypes.bool.isRequired,
 		style: React.PropTypes.object,
 		onClose: React.PropTypes.func.isRequired,
@@ -15,6 +16,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<MUIDialog
+				modal={this.props.modal ? true : false}
 				title={this.props.title}
 				actions={this.props.actions}
         open={this.props.isOpen}

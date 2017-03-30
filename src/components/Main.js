@@ -11,6 +11,7 @@ var Feed = require('./Feed')
 var Home = require('./Home')
 var Http404 = require('./Http404')
 var User = require('./User')
+var Signin = require('./Signin')
 
 
 module.exports = React.createClass({
@@ -28,6 +29,7 @@ module.exports = React.createClass({
 		return (
 			<Locations>
 				<Location width={this.props.width} height={this.props.height} path="/" handler={Home}/>
+				<Location jwt={this.props.jwt} user={this.props.user} onJwt={this.props.onJwt} onUser={this.props.onUser} width={this.props.width} height={this.props.height} path="/signin" handler={Signin}/>
 				<Location width={this.props.width} height={this.props.height} path={/\/feed\/?(.+)?/} urlPatternOptions={['_feed_']} jwt={this.props.jwt} user={this.props.user} handler={Feed}/>
 				<Location path="/documentation" handler={Docs}/>
 				{
