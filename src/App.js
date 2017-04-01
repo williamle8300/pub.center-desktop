@@ -72,7 +72,10 @@ module.exports = MUIThemeable()(React.createClass({
 		this.establishSession()
 		
 		//initialize Browser dimensions
-		this.setState({width: window.innerWidth, height: window.innerHeight})
+		window.onload = () => {
+
+			this.setState({width: window.innerWidth, height: window.innerHeight})
+		}
 	},
 	componentDidUpdate: function (prevProps, prevState) {
 		
