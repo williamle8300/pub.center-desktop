@@ -40,7 +40,7 @@ module.exports = MUIThemeable()(React.createClass({
   render: function () {
     return (
 			<div style={this.style1()}>
-			
+
 				<div style={this.style2()}>
 					<div style={this.style12()}>
 						<div style={{fontSize: this.props.width > 1000 ? '3rem' : '2rem', fontWeight: 'bold', textAlign: this.props.width > 1000 ? 'left' : 'center'}}>Archiving the<br/>world&#39;s RSS data</div>
@@ -51,7 +51,7 @@ module.exports = MUIThemeable()(React.createClass({
 						<p style={{display: this.props.width > 1000 ? 'block' : 'none', width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our notifications delivery service</p>
 					</div>
 				</div>
-			
+
 				<div style={{display: this.props.width > 1000 ? 'flex' : 'none', height: '20%', backgroundColor: '#b5b5b5'}}>
 					<div style={Object.assign(this.style4(), {background: 'url('+ IconDatabase +') no-repeat -84px 0px'})}>
 						<div style={this.style5()}>1636</div>
@@ -133,7 +133,7 @@ module.exports = MUIThemeable()(React.createClass({
 		)
 	},
 	closeModal: function () {
-		
+
 		this.setState({modalVisible: false})
 	},
 	style1: function () {
@@ -190,7 +190,7 @@ module.exports = MUIThemeable()(React.createClass({
 		return {
 			display: 'flex',
 			flex: 1,
-			flexDirection: 'column', 
+			flexDirection: 'column',
 			justifyContent: 'center',
 			alignItems: 'center',
 			padding: '4rem',
