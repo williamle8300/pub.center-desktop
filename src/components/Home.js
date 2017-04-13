@@ -1,11 +1,9 @@
 var React = require('react')
 var Router = require('react-router-component')
-import styled from 'styled-components'
 var Link = Router.Link
 
 import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUIRaisedButton from 'material-ui/RaisedButton'
-import MUICopyIcon from 'material-ui/svg-icons/content/content-paste'
 import MUITable from 'material-ui/Table/Table'
 import MUITableHeader from 'material-ui/Table/TableHeader'
 import MUITableBody from 'material-ui/Table/TableBody'
@@ -19,8 +17,7 @@ import MUINotificationsIcon from 'material-ui/svg-icons/social/notifications-act
 
 import heroGraphicLarge from '../images/orb.png'
 import heroGraphicSmall from '../images/orb-small.png'
-var H1 = require('./H1')
-var Modal = require('./Modal')
+import Modal from './Modal'
 import IconBuiding from '../images/icon-building.png'
 import IconClock from '../images/icon-clock.png'
 import IconDatabase from '../images/icon-database.png'
@@ -52,7 +49,7 @@ module.exports = MUIThemeable()(React.createClass({
 					</div>
 				</div>
 
-				<div style={{display: this.props.width > 1000 ? 'flex' : 'none', height: '20%', backgroundColor: '#b5b5b5'}}>
+				<div style={{display: this.props.width > 1000 ? 'flex' : 'none', height: '20%', backgroundColor: this.props.muiTheme.palette.primary1Color}}>
 					<div style={Object.assign(this.style4(), {background: 'url('+ IconDatabase +') no-repeat -84px 0px'})}>
 						<div style={this.style5()}>1636</div>
 						<div style={this.style6()}>Indexed RSS Feeds</div>
@@ -148,7 +145,7 @@ module.exports = MUIThemeable()(React.createClass({
 		return {
 			padding: '0 ' +this.props.muiTheme.spacing.desktopGutter+ 'px 10% '	+this.props.muiTheme.spacing.desktopGutter+ 'px',
 			height: this.props.width > 1000 ? 'inherit' : '85vh',
-			backgroundImage: this.props.width > 1000 ? 'url(' + heroGraphicLarge + '), linear-gradient(#f9f9f9, #e2e4e4)' : 'url(' + heroGraphicSmall + '), linear-gradient(#e2e4e4, #f9f9f9)',
+			backgroundImage: this.props.width > 1000 ? 'url(' + heroGraphicLarge + '), linear-gradient(#7a7ac4, ' +this.props.muiTheme.palette.primary1Color+ ')' : 'url(' + heroGraphicSmall + '), linear-gradient(#e2e4e4, #f9f9f9)',
 			backgroundPosition: 'right bottom',
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: this.props.width > 1000 ? 'inherit' : '100%'
@@ -170,7 +167,7 @@ module.exports = MUIThemeable()(React.createClass({
 			width: '25%',
 			padding: this.props.muiTheme.spacing.desktopGutter * 2,
 			textAlign: 'center',
-			color: this.props.muiTheme.palette.textColor,
+			color: this.props.muiTheme.palette.primary2Color,
 			// border: '1px solid rgb(208, 208, 208)',
 			// borderLeft: '1px solid rgb(208, 208, 208)',
 		}
@@ -194,12 +191,11 @@ module.exports = MUIThemeable()(React.createClass({
 			justifyContent: 'center',
 			alignItems: 'center',
 			padding: '4rem',
-			background: '#d3d3d3',
-			// background: this.props.muiTheme.palette.canvasColor,
-			color: this.props.muiTheme.palette.textColor,
+			background: '#7a7ac4',
+			color: this.props.muiTheme.palette.primary2Color,
 			textAlign: 'center',
-			borderRight: '1px solid #ccc',
-			borderBottom: '1px solid #ccc',
+			// borderRight: '1px solid #ccc',
+			// borderBottom: '1px solid #ccc',
 			// borderLeft: '1px solid #e2e4e4',
 		}
 	},
@@ -208,7 +204,7 @@ module.exports = MUIThemeable()(React.createClass({
 			margin: '0 0 1rem',
 			width: 48,
 			height: 48,
-			color: this.props.muiTheme.palette.textColor,
+			color: this.props.muiTheme.palette.primary2Color,
 		}
 	},
 	style9: function () {
@@ -247,7 +243,7 @@ module.exports = MUIThemeable()(React.createClass({
 			paddingTop: this.props.width > 1000 ? '15vh' : '23vh',
 			paddingRight: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : 0,
 			paddingLeft: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : 0,
-			color: this.props.muiTheme.palette.textColor
+			color: this.props.muiTheme.palette.alternateTextColor
 		}
 	}
 }))

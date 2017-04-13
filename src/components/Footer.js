@@ -81,11 +81,11 @@ module.exports = MUIThemeable()(React.createClass({
 		)
 	},
 	closeTermsOfServiceModal: function () {
-		
+
 		this.setState({modalTermsOfServiceVisible: false})
 	},
 	closeContactModal: function () {
-		
+
 		this.setState({modalContactVisible: false})
 	},
 	style1: function () {
@@ -99,7 +99,7 @@ module.exports = MUIThemeable()(React.createClass({
 			// background: this.props.muiTheme.palette.primary2Color,
 			color: this.props.muiTheme.palette.alternateTextColor,
 			textAlign: 'center',
-			backgroundColor: this.props.muiTheme.palette.primary3Color,
+			backgroundColor: this.props.muiTheme.palette.primary1Color,
 		}
 	}
 }))
