@@ -18,10 +18,7 @@ import MUINotificationsIcon from 'material-ui/svg-icons/social/notifications-act
 import heroGraphicLarge from '../images/orb.png'
 import heroGraphicSmall from '../images/orb-small.png'
 import Modal from './Modal'
-import IconBuiding from '../images/icon-building.png'
-import IconClock from '../images/icon-clock.png'
-import IconDatabase from '../images/icon-database.png'
-import IconDocument from '../images/icon-document.png'
+import FactsBar from './FactsBar'
 
 
 module.exports = MUIThemeable()(React.createClass({
@@ -49,24 +46,7 @@ module.exports = MUIThemeable()(React.createClass({
 					</div>
 				</div>
 
-				<div style={{display: this.props.width > 1000 ? 'flex' : 'none', height: '20%', backgroundColor: this.props.muiTheme.palette.primary1Color}}>
-					<div style={Object.assign(this.style4(), {background: 'url('+ IconDatabase +') no-repeat -84px 0px'})}>
-						<div style={this.style5()}>1636</div>
-						<div style={this.style6()}>Indexed RSS Feeds</div>
-					</div>
-					<div style={Object.assign(this.style4(), {background: 'url('+ IconDocument +') no-repeat -50px 10px'})}>
-						<div style={this.style5()}>1,831,614</div>
-						 <div style={this.style6()}>Saved articles</div>
-					</div>
-					<div style={Object.assign(this.style4(), {background: 'url('+ IconClock +') no-repeat -80px'})}>
-						<div style={this.style5()}>4x</div>
-						<div style={this.style6()}>Daily RSS polling</div>
-					</div>
-					<div style={Object.assign(this.style4(), {background: 'url('+ IconBuiding +') no-repeat -30px bottom'})}>
-						<div style={this.style5()}>July 2016</div>
-						<div style={this.style6()}>Established</div>
-					</div>
-				</div>
+				<FactsBar/>
 
 				<div style={this.style10()}>
 					<div style={this.style7()}>
@@ -143,9 +123,12 @@ module.exports = MUIThemeable()(React.createClass({
 	},
 	style2: function () {
 		return {
-			padding: '0 ' +this.props.muiTheme.spacing.desktopGutter+ 'px 10% '	+this.props.muiTheme.spacing.desktopGutter+ 'px',
+			paddingRight: window.innerWidth/6,
+			paddingLeft: window.innerWidth/6,
+			paddingBottom: '10%',
 			height: this.props.width > 1000 ? 'inherit' : '85vh',
-			backgroundImage: this.props.width > 1000 ? 'url(' + heroGraphicLarge + '), linear-gradient(#7a7ac4, ' +this.props.muiTheme.palette.primary1Color+ ')' : 'url(' + heroGraphicSmall + '), linear-gradient(#e2e4e4, #f9f9f9)',
+			backgroundImage: this.props.width > 1000 ? 'url(' + heroGraphicLarge + ')' : 'url(' + heroGraphicSmall + ')',
+			backgroundColor: '#e9e9e9',
 			backgroundPosition: 'right bottom',
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: this.props.width > 1000 ? 'inherit' : '100%'
@@ -159,31 +142,7 @@ module.exports = MUIThemeable()(React.createClass({
 			textAlign: this.props.width > 1000 ? 'left' : 'center'
 		}
 	},
-	style4: function () {
-		return {
-			display: 'flex',
-			flexDirection: 'column',
-			justifyContent: 'center',
-			width: '25%',
-			padding: this.props.muiTheme.spacing.desktopGutter * 2,
-			textAlign: 'center',
-			color: this.props.muiTheme.palette.primary2Color,
-			// border: '1px solid rgb(208, 208, 208)',
-			// borderLeft: '1px solid rgb(208, 208, 208)',
-		}
-	},
-	style5: function () {
-		return {
-			fontSize: '1.75rem',
-			fontWeight: 'bold',
-		}
-	},
-	style6: function () {
-		return {
-			fontSize: '1.25rem'
-		}
-	},
-	style7: function () {
+		style7: function () {
 		return {
 			display: 'flex',
 			flex: 1,
@@ -243,7 +202,7 @@ module.exports = MUIThemeable()(React.createClass({
 			paddingTop: this.props.width > 1000 ? '15vh' : '23vh',
 			paddingRight: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : 0,
 			paddingLeft: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : 0,
-			color: this.props.muiTheme.palette.alternateTextColor
+			color: this.props.muiTheme.palette.textColor
 		}
 	}
 }))

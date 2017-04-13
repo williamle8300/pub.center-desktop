@@ -77,7 +77,7 @@ module.exports = MUIThemeable()(React.createClass({
 		this.establishSession()
 	},
 	componentDidUpdate: function (prevProps, prevState) {
-		
+
 		//fresh jwt
 		if (this.state.jwt && prevState.jwt !== this.state.jwt) {
 
@@ -85,7 +85,7 @@ module.exports = MUIThemeable()(React.createClass({
 		}
 	},
 	listenToResize: function () {
-		
+
 		function customThrottledListener (type, eventName) {
 
 		  var running = false
@@ -93,11 +93,11 @@ module.exports = MUIThemeable()(React.createClass({
 		  window.addEventListener(type, () => {
 
 		    if (running) return
-			
+
 		    running = true
-			
+
 		    requestAnimationFrame(() => {
-			 
+
 		       window.dispatchEvent(new CustomEvent(eventName))
 		       running = false
 		    })
@@ -105,34 +105,34 @@ module.exports = MUIThemeable()(React.createClass({
 		}
 
 		customThrottledListener('resize', 'optimizedResize')
-		
+
 		window.addEventListener('optimizedResize', (e) => {
 
 			this.setState({width: window.innerWidth, height: window.innerHeight})
 		})
 	},
 	establishSession: function () {
-		
+
 		var expirationMs
 		var expirationDate
-		
+
 		if (!JSON.parse(localStorage.jwt)) return
-	
+
 		//it's weird but jwt spec defines seconds, not milliseconds for expiration
 		expirationMs = JwtDecode(JSON.parse(localStorage.jwt)).exp * 1000
 		expirationDate = new Date(expirationMs)
-		
+
 		//exp passed?
 		if (expirationDate < new Date()) {
 
 			localStorage.removeItem('jwt')
-			
+
 			return this.onJwt(null)
 		}
-		
+
 		//jwt is fresh. auto-renew it!
 		else {
-			
+
 			Request
 			.put(env.backend+ '/jwt')
 			.send({jwt: JSON.parse(localStorage.jwt)})
@@ -152,7 +152,7 @@ module.exports = MUIThemeable()(React.createClass({
 		.get(env.backend+ '/user/' +JwtDecode(this.state.jwt).id)
 		.set({Authorization: 'Bearer ' +this.state.jwt})
 		.end((err, response) => {
-	
+
 			if (err) throw err
 
 			return this.onUser(response.body)
@@ -161,11 +161,11 @@ module.exports = MUIThemeable()(React.createClass({
 	onJwt: function (jwt, callback) {
 
 		localStorage.jwt = JSON.stringify(jwt)
-		
+
 		return this.setState({jwt: jwt}, callback)
 	},
 	onUser: function (user, callback) {
-		
+
 		return this.setState({user: user}, callback)
 	}
 }))

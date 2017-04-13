@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		onUser: React.PropTypes.func.isRequired,
 	},
 	render: function () {
-		
+
 		/*<Locations onNavigation={this.logAnalytics}>*/
 		return (
 			<Locations>

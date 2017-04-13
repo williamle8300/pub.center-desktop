@@ -27,7 +27,7 @@ module.exports = MUIThemeable()(React.createClass({
 		onUser: React.PropTypes.func.isRequired,
 	},
 	render: function () {
-		
+
 		var FeedsLink = <Link
 			key={Math.random()}
 			style={this.style1()}
@@ -50,7 +50,7 @@ module.exports = MUIThemeable()(React.createClass({
 				Signin
 			</Link>
 		var Logo = <div style={{display: 'flex', alignItems: 'center', cursor: 'pointer'}}><MUILogo style={{color: this.props.muiTheme.palette.alternateTextColor}}/>PubCenter</div>
-						
+
 		return (
 			this.props.width > 1000
 			? (<MUIAppBar
@@ -61,7 +61,8 @@ module.exports = MUIThemeable()(React.createClass({
 					FeedsLink,
 					DocsLink,
 					AccountLink
-				]}/>)
+				]}
+				style={this.style2()}/>)
 		  : (<MUIAppBar
 				title={Logo}
 				showMenuIconButton={false}
@@ -85,4 +86,10 @@ module.exports = MUIThemeable()(React.createClass({
 			textDecoration: 'none'
 		}
 	},
+	style2: function () {
+		return {
+			paddingRight: window.innerWidth/6,
+			paddingLeft: window.innerWidth/6
+		}
+	}
 }))
