@@ -90,6 +90,7 @@ module.exports = MUIThemeable()(React.createClass({
       display: window.innerWidth > 1000 ? 'block' : 'none',
       paddingRight: window.innerWidth/7,
       paddingLeft: window.innerWidth/7,
+      color: this.props.muiTheme.palette.primary2Color,
       backgroundColor: this.props.muiTheme.palette.canvasColor
     }
   }

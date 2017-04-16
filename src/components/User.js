@@ -32,12 +32,12 @@ module.exports = MUIThemeable()(React.createClass({
   render: function () {
 
 		if (!this.props.user) return null
-		
+
     return (
-			<Container style={{color: this.props.muiTheme.palette.textColor}}>
-			
+			<Container style={{paddingRight: window.innerWidth/7, paddingLeft: window.innerWidth/7, color: this.props.muiTheme.palette.textColor}}>
+
 				<H1>Account</H1>
-			
+
 				<Container>
 					<h2>Profile</h2>
 					<MUITextField
@@ -71,46 +71,46 @@ module.exports = MUIThemeable()(React.createClass({
 					<PushConfig jwt={this.props.jwt} user={this.props.user} onUser={this.props.onUser}/>
 				</Container>
 
-				<Container>				
+				<Container>
 					<MUIRaisedButton secondary onTouchTap={this.wipeSession} label="Logout"/>
 				</Container>
-					
+
 			</Container>
 		)
   },
 	onChangeEmail: function (e) {
-		
+
 		this.setState({email: e.target.value})
 	},
 	onChangeUsername: function (e) {
-		
+
 		this.setState({username: e.target.value})
 	},
 	onChangePassword: function (e) {
-		
+
 		this.setState({password: e.target.value})
 	},
 	updateUser: function () {
-		
+
 		var user = _.merge(this.props.user, {
 			username: this.state.username || this.props.user.username,
 			email: this.state.email || this.props.user.email,
 			password: this.state.password || this.props.user.password
 		})
-			
+
 		Request
 		.put(env.backend+ '/user/' +this.props.user.id)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({user: user})
 		.end((err, response) => {
-			
+
 			if (err) throw err
-			
+
 			this.props.onUser(response.body)
 		})
 	},
 	wipeSession: function () {
-		
+
 		this.props.onJwt(null, () => {
 			this.props.onUser(null, () => {
 				window.location = '/'

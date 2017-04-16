@@ -9,8 +9,6 @@ var Request = require('superagent')
 
 import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUIAvatar from 'material-ui/Avatar'
-import MUIList from 'material-ui/List/List'
-import MUIListItem from 'material-ui/List/ListItem'
 import MUIRaisedButton from 'material-ui/RaisedButton'
 import MUIPaper from 'material-ui/Paper'
 import MUIRssIcon from 'material-ui/svg-icons/communication/rss-feed'
@@ -28,8 +26,6 @@ var env = require('../../env')
 
 var Modal = require('./Modal')
 var Snackbar = require('./Snackbar')
-
-var Toggle = require('./Toggle')
 
 
 module.exports = MUIThemeable()(React.createClass({
@@ -49,17 +45,17 @@ module.exports = MUIThemeable()(React.createClass({
 		}
 	},
 	render: function () {
-		
+
 		if (!this.state.feed) return null
 
 		return (
 			<MUIPaper zDepth={0} style={this.style3()}>
 				<div style={this.style1()}>
 					<div style={{display: 'flex', alignItems: 'center'}}>
-					
+
 						<MUIAvatar src={this.state.feed.favicon} style={{width: 48, height: 48, imageRendering: 'pixelated'}}/>
-						<span style={{marginLeft: this.props.muiTheme.spacing.desktopGutter, fontSize: this.props.width > 1000 ? '2.75rem' : '1.75rem', fontWeight: 'bold', color: this.props.muiTheme.palette.textColor}}>{this.state.feed.name}</span>
-						
+						<span style={{marginLeft: this.props.muiTheme.spacing.desktopGutter, fontSize: this.props.width > 1000 ? '2.75rem' : '1.75rem', fontWeight: 'bold'}}>{this.state.feed.name}</span>
+
 					</div>
 					<br/>
 					{this.SubscribeButton()}
@@ -86,9 +82,9 @@ module.exports = MUIThemeable()(React.createClass({
 		}
 	},
 	CopyButton: function () {
-		
+
 		var url = env.backend+ '/feed/' +this.state.feed.id+ '/articles'
-		
+
 		return (
 			<div>
 				<CopyToClipboard
@@ -107,7 +103,7 @@ module.exports = MUIThemeable()(React.createClass({
 				<Snackbar
 					snacks={this.state.snacks}
 					onRemoveSnack={(key) => {
-						
+
 						this.setState({snacks: this.state.snacks.filter((snacks) => {
 							return snacks.key !== key
 						})})
@@ -116,7 +112,7 @@ module.exports = MUIThemeable()(React.createClass({
 		)
 	},
 	SubscribeButton: function () {
-		
+
 		if (!this.props.user) {
 			return (
 				<div>
@@ -124,7 +120,7 @@ module.exports = MUIThemeable()(React.createClass({
 				</div>
 			)
 		}
-		
+
 		if (this.state.subscription) {
 			return (
 				<div>
@@ -176,7 +172,7 @@ module.exports = MUIThemeable()(React.createClass({
 				</div>
 			)
 		}
-		
+
 		else {
 			return (
 				<div>
@@ -225,7 +221,7 @@ module.exports = MUIThemeable()(React.createClass({
 		.get(env.backend+ '/subscription?_feed_=' +this.state.feed.id)
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.end((err, response) => {
-			
+
 			if (err) throw err
 
 			return this.setState({subscription: response.body})
@@ -244,31 +240,31 @@ module.exports = MUIThemeable()(React.createClass({
 		})
 	},
 	toggleActive: function (_subscription_, isActive) {
-		
+
 		Request
 		.put(env.backend+ '/subscription/' +_subscription_+ '/is-active')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({isActive: !isActive})
 		.end((err, response) => {
-			
+
 			if (err) throw err
-			
+
 			this.readSubscription()
 			return
 		})
 	},
 	updateConfig: function (_subscription_, config, key) {
-		
+
 		var newConfig = _.includes(config, key) ? _.pull(config, key) : config.concat(key)
-				
+
 		Request
 		.put(env.backend+ '/subscription/' +_subscription_+ '/config')
 		.set({Authorization: 'Bearer ' +this.props.jwt})
 		.send({config: newConfig})
 		.end((err, response) => {
-			
+
 			if (err) throw err
-			
+
 			this.readSubscription()
 		})
 	},
@@ -290,9 +286,7 @@ module.exports = MUIThemeable()(React.createClass({
 		return {
 			padding: this.props.muiTheme.spacing.desktopGutter,
 			width: this.props.width > 1000 ? '30%' : 'inherit',
-			// background: this.props.muiTheme.palette.primary2Color,
-			color: this.props.muiTheme.palette.textColor,
-			fontFamily: '"Monda", sans-serif'
+			fontFamily: '"Monda", sans-serif',
 		}
 	},
 	style3: function () {
@@ -300,7 +294,7 @@ module.exports = MUIThemeable()(React.createClass({
 			display: 'flex',
 			flexDirection: this.props.width > 1000 ? 'row' : 'column',
 			padding: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : '0',
-			color: this.props.muiTheme.palette.textColor
+			color: this.props.muiTheme.palette.primary2Color,
 		}
 	}
 }))

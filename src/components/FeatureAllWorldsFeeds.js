@@ -1,3 +1,4 @@
+
 var React = require('react')
 import Color from 'color'
 import Styled, {keyframes} from 'styled-components'
@@ -23,11 +24,11 @@ module.exports = MUIThemeable()(React.createClass({
   },
   render: function () {
     return (
-      <div style={{display: 'flex', padding: '3rem 0'}}>
+      <div style={{display: 'flex', padding: '6rem 0'}}>
         {this.createBookTile(this._bookDimension.width, this._bookDimension.height)}
-        <div style={{width: '100%'}}>
-          <h1>All of the world's news at your fingertips</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%'}}>
+          <h1 style={{margin: 0, fontFamily: '"Monda", sans-serif'}}>Search the archives</h1>
+          <p style={{fontSize: '1rem'}}>PubCenter hosts some of the world's most popular RSS feeds. If you can't find a RSS feed, just add it and we'll start archiving it.</p>
         </div>
       </div>
     )
@@ -51,7 +52,7 @@ module.exports = MUIThemeable()(React.createClass({
       justifyContent: center;
       width: 100%;
       height: ${height}px;
-      transform: rotateX(69deg) rotateZ(-31deg);
+      transform: rotateX(69deg) rotateZ(-19deg);
       transform-style: preserve-3d;
     `
 

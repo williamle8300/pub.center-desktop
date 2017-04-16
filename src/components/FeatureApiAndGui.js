@@ -1,3 +1,5 @@
+var env = require('../../env')
+
 var React = require('react')
 import Color from 'color'
 import Styled, {keyframes} from 'styled-components'
@@ -21,10 +23,10 @@ module.exports = MUIThemeable()(React.createClass({
   ],
   render: function () {
     return (
-      <div style={{display: 'flex', padding: '3rem 0'}}>
+      <div style={{display: 'flex', padding: '6rem 0'}}>
         <div style={{width: '100%'}}>
-          <h1>Developer-friendly REST APIs</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h1 style={{fontFamily: '"Monda", sans-serif'}}>Developer-friendly</h1>
+          <p>All of our data is freely accessible via REST. If you don't know the resource id, use this endpoint to search our index of RSS feeds. See our <a href={env.backend+ '/documentation'} style={{color: this.props.muiTheme.palette.primary3Color}}>documentation</a> for the complete API.</p>
         </div>
         <div style={{width: '100%', alignItems: 'center', display: 'flex', justifyContent: 'center', padding: '2rem'}}>
           <div style={{padding: '1rem', width: '100%', borderRadius: 10, fontFamily: 'monospace', color: Color(this.props.muiTheme.palette.primary1Color).lighten(0.5).string(), backgroundColor: Color(this.props.muiTheme.palette.primary1Color).darken(0.25).string()}}>

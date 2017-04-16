@@ -22,11 +22,11 @@ module.exports = MUIThemeable()(React.createClass({
   render: function () {
     // {this._feeds[this.props.selectedRssFeed]}
     return (
-      <div style={{display: 'flex', padding: '3rem 0'}}>
+      <div style={{display: 'flex', padding: '6rem 0'}}>
         {this.createArticleTile(this._articleSize)}
         <div style={{width: '100%'}}>
-          <h1>Find any article, any time</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h1 style={{fontFamily: '"Monda", sans-serif'}}>Find any article, any time</h1>
+          <p>Once we begin archiving a RSS feed, you can search through our archives and pick any article you want. Or you can just get a complete history of the RSS feed. Our powerful REST API facilitates app development, and big data usecases.</p>
         </div>
       </div>
     )
@@ -80,12 +80,14 @@ module.exports = MUIThemeable()(React.createClass({
         padding: ${articleSize / 10}px;
         fontFamily: "blokk";
         color: ${this.props.muiTheme.palette.alternateTextColor}
-        opacity: 0.5
+        opacity: 0.5;
+        line-height: 0.75rem;
+        letter-spacing: -4px;
       `
 
       return (
         <Article>
-          <PlaceholderText>ih ihih hihi hihiiiii hiih ihih hihihi hihi ih ihih hihihi hihi hiih ihih hihihi hihi ih ihih hihihi</PlaceholderText>
+          <PlaceholderText>ih ihih hihi hihiiiii hiih ihih hihihi hihi ih ihih hihihi hihi hiih ihih hihihi hihi ih ihih hihihi hihihi hihi ih ihih hihihi hihihi hihi ih ihih hihihi</PlaceholderText>
         </Article>
       )
     }

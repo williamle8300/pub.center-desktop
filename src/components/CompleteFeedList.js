@@ -1,22 +1,19 @@
+var env = require('../../env')
+
+var Snackbar = require('./Snackbar')
+
+import Color from 'color'
 var React = require('react')
 var Request = require('superagent')
 var Validator = require('validator')
 var Router = require('react-router-component')
 var Link = Router.Link
+import Styled from 'styled-components'
 
 import MUIThemeable from 'material-ui/styles/muiThemeable'
 import MUITextField from 'material-ui/TextField'
 import MUIRaisedButton from 'material-ui/RaisedButton'
-import MUIList from 'material-ui/List/List'
-import MUIListItem from 'material-ui/List/ListItem'
 import MUIAvatar from 'material-ui/Avatar'
-
-var env = require('../../env')
-
-var Input = require('./Input')
-var Snackbar = require('./Snackbar')
-var Container = require('./Container')
-var RouterLink = require('./RouterLink')
 
 
 module.exports = MUIThemeable()(React.createClass({
@@ -28,6 +25,22 @@ module.exports = MUIThemeable()(React.createClass({
 		}
 	},
 	render: function () {
+
+		const FeedLink = Styled(Link)`
+			display: flex;
+			alignItems: center;
+			padding: 1rem;
+			fontFamily: Helvetica, sans-serif;
+			fontSize: 1rem;
+			fontWeight: bold;
+			color: ${this.props.muiTheme.palette.primary2Color};
+			textDecoration: none;
+			&:hover {
+				color: ${this.props.muiTheme.palette.primary2Color};
+				background-color: ${Color(this.props.muiTheme.palette.primary1Color).lighten(0.55).string()}
+			}
+		`
+
 		return (
 			<div>
 				<MUITextField
@@ -40,11 +53,10 @@ module.exports = MUIThemeable()(React.createClass({
 				<div style={{padding: '0.5rem 0'}}>
 					{
 						this.state.feeds.map((feed) => (
-							<Link key={feed.id} href={'/feed/' +feed.id} style={this.style1()}>
-								<MUIAvatar src={feed.favicon} style={{imageRendering: 'pixelated'}}/>
-							     
-								{feed.name}
-							</Link>
+							<FeedLink key={feed.id} href={'/feed/' +feed.id}>
+								<MUIAvatar src={feed.favicon} style={{backgroundColor: 'transparent', imageRendering: 'pixelated'}}/>
+								  {feed.name}
+							</FeedLink>
 						))
 					}
 				</div>
@@ -52,30 +64,30 @@ module.exports = MUIThemeable()(React.createClass({
 		)
 	},
 	componentWillMount: function () {
-		
+
 		this.readFeed()
 	},
 	readFeed: function () {
-		
+
 		Request
 		.get(env.backend+ '/feed?limit=20')
 		.end((err, response) => {
-			
+
 			if (err) throw err
-			
+
 			return this.setState({feeds: response.body})
 		})
 	},
 	searchFeed: function (e) {
-		
+
 		this.setState({searchTerm: e.target.value}, () => {
-		
+
 			Request
 			.get(env.backend+ '/feed?limit=20' +(this.state.searchTerm ? '&search=' +this.state.searchTerm : ''))
 			.end((err, response) => {
-		
+
 				if (err) throw err
-		
+
 				return this.setState({feeds: response.body})
 			})
 		})
@@ -83,7 +95,7 @@ module.exports = MUIThemeable()(React.createClass({
 	NewFeedButton: function () {
 
 		if (!this.state.searchTerm || !Validator.isURL(this.state.searchTerm, {require_protocol: true})) return null
-		
+
 		return (
 			<div>
 				Feed was not found...    
@@ -91,7 +103,7 @@ module.exports = MUIThemeable()(React.createClass({
 				<Snackbar
 					snacks={this.state.snacks}
 					onRemoveSnack={(key) => {
-						
+
 						this.setState({snacks: this.state.snacks.filter((snacks) => {
 							return snacks.key !== key
 						})})
@@ -100,14 +112,14 @@ module.exports = MUIThemeable()(React.createClass({
 		)
 	},
 	createFeed: function (url) {
-				
+
 		Request
 		.post(env.backend+ '/feed')
 		.send({url: url})
 		.end((err, response) => {
-			
+
 			if (err) {
-				
+
 				return this.setState({
 					snacks: this.state.snacks.concat({
 						message: 'Not a feed url',
@@ -116,7 +128,7 @@ module.exports = MUIThemeable()(React.createClass({
 					})
 				})
 			}
-			
+
 			return this.setState({
 				snacks: this.state.snacks.concat({
 					message: 'Feed added',
@@ -126,19 +138,4 @@ module.exports = MUIThemeable()(React.createClass({
 			}, this.readFeed)
 		})
 	},
-	style1: function () {
-		return {
-			display: 'flex',
-			alignItems: 'center',
-			padding: '1rem',
-			fontFamily: 'Helvetica, sans-serif',
-			fontSize: '1rem',
-			fontWeight: 'bold',
-			color: this.props.muiTheme.palette.textColor,
-			textDecoration: 'none',
-			// backgroundColor: this.props.muiTheme.palette.primary3Color,
-			// borderTop: '1px solid '+ this.props.muiTheme.palette.primary2Color
-			// borderLeft: '1px solid '+ this.props.muiTheme.palette.primary2Color
-		}
-	}
 }))
