@@ -56,12 +56,12 @@ module.exports = MUIThemeable()(React.createClass({
 
       const favicons = [
         techcrunchIcon,
-        apIcon,
-        pinterestIcon,
         effIcon,
         dribbbleIcon,
-        theweatherchannelIcon,
         nytIcon,
+        pinterestIcon,
+        theweatherchannelIcon,
+        apIcon,
         thevergeIcon,
       ]
       const Book = Styled.div`
@@ -74,6 +74,7 @@ module.exports = MUIThemeable()(React.createClass({
           float: left;
           height: ${height}px;
           width: ${width}px;
+          animation: ${this.props.selectedRssFeed === rssFeedIdx ? glow+ ' 1s infinite' : 'none'} ;
         }
         &:after, &:before {
           position: absolute;
@@ -98,7 +99,6 @@ module.exports = MUIThemeable()(React.createClass({
           background-color: ${Color(this.props.muiTheme.palette.primary1Color).lighten(0.25).string()};
           cursor: pointer;
           animation: ${glow} 1s infinite;
-          // transform: translateY(${height}px);
         }
       `
 

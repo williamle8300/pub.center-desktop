@@ -19,16 +19,6 @@ module.exports = MUIThemeable()(React.createClass({
   propTypes: {
     selectedRssFeed: React.PropTypes.number.isRequired,
   },
-  _feeds: [
-    'ayy0',
-    'ayy1',
-    'ayy2',
-    'ayy3',
-    'ayy4',
-    'ayy5',
-    'ayy6',
-    'ayy7',
-  ],
   _articleSize: 126,
   render: function () {
     // {this._feeds[this.props.selectedRssFeed]}
@@ -56,12 +46,12 @@ module.exports = MUIThemeable()(React.createClass({
 
       const favicons = [
         techcrunchIcon,
-        apIcon,
-        pinterestIcon,
         effIcon,
         dribbbleIcon,
-        theweatherchannelIcon,
         nytIcon,
+        pinterestIcon,
+        theweatherchannelIcon,
+        apIcon,
         thevergeIcon,
       ]
       const Article = Styled.div`

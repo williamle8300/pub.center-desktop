@@ -42,7 +42,7 @@ module.exports = MUIThemeable()(React.createClass({
         <FeatureAllWorldsFeeds selectedRssFeed={this.state.selectedRssFeed} handleRssSelect={this.handleRssSelect}/>
         <FeatureApiAndGui selectedRssFeed={this.state.selectedRssFeed}/>
         <FeatureAnyArticle selectedRssFeed={this.state.selectedRssFeed}/>
-        <FeaturePushNotifications selectedRssFeed={this.state.selectedRssFeed}/>
+        {/* <FeaturePushNotifications selectedRssFeed={this.state.selectedRssFeed}/> */}
       </div>
     )
   },
