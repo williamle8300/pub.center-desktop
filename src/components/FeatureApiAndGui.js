@@ -27,8 +27,8 @@ module.exports = MUIThemeable()(React.createClass({
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
         <div style={{width: '100%', alignItems: 'center', display: 'flex', justifyContent: 'center', padding: '2rem'}}>
-          <div style={{padding: '1rem', width: '100%', borderRadius: 10, color: Color(this.props.muiTheme.palette.primary1Color).lighten(0.5).string(), backgroundColor: Color(this.props.muiTheme.palette.primary1Color).darken(0.25).string()}}>
-            $ https://pub.center/feed?search={this._feeds[this.props.selectedRssFeed]}<this.Cursor/>
+          <div style={{padding: '1rem', width: '100%', borderRadius: 10, fontFamily: 'monospace', color: Color(this.props.muiTheme.palette.primary1Color).lighten(0.5).string(), backgroundColor: Color(this.props.muiTheme.palette.primary1Color).darken(0.25).string()}}>
+            <b>$</b> curl https://pub.center/feed?search={this._feeds[this.props.selectedRssFeed]}<this.Cursor/>
           </div>
         </div>
       </div>

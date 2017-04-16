@@ -36,7 +36,7 @@ module.exports = MUIThemeable()(React.createClass({
 		fontFamily: '"Monda", sans-serif',
 		palette: {
 			primary1Color: '#e29332',
-			primary2Color: '#f1e9e0',
+			primary2Color: '#fffaf3',
 			primary3Color: '#8e6a3d',
 			// accent1Color: '#e0881a',
 			// accent2Color: '#f50057',
@@ -45,7 +45,7 @@ module.exports = MUIThemeable()(React.createClass({
 			textColor: 'rgba(0, 0, 0, 0.6)',
 			alternateTextColor: '#fff',
 			// borderColor: 'rgba(255, 255, 255, 0.3)',
-			canvasColor: '#f7f7f7',
+			canvasColor: '#f5f5f5',
 			// clockCircleColor: 'rgba(255, 255, 255, 0.12)',
 			// disabledColor: 'rgba(255, 255, 255, 0.3)',
 			// pickerHeaderColor: 'rgba(255, 255, 255, 0.12)'

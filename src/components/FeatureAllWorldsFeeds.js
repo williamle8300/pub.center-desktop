@@ -32,7 +32,7 @@ module.exports = MUIThemeable()(React.createClass({
       </div>
     )
   },
-  createBookTile: function (width, height, favicons) {
+  createBookTile: function (width, height) {
 
     const glow = keyframes`
       from {
@@ -104,12 +104,45 @@ module.exports = MUIThemeable()(React.createClass({
           animation: ${glow} 1s infinite;
         }
       `
-
       return <Book onClick={this.props.handleRssSelect.bind(null, rssFeedIdx)} style={this.style1(this.state, this.props, rssFeedIdx)}/>
     }
 
+    const generatePlaceholderBook = (fade) => {
+
+      const PlaceholderBook = Styled.div`
+        background-color: ${Color(this.props.muiTheme.palette.primary1Color).fade(fade).string()};
+        position: relative;
+        transform-style: preserve-3d;
+        &, &:after, &:before {
+          // box-shadow: inset 0 0 0 1px hsla(0,0%,0%, 0);
+          content: '';
+          float: left;
+          height: ${height}px;
+          width: ${width * 0.66}px;
+        }
+        &:after, &:before {
+          position: absolute;
+        }
+        &:before {
+          background-color: ${Color(this.props.muiTheme.palette.primary1Color).darken(0.5).fade(fade).string()};
+          transform: rotateY(90deg) translateX(${height}px) translateZ(-${height}px);
+          transform-origin: 100% 0;
+          height: ${height}px;
+          width: ${height}px;
+        }
+        &:after {
+          background-color: ${Color(this.props.muiTheme.palette.primary1Color).darken(0.25).fade(fade).string()};
+          transform: rotateX(-90deg) translateY(${height}px) translateX(-1px);
+          transform-origin: 100% 100%;
+        }
+      `
+
+      return <PlaceholderBook/>
+    }
     return (
       <Perspective>
+        {generatePlaceholderBook(0.85)}
+        {generatePlaceholderBook(0.75)}
         {generateBook(0)}
         {generateBook(1)}
         {generateBook(2)}
@@ -118,6 +151,8 @@ module.exports = MUIThemeable()(React.createClass({
         {generateBook(5)}
         {generateBook(6)}
         {generateBook(7)}
+        {generatePlaceholderBook(0.75)}
+        {generatePlaceholderBook(0.85)}
       </Perspective>
     )
   },

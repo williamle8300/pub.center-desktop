@@ -31,7 +31,7 @@ module.exports = MUIThemeable()(React.createClass({
 						<p style={this.style3()}>We believe that the marketplace of ideas should be free and accessible, so we&#39;ve undertaken efforts to archive the world&#39;s RSS feeds and provide this data free-of-charge to the public</p>
 						<br/>
 						<Link href="/feed" style={this.style11()}>Browse Feeds</Link>
-						<p style={{display: this.props.width > 1000 ? 'block' : 'none', width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#aaa'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our notifications delivery service</p>
+						<p style={{display: this.props.width > 1000 ? 'block' : 'none', width: '50%', fontFamily: 'Helvetica', fontSize: '0.8rem', color: '#d4c6b5'}}>We don&#39;t log or sell user activity to anyone (advertisers, businesses, governments). We&#39;re 100% supported by our notifications delivery service</p>
 					</div>
 				</div>
 
@@ -53,7 +53,7 @@ module.exports = MUIThemeable()(React.createClass({
 			paddingBottom: '10%',
 			height: this.props.width > 1000 ? 'inherit' : '85vh',
 			backgroundImage: this.props.width > 1000 ? 'url(' + heroGraphicLarge + ')' : 'url(' + heroGraphicSmall + ')',
-			backgroundColor: '#e9e9e9',
+			backgroundColor: this.props.muiTheme.palette.canvasColor,
 			backgroundPosition: 'right bottom',
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: this.props.width > 1000 ? 'inherit' : '100%'
@@ -91,7 +91,9 @@ module.exports = MUIThemeable()(React.createClass({
 			paddingTop: this.props.width > 1000 ? '15vh' : '23vh',
 			paddingRight: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : 0,
 			paddingLeft: this.props.width > 1000 ? this.props.muiTheme.spacing.desktopGutter : 0,
-			color: this.props.muiTheme.palette.textColor
+			'-webkit-font-smoothing': 'antialiased',
+			'-moz-osx-font-smoothing': 'grayscale',
+			color: '#9e8e7b',
 		}
 	}
 }))
