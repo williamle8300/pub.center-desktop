@@ -3,22 +3,11 @@ var Router = require('react-router-component')
 var Link = Router.Link
 
 import MUIThemeable from 'material-ui/styles/muiThemeable'
-import MUIRaisedButton from 'material-ui/RaisedButton'
-import MUITable from 'material-ui/Table/Table'
-import MUITableHeader from 'material-ui/Table/TableHeader'
-import MUITableBody from 'material-ui/Table/TableBody'
-import MUITableHeaderColumn from 'material-ui/Table/TableHeaderColumn'
-import MUITableRow from 'material-ui/Table/TableRow'
-import MUITableRowColumn from 'material-ui/Table/TableRowColumn'
-import MUIServerIcon from 'material-ui/svg-icons/action/dns'
-import MUIShieldIcon from 'material-ui/svg-icons/hardware/security'
-import MUIDialogIcon from 'material-ui/svg-icons/communication/forum'
-import MUINotificationsIcon from 'material-ui/svg-icons/social/notifications-active'
 
 import heroGraphicLarge from '../images/orb.png'
 import heroGraphicSmall from '../images/orb-small.png'
-import Modal from './Modal'
 import FactsBar from './FactsBar'
+import FeatureList from './FeatureList'
 
 
 module.exports = MUIThemeable()(React.createClass({
@@ -48,83 +37,19 @@ module.exports = MUIThemeable()(React.createClass({
 
 				<FactsBar/>
 
-				<div style={this.style10()}>
-					<div style={this.style7()}>
-						<MUIServerIcon style={this.style8()}/>
-						<b style={this.style9()}>Free for All</b>
-						Our data will always be free. If you can&#39;t find your favorite RSS feed, just add it and we&#39;ll start archiving it. API response times are fast, and served in JSON.
-					</div>
-					<div style={this.style7()}>
-						<MUIShieldIcon style={this.style8()}/>
-						<b style={this.style9()}>SSL/TLS</b>
-						All connections are encrypted over HTTPS. Your activity on PubCenter is private and secure.
-					</div>
-				</div>
-				<div style={this.style10()}>
-					<div style={this.style7()}>
-						<MUIDialogIcon style={this.style8()}/>
-						<b style={this.style9()}>Free Speech</b>
-						We believe different opinions are a good thing, so we&#39;ll always defend the right of the press and free speech. We will host all sorts of RSS feeds here without imposing our own moral/political views.
-					</div>
-					<div style={this.style7()}>
-						<MUINotificationsIcon style={this.style8()}/>
-						<b style={this.style9()}>Push Notifications</b>
-						<div>
-							If you would like to financially support us, consider using our notifications delivery service. See <span onTouchTap={() => this.setState({modalVisible: true})} style={{textDecoration: 'underline', cursor: 'pointer'}}>pricing</span>
-							<this.PricingModal/>
-						</div>
-					</div>
-				</div>
+				<FeatureList/>
 			</div>
     )
   },
-	PricingModal: function () {
-		return (
-			<Modal isOpen={this.state.modalVisible} onClose={this.closeModal} actions={[<MUIRaisedButton onTouchTap={this.closeModal} label="Close"/>]} title="Push Notifications Pricing">
-				<div>
-					<MUITable selectable={false}>
-						<MUITableHeader displaySelectAll={false} adjustForCheckbox={false}>
-							<MUITableRow>
-								<MUITableHeaderColumn>
-									Email
-								</MUITableHeaderColumn>
-								<MUITableHeaderColumn>
-									SMS
-								</MUITableHeaderColumn>
-								<MUITableHeaderColumn>
-									API
-								</MUITableHeaderColumn>
-							</MUITableRow>
-						</MUITableHeader>
-						<MUITableBody displayRowCheckbox={false}>
-							<MUITableRow>
-								<MUITableRowColumn>$0.001</MUITableRowColumn>
-								<MUITableRowColumn>$0.05</MUITableRowColumn>
-								<MUITableRowColumn>$0.0001</MUITableRowColumn>
-							</MUITableRow>
-						</MUITableBody>
-					</MUITable>
-					<small><sup>*</sup>You will be locked into your pricing when you sign-up, and always get the lower rate as prices fluctuate</small>
-				</div>
-			</Modal>
-		)
-	},
-	closeModal: function () {
-
-		this.setState({modalVisible: false})
-	},
 	style1: function () {
 		return {
-			// height: '100vh',
-			// minHeight: 800,
 			overflow: 'auto',
-			// background: this.props.muiTheme.palette.primary2Color,
 		}
 	},
 	style2: function () {
 		return {
-			paddingRight: window.innerWidth/6,
-			paddingLeft: window.innerWidth/6,
+			paddingRight: window.innerWidth/7,
+			paddingLeft: window.innerWidth/7,
 			paddingBottom: '10%',
 			height: this.props.width > 1000 ? 'inherit' : '85vh',
 			backgroundImage: this.props.width > 1000 ? 'url(' + heroGraphicLarge + ')' : 'url(' + heroGraphicSmall + ')',
@@ -140,42 +65,6 @@ module.exports = MUIThemeable()(React.createClass({
 	    lineHeight: this.props.width > 1000 ? '1.9rem' : 'inherit',
 	    fontSize: this.props.width > 1000 ? '1.3rem' : '1rem',
 			textAlign: this.props.width > 1000 ? 'left' : 'center'
-		}
-	},
-		style7: function () {
-		return {
-			display: 'flex',
-			flex: 1,
-			flexDirection: 'column',
-			justifyContent: 'center',
-			alignItems: 'center',
-			padding: '4rem',
-			background: '#7a7ac4',
-			color: this.props.muiTheme.palette.primary2Color,
-			textAlign: 'center',
-			// borderRight: '1px solid #ccc',
-			// borderBottom: '1px solid #ccc',
-			// borderLeft: '1px solid #e2e4e4',
-		}
-	},
-	style8: function () {
-		return {
-			margin: '0 0 1rem',
-			width: 48,
-			height: 48,
-			color: this.props.muiTheme.palette.primary2Color,
-		}
-	},
-	style9: function () {
-		return {
-			margin: '0.5rem 0',
-			fontSize: '1.35rem'
-		}
-	},
-	style10: function () {
-		return {
-			display: this.props.width > 1000 ? 'flex' : 'none',
-			height: '40%'
 		}
 	},
 	style11: function () {

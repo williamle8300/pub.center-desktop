@@ -88,8 +88,8 @@ module.exports = MUIThemeable()(React.createClass({
 	},
 	style2: function () {
 		return {
-			paddingRight: window.innerWidth/6,
-			paddingLeft: window.innerWidth/6
+			paddingRight: window.innerWidth/7,
+			paddingLeft: window.innerWidth/7
 		}
 	}
 }))

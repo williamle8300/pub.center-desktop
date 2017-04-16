@@ -34,9 +34,10 @@ module.exports = MUIThemeable()(React.createClass({
   style1: function () {
     return {
       display: 'flex',
-      height: '20%',
-      paddingRight: window.innerWidth/6,
-      paddingLeft: window.innerWidth/6,
+      flexDirection: window.innerWidth > 1000 ? 'row' : 'column',
+      // height: '20%',
+      paddingRight: window.innerWidth > 1000 ? window.innerWidth/7 : 0,
+      paddingLeft: window.innerWidth > 1000 ? window.innerWidth/7 : 0,
       backgroundColor: this.props.muiTheme.palette.primary1Color
     }
   },
@@ -45,8 +46,8 @@ module.exports = MUIThemeable()(React.createClass({
 			display: 'flex',
 			flexDirection: 'column',
 			justifyContent: 'center',
-			width: '25%',
-			padding: this.props.muiTheme.spacing.desktopGutter * 2,
+			width: window.innerWidth > 1000 ? '25%' : '100%',
+      padding: this.props.muiTheme.spacing.desktopGutter * 2,
 			textAlign: 'center',
 			color: this.props.muiTheme.palette.primary2Color,
 			// border: '1px solid rgb(208, 208, 208)',

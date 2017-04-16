@@ -14,6 +14,14 @@ var Main = require('./components/Main')
 var Nav = require('./components/Nav')
 var Footer = require('./components/Footer')
 
+import { injectGlobal } from 'styled-components'
+
+injectGlobal`
+	@font-face {
+	  font-family: 'blokk';
+	  src: url('./fonts/BLOKKNeue-Regular.otf') format('opentype');
+	}
+`
 
 module.exports = MUIThemeable()(React.createClass({
 	getInitialState: function () {
@@ -27,10 +35,10 @@ module.exports = MUIThemeable()(React.createClass({
 	_theme: {
 		fontFamily: '"Monda", sans-serif',
 		palette: {
-			primary1Color: '#3737a7',
-			primary2Color: '#dedee2',
-			primary3Color: '#65657b',
-			accent1Color: '#0000ee',
+			primary1Color: '#e29332',
+			primary2Color: '#f1e9e0',
+			primary3Color: '#8e6a3d',
+			// accent1Color: '#e0881a',
 			// accent2Color: '#f50057',
 			// accent3Color: '#ff80ab',
 			// secondaryTextColor: 'rgba(255, 255, 255, 0.7)',
