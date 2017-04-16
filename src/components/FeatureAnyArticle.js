@@ -12,20 +12,19 @@ import dribbbleIcon from '../images/rss-logos/dribbble.png'
 import theweatherchannelIcon from '../images/rss-logos/weatherchannel.png'
 import nytIcon from '../images/rss-logos/nyt.png'
 import thevergeIcon from '../images/rss-logos/the-verge.png'
-import blokkFont from '../fonts/BLOKKNeue-Regular.otf'
 
 
 module.exports = MUIThemeable()(React.createClass({
   propTypes: {
     selectedRssFeed: React.PropTypes.number.isRequired,
   },
-  _articleSize: 126,
+  _articleSize: 168,
   render: function () {
     // {this._feeds[this.props.selectedRssFeed]}
     return (
       <div style={{display: 'flex', padding: '3rem 0'}}>
         {this.createArticleTile(this._articleSize)}
-        <div style={{width: '50%'}}>
+        <div style={{width: '100%'}}>
           <h1>Find any article, any time</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
@@ -37,8 +36,12 @@ module.exports = MUIThemeable()(React.createClass({
     const Perspective = Styled.div`
       position: relative;
       margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      alignItems: center;
+      justifyContent: center;
+      width: 100%;
       height: ${articleSize}px;
-      // width: ${articleSize}px;
       transform: rotateX(75deg) rotateZ(39deg);
       transform-style: preserve-3d;
     `
@@ -82,7 +85,7 @@ module.exports = MUIThemeable()(React.createClass({
 
       return (
         <Article>
-          <PlaceholderText>ih ihih hihihi hihi hiih ihih hihihi hihi</PlaceholderText>
+          <PlaceholderText>ih ihih hihi hihiiiii hiih ihih hihihi hihi ih ihih hihihi hihi hiih ihih hihihi hihi ih ihih hihihi</PlaceholderText>
         </Article>
       )
     }
