@@ -26,7 +26,7 @@ module.exports = MUIThemeable()(React.createClass({
         {this.createArticleTile(this._articleSize)}
         <div style={{width: '100%'}}>
           <h1 style={{fontFamily: '"Monda", sans-serif'}}>Find any article, any time</h1>
-          <p>Once we begin archiving a RSS feed, you can search through our archives and pick any article you want. Or you can just get a complete history of the RSS feed. Our powerful REST API facilitates app development, and big data usecases.</p>
+          <p>Once we begin archiving a RSS feed, you can search through our archives and pick any article you want. Or you can just get a complete history of the RSS feed. Our powerful REST API facilitates app development, and big data use cases.</p>
         </div>
       </div>
     )
